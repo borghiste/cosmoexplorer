@@ -1,26 +1,52 @@
 'use client';
-import { Text } from "@react-three/drei";
+import { Float, Text } from "@react-three/drei";
 import { Canvas,useFrame } from "@react-three/fiber";
-import { useRef, useEffect } from 'react';
+import { useRouter } from "next/router";
+import { useRef, useEffect, useState } from 'react';
 
-const Sphere = ({position,size, color, LightPosition, pointerEnter,label,textPosition}) =>{
+import { FontLoader } from 'three/addons/loaders/FontLoader.js';
+import { range } from "three/webgpu";
+
+const Sphere = ({position,
+  size, 
+  color, 
+  LightPosition,
+  onPointerEnter,
+  label,
+  textPosition,
+  handleClick,
+  Lightcolor}) =>{
   
   // useFrame((state,delta)=>{ ref.current.rotation.y += delta * 2})
   return(
   <>   
-<mesh position={position} onPointerEnter={pointerEnter}  >
+<mesh position={position}
+onPointerEnter={onPointerEnter}
+
+
+onClick={handleClick} >
 <sphereGeometry args={size}  />
-<meshStandardMaterial  />
+<meshPhongMaterial color={color} />
+
+
 <Text 
-       fontSize={0.06}
+      
+       fontSize={0.09}
+
+
+       bevelSize= {38}
        lineHeight={0.5}
-       position={textPosition}>{label}</Text>
+       position={textPosition}
+       >{label}
+  </Text>
+       
 </mesh>
 
 <ambientLight intensity={0.1} />
-<directionalLight position={position} 
-color={color}
-LightPosition={LightPosition} /> 
+<directionalLight position={LightPosition}
+                  color={Lightcolor}
+
+onPointerEnter={onPointerEnter} /> 
   </>
 )
 }
@@ -28,28 +54,32 @@ LightPosition={LightPosition} />
 export default function Planet({position,
   size,
    color,
-   pointerEnter,
    label,
    LightPosition,
-   textPosition}) {
-
-
+   textPosition,
+  handleClick,
+  Lightcolor,
+  onPointerEnter}) {
   return (
 
-    <>
+   
 
 
 
  <Sphere color={color}
   position={position}
    size={size}
-   pointerEnter={pointerEnter}
    LightPosition={LightPosition}
    textPosition={textPosition}
-   label={label}/> 
+   label={label}
+   Lightcolor={Lightcolor}
+   handleClick={handleClick}
+   
+   onPointerEnter={onPointerEnter}/> 
+   
    
 
-</>
+
    
 
 )
