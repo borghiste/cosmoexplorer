@@ -5,12 +5,12 @@ export default function(){
 
     return(
         <header className="items-center flex justify-between ">
-            <Image
+            {/* <Image
             src={logo}
             height="200"
-            width="100"
+            width="auto"
             alt="cosmo explorer logo"
-            className="ml-2"/>
+            className="ml-2"/> */}
 
 <nav className="mr-8">
     <Link className="text-sm px-3" href="/">HOME</Link>
