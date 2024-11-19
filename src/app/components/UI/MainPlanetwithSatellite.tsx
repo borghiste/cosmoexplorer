@@ -2,18 +2,10 @@ import { useRef } from "react";
 import { useScroll } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
-export default function MainPlanetwithSatellite(){
-    const PlanetRef = useRef();
-    const scroll = useScroll();
+export default function MainPlanetwithSatellite({PlanetRef}){
     
-     useFrame(()=>{
-       if( scroll){
-         
-           PlanetRef.current.position.y = scroll.offset * Math.PI;
-         PlanetRef.current.rotation.y += 0.01
-   
-       }
-     })
+    
+     
   
     
   
@@ -41,12 +33,12 @@ export default function MainPlanetwithSatellite(){
        <>
       
    
-  <group ref={PlanetRef}>
+  <group position={[0,0,0]} ref={PlanetRef}>
   
   <primitive object={scene} 
             scale={[0.05,0.05,0.05]} 
-            position={[0,-1.8,0]}
-            // position={[0,0,0]}
+            position={[0,-1.4,0]}
+            
             
             />
             <ObliteratorThing/>
