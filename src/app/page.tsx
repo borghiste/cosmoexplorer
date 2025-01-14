@@ -4,12 +4,13 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { ScrollControls, Scroll, Html } from "@react-three/drei";
 import { useRef } from "react";
 import Script from "next/script";
+import './globals.css'
 
 import SpaceStation from "./components/3DModels/SpaceStation";
 import Galaxy from "./components/3DModels/Galaxy";
-import AstroCore from "./components/3DModels/Satellites/AstroCore";
+import AstroCore from "./components/3DModels/AstroCore";
 import SolarSystemModel from "./components/3DModels/SolarsystemModel";
-import Satellite from '../app/components/3DModels/Satellites/Satellite';
+import Satellite from './components/3DModels/Satellite';
 import Astronaut from "./components/3DModels/Astronaut";
 import SliderShow from "./components/UI/SliderShow";
 
@@ -73,7 +74,7 @@ const Scene = () => {
 export default function Home() {
   return (
     <>
-      <Script src="https://kit.fontawesome.com/394b7dd8e2.js" crossorigin="anonymous" />
+      <Script src="https://kit.fontawesome.com/394b7dd8e2.js" crossOrigin="anonymous" />
       <div style={{ width: '100vw', height: '90vh' }}>
         <Canvas camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 5] }} shadows={false}>
           <ScrollControls pages={4} damping={0.2} distance={1} style={{ fontFamily: 'Polaris' }}>
@@ -81,7 +82,7 @@ export default function Home() {
               <Scene />
             </Scroll>
             <Html position={[0, 0, -15]} style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', flexDirection: 'column', zIndex: 10 }} fullscreen occlude={'blending'}>
-              <Header />
+              <HeroSection />
               <GallerySection />
               <SolarSystemSection />
               <NewsSection />
@@ -94,7 +95,7 @@ export default function Home() {
 }
 
 // Header Component
-const Header = () => (
+const HeroSection = () => (
   <div className="pt-9">
     <p className="text-7xl pt-30">COSMOEXPLORER</p>
     <p className="text-lg text-center">Explore the Wonders of the Night Sky</p>
