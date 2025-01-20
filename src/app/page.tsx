@@ -2,7 +2,7 @@
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { ScrollControls, Scroll, Html } from "@react-three/drei";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Script from "next/script";
 import './globals.css'
 
@@ -54,6 +54,8 @@ const Scene = () => {
   useOscillation(AstronautRef, 'y');
   useRotation(GalaxyRef, 'y');
   useArc(SatelliteRef, 'x', 'y');
+
+
 
   return (
     <>
@@ -123,9 +125,10 @@ const GallerySection = () => (
 const SolarSystemSection = () => (
   <div className="flex w-full justify-end pt-36 pb-96 mb-96">
     <p className="text-justify w-1/3 pr-12">
-      <p className="bg-slate-500 rounded-2lg text-center my-3">
-        <a href="/SolarSystemMap">EXPLORE THE SOLAR SYSTEM</a>
-      </p>
+      
+        <a className="bg-slate-500 " href="/SolarSystemMap">EXPLORE THE SOLAR SYSTEM</a>
+      
+     
       sun Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores esse delectus numquam, suscipit obcaecati porro totam natus exercitationem nobis eaque.
     </p>
   </div>
