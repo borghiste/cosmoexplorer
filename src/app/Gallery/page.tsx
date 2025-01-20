@@ -35,16 +35,42 @@ const start_date_Ref = useRef();
 
 const end_date_Ref = useRef();
 
+const today = new Date();
+const formattedToday = today.toISOString().split('T')[0];
+
+
+const aMonthAgo = today.setMonth(today.getMonth() - 1); // Modifica direttamente l'oggetto `today`
+
+const formattedaMonthAgo = today.toISOString().split('T')[0]; // Ora puoi chiamare `toISOString()` correttamente
+
+console.log(formattedToday); // La data di oggi in formato YYYY-MM-DD
+console.log(aMonthAgo); // La data di un mese fa in formato YYYY-MM-DD
 
 
 
-//  fetch astronomy picture of the day
+
+
+
+//  get astronomy picture of the day
 
  useEffect(()=>{ fetchAPOD()
     .then((data)=> {
      const APOD = data
     setAPOD(APOD)
     })},[]) 
+
+//  get last month pictures
+
+useEffect(()=>{fetchImagesbyDate({start_date:formattedaMonthAgo, end_date:formattedToday})
+.then((data)=>{
+  const pictures = data
+  setgalleryPictures(pictures)
+})
+},[])
+
+let generatedContent = generateContent({data:galleryPictures, isModalOpen:isModalOpen, setisModalOpen:setisModalOpen, setSelectedPic:setSelectedPic})
+
+
 
 
 function ImagesGallerySection(){
@@ -65,7 +91,7 @@ function ImagesGallerySection(){
                   
 }
 
-const generatedPictures = generateContent({data:galleryPictures, isModalOpen:isModalOpen, setisModalOpen:setisModalOpen, setSelectedPic})
+ generatedContent = generateContent({data:galleryPictures, isModalOpen:isModalOpen, setisModalOpen:setisModalOpen, setSelectedPic})
 
 
 
@@ -81,7 +107,7 @@ return(
               buttonText={'SEARCH IMAGES'}
               >
     SEARCH IMAGES</SearchBar>
-{generatedPictures}
+{generatedContent}
 </div>
 )
 
@@ -100,7 +126,7 @@ return(
       <h1 className='text-8xl text-center'>Gallery</h1>
 <main className='grid  grid-flow-col span-4 z-0'>
   <div className={ 'hover:cursor-pointer hover:brightness-95 row-span-3'}>
-    <h2 className='text-2xl text-center'>photo of the day</h2>
+    <h2 className='text-2xl text-center text-6xl'>photo of the day</h2>
     <img src={APOD.url} className='object-fit' onClick={()=>{setSelectedPic(APOD), setisModalOpen(! isModalOpen)}} />
     <p>{APOD.title}</p>
 

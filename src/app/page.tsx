@@ -4,7 +4,7 @@ import { Canvas, useFrame } from "@react-three/fiber";
 import { ScrollControls, Scroll, Html } from "@react-three/drei";
 import { useEffect, useRef } from "react";
 import Script from "next/script";
-import './globals.css'
+// import './globals.css'
 
 import SpaceStation from "./components/3DModels/SpaceStation";
 import Galaxy from "./components/3DModels/Galaxy";
