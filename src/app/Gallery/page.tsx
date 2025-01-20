@@ -13,7 +13,9 @@ import Modal from '../components/UI/Modal';
 import fetchAPOD from './generateAPOD';
 import fetchImagesbyDate from './fetchImagesbyDate';
 
-import generateImages from './GenerateImages';
+import generateImages from './generateContent';
+import SearchBar from '../components/UI/SearchBar';
+import generateContent from './generateContent';
 
 
 
@@ -36,38 +38,35 @@ const end_date_Ref = useRef();
 
 
 
-// fetch astronomy picture of the day
+//  fetch astronomy picture of the day
 
-// useEffect(()=>{ fetchAPOD()
-//    .then((data)=> {
-//     const APOD = data
-//     setAPOD(APOD)
-//    })},[])
+ useEffect(()=>{ fetchAPOD()
+    .then((data)=> {
+     const APOD = data
+    setAPOD(APOD)
+    })},[]) 
 
 
-function GallerySection(){
+function ImagesGallerySection(){
   
 
+ async function  handleSearchImagesClick(){
+  setgalleryPictures([])
 
-
-async function  handleSearchImagesClick(){
-
-  const startDate = start_date_Ref.current.value;
-              const endDate = end_date_Ref.current.value;
+  const startDate = start_date_Ref.current?.value;
+              const endDate = end_date_Ref.current?.value;
           
               
               console.log("Start Date:", startDate);
               console.log("End Date:", endDate);
-                   const data = await fetchImagesbyDate({start_date:startDate, end_date:endDate})
-                  setgalleryPictures(data)
+              const data = await fetchImagesbyDate({start_date:startDate, end_date:endDate})
+              setgalleryPictures(data)
                   
                   
 }
 
+const generatedPictures = generateContent({data:galleryPictures, isModalOpen:isModalOpen, setisModalOpen:setisModalOpen, setSelectedPic})
 
-  
-const generatedPictures =  generateImages(galleryPictures, isModalOpen, setisModalOpen, setSelectedPic)
-console.log('gen pics', generatedPictures)
 
 
 return(
@@ -75,22 +74,17 @@ return(
     <p className=' '> gallery Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores quibusdam, debitis iure sunt, consequuntur vitae eveniet, recusandae aliquam jlnkln</p>
     
 
-    <div className='justify-between flex w-full h-10'>
-      <label htmlFor="start date">start date</label>
-
-      {/* start date cannot be after end date */}
-    <input type="date" id='start' ref={start_date_Ref}/>
-    <label htmlFor="end date"></label>
-    <input type="date" id='end ' ref={end_date_Ref}/>
-    <button className='rounded bg-slate-500 text-lg' 
-            onClick={ ()=>{ handleSearchImagesClick()
-            }}>
-                      SEARCH IMAGES
-                      </button>
-    </div>
+  <SearchBar handleClick={()=>handleSearchImagesClick()
+  }           firstInputRef={start_date_Ref}
+              secondInputRef={end_date_Ref}
+              className='justify-center flex  w-full h-10'
+              buttonText={'SEARCH IMAGES'}
+              >
+    SEARCH IMAGES</SearchBar>
 {generatedPictures}
 </div>
 )
+
 }
 
           
@@ -114,7 +108,7 @@ return(
 
   </div>
 
-<GallerySection/>
+<ImagesGallerySection/>
 <Modal className={'absolute w-full h-full  bg-black flex justify-between  z-10'} isModalOpen={isModalOpen}  setisModalOpen={setisModalOpen} picture={selectedPic}/>
 </main>
       </>
