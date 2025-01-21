@@ -23,7 +23,7 @@ export default  function generateContent({data, isModalOpen, setisModalOpen, set
 // if data is video generate youtube video
 const generatedVideos = data?.filter((object)=>object.media_type == 'video').map((object)=>(
  
-<iframe width="400" height="200" src={object.url} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<iframe width="400" height="200" key={object.url} src={object.url} title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 ))
 
 
@@ -32,8 +32,8 @@ const generatedVideos = data?.filter((object)=>object.media_type == 'video').map
 const generatedContent = [...(generatedImages || []), ...(generatedVideos || [])];
 return(
 
-  <div className="flex flex-wrap">{
-    generatedContent}
+  <div className="flex z-0 flex-wrap">{
+    generatedContent.reverse()}
   </div>
 )
 

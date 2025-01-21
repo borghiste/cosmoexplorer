@@ -1,8 +1,24 @@
  export default function Quiz(){
     return(
-        <>
-        <h1>quiz</h1>
-        <p>Ecco alcune idee per le domande di un quiz di astronomia, suddivise per livelli di difficoltà:
+     
+        <div  className="flex justify-center items-center h-[90vh] ">
+<div className="h-[50vh] w-[50vw] bg-slate-400 bg-opacity-50 flex justify-center items-center flex-col">
+    <h2 className="text-red-500-500 ">choose a level</h2>
+    <ul className="h-20 border-8 flex justify-center flex-col ">
+<li><button>base</button></li>
+<li><button>medium</button></li>
+<li><button>advanced</button></li>
+
+    </ul>
+</div>
+
+            </div>
+    
+    
+    
+    )
+
+        {/* <p>Ecco alcune idee per le domande di un quiz di astronomia, suddivise per livelli di difficoltà:
 
         Livello Base
         Qual è il pianeta più vicino al Sole?
@@ -47,7 +63,7 @@
         Qual è la durata della vita del Sole?
         Circa 10 miliardi di anni
         Cosa significa che una stella è "di sequenza principale"?
-        È nella fase di vita in cui fonde l'idrogeno in elio nel suo nucleo.</p>
-        </>
-    )
+        È nella fase di vita in cui fonde l'idrogeno in elio nel suo nucleo.</p> */}
+       
+    
 }
