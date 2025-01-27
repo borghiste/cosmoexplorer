@@ -7,15 +7,19 @@ import { useEffect, useState, useRef } from 'react';
 
 
 // import components
-import Modal from '../components/UI/Modal';
+import Modal from './components/Modal';
 import SearchBar from '../components/UI/SearchBar';
 
 //import functions
 import fetchAPOD from './fetchAPOD';
 import fetchImagesbyDate from './fetchImagesbyDate';
-import generateContent from './generateContent';
+import generateGalleryContent from './generateGalleryContent';
 
 import generateAPOD from './generateAPOD';
+import { useRouter } from 'next/navigation';
+
+
+import pictures from '.././../mock/astronomy-pictures.json'
 
 
 export default function Gallery(){
@@ -30,6 +34,8 @@ export default function Gallery(){
  const start_date_Ref = useRef();
 
  const end_date_Ref = useRef();
+
+ const router = useRouter();
 
  const [galleryPictures, setgalleryPictures]= useState([])
 
@@ -52,15 +58,26 @@ export default function Gallery(){
 
 // fetch and generate last month gallery content
 
- useEffect(()=>{fetchImagesbyDate({start_date:formattedaMonthAgo, end_date:formattedToday})
- .then((data)=>{
-   const pictures = data
-   setgalleryPictures(pictures)
- })
- },[])
+//  useEffect(()=>{fetchImagesbyDate({start_date:formattedaMonthAgo, end_date:formattedToday})
+//  .then((data)=>{
+//    const pictures = data
+//    setgalleryPictures(pictures)
+//  })
+//  },[])
+
+//handleimgClick
+
+const handleImageClick = ({url}:string) => {
+ 
+   router.push(`/Gallery/$${encodeURIComponent(url)}`); // Aggiorna l'URL con il titolo dell'immagine
+   
+};
 
 
- let galleryContent = generateContent({data:galleryPictures, isModalOpen:isModalOpen, setisModalOpen:setisModalOpen, setSelectedPic:setselectedPic})
+
+ const galleryContent = generateGalleryContent({data:pictures, handleClick:handleImageClick })
+
+
 
 
 
@@ -70,22 +87,24 @@ export default function Gallery(){
    <>
  <div>
   <h1 className='text-8xl text-center '>GALLERY</h1>
-<Modal
-picture={selectedPic}
-isModalOpen={isModalOpen}
-setisModalOpen={setisModalOpen}
-className={'w-full  z-10 '}></Modal>
-  <main className='grid grid-flow-col span-4 z-10 '>
+  <p className='text-center'>search for images</p>
+  <main className='grid grid-flow-col span-4 z-10 relative '>
 
 {generateAPOD({APOD:APOD, onClick:()=>{setisModalOpen(!isModalOpen); setselectedPic(APOD)}})}
 
 
   <SearchBar
   buttonText='SEARCH IMAGES'
-  className='justify-center flex  absolute h-10 w-full max-h-min flex justify-center justify-center  absolute'></SearchBar>
-  {galleryContent}
+  className=' items-center w-full flex justify-center justify-center  '/>
+ 
+
+
+
+{ galleryContent}
 
   </main>
+  
+
   
 
 

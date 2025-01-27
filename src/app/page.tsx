@@ -53,7 +53,7 @@ const Scene = () => {
   useOscillation(AstroRef, 'y');
   useOscillation(AstronautRef, 'y');
   useRotation(GalaxyRef, 'y');
-  useArc(SatelliteRef, 'x', 'y');
+  // useArc(SatelliteRef, 'x', 'y');
 
 
 
@@ -63,10 +63,10 @@ const Scene = () => {
       <pointLight position={[2, 8, 8]} decay={0} intensity={9} castShadow={false} />
       <pointLight position={[-2, -8, -8]} decay={0} intensity={9} />
       <SpaceStation scale={[0.5, 0.5, 0.5]} position={[0, -0.5, -2]} rotation={[0, 0.05, 0]} SpaceStationRef={SpaceStationRef} />
-      <Galaxy scale={[1, 1, 1]} position={[4.5, 2, -2]} GalaxyRef={GalaxyRef} />
+      {/* <Galaxy scale={[1, 1, 1]} position={[4.5, 2, -2]} GalaxyRef={GalaxyRef} /> */}
       <AstroCore position={[3, -3, 1]} scale={[0.01, 0.01, 0.01]} AstroRef={AstroRef} />
       <SolarSystemModel scale={[0.01, 0.01, 0.005]} position={[-1, -10, -0.3]} />
-      <Satellite position={[0, -15, 2]} rotation={[0, 2.1, 0]} SatelliteRef={SatelliteRef} />
+       <Satellite position={[0, -15, 2]} rotation={[0, 2.1, 0]} SatelliteRef={SatelliteRef} /> 
       <Astronaut position={[0, -9, 1]} scale={[0.05, 0.05, 0.05]} rotation={[-2, 0, 3]} AstronautRef={AstronautRef} />
     </>
   );

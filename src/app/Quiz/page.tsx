@@ -1,16 +1,30 @@
+ 'use client'
  export default function Quiz(){
+    
+const chooseALevel = ['base','medium','advanced'].map(string =>(<li onClick={(e)=>{console.log(e)}}>{string}</li>))
+ 
+
     return(
      
-        <div  className="flex justify-center items-center h-[90vh] ">
+        <div  className="flex flex-col justify-center items-center h-[90vh] ">
 <div className="h-[50vh] w-[50vw] bg-slate-400 bg-opacity-50 flex justify-center items-center flex-col">
     <h2 className="text-red-500-500 ">choose a level</h2>
-    <ul className="h-20 border-8 flex justify-center flex-col ">
-<li><button>base</button></li>
-<li><button>medium</button></li>
-<li><button>advanced</button></li>
-
+    <ul className="h-20  flex justify-center flex-col hover:cursor-pointer ">
+{chooseALevel}
     </ul>
 </div>
+
+{/* <div className="h-[50vh] w-[50vw] bg-slate-400 bg-opacity-50 flex justify-center items-center flex-col">
+    <h2 className="text-red-500-500 ">Question #1</h2>
+   <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti aspernatur officia ea inventore fugit labore quod cum ad ullam tempore!</p>
+
+   <label htmlFor="answer1">answer1</label>
+   <input type="checkbox" />
+   <label htmlFor="answer2">answer2</label>
+   <input type="checkbox" />
+</div> */}
+
+
 
             </div>
     

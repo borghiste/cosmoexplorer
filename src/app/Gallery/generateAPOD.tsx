@@ -1,6 +1,8 @@
 
 export default function generateAPOD({APOD, onClick}){
 
+    //check media type
+
  const Content = APOD.media_type=='image' ? 
     <img src={APOD.url} 
         alt={APOD.title}
@@ -12,22 +14,29 @@ export default function generateAPOD({APOD, onClick}){
                             key={APOD.url} 
                             src={APOD.url} 
                             title="YouTube video player" 
-                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                            referrerpolicy="strict-origin-when-cross-origin" 
-                            allowfullscreen></iframe>
+                            frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            referrerPolicy="strict-origin-when-cross-origin" 
+                            allowFullScreen></iframe>
  
 
         return(
             <div className={ 'hover:cursor-pointer hover:brightness-95 row-span-3 flex  flex-col'}>
-            <h2 className='text-3xl  '>PHOTO OF THE DAY</h2> 
-            <hr />
+            <h2 className='text-4xl pb-5   '>PHOTO OF THE DAY</h2> 
+           
+            
+          <div className=" h-full">
 
-            <h3 className="text-3xl">{APOD.title}</h3>   
+
+            <h3 className="text-3xl">{APOD.title}</h3> 
+           
+
             {Content}
+
             
-               <p className="text-left text-justify w-1/2">{APOD.explanation}</p> 
+               <p className="text-left text-justify max-w-fit ">{APOD.explanation}</p> 
             
             
+          </div>
             </div>
            
         )
