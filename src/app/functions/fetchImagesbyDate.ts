@@ -12,7 +12,7 @@ export default async function fetchImagesbyDate({start_date, end_date}){
     
     const data = await res.json()
     
-    console.log(data)
+
 
     return data;
     }

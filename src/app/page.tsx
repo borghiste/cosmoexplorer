@@ -56,6 +56,8 @@ const Scene = () => {
   // useArc(SatelliteRef, 'x', 'y');
 
 
+  const pictures =  localStorage.getItem('pictures')
+ 
 
   return (
     <>
@@ -113,7 +115,7 @@ const GallerySection = () => (
       </p>
     </div>
     <div className="h-50 w-50 justify-center items-center flex items-center justify-center flex-col">
-      <SliderShow />
+      <SliderShow images={pictures}/>
       <button className="rounded bg-cyan-950 pt-1 h-10 w-80 z-20">
         <a href="/Gallery">Visit Gallery</a>
       </button>

@@ -11,17 +11,21 @@ import Modal from './components/Modal';
 import SearchBar from '../components/UI/SearchBar';
 
 //import functions
-import fetchAPOD from './fetchAPOD';
-import fetchImagesbyDate from './fetchImagesbyDate';
-import generateGalleryContent from './generateGalleryContent';
+import fetchAPOD from '../functions/fetchAPOD';
+import fetchImagesbyDate from '../functions/fetchImagesbyDate';
+import generateGalleryContent from '../functions/generateGalleryContent';
 
-import generateAPOD from './generateAPOD';
+import generateAPOD from '../functions/generateAPOD';
 import { useRouter } from 'next/navigation';
 
 
-import pictures from '.././../mock/astronomy-pictures.json'
 
 
+export interface ImageObject {
+  url: string
+  title: string
+  explanation: string
+}
 export default function Gallery(){
   //states, Refs & dates
 
@@ -48,6 +52,12 @@ export default function Gallery(){
  const formattedaMonthAgo = today.toISOString().split('T')[0]; 
 
 
+//local storage
+useEffect(()=>{
+  localStorage.setItem('pictures', JSON.stringify(galleryPictures))
+})
+
+
 
   //fetch APOD
 
@@ -58,24 +68,37 @@ export default function Gallery(){
 
 // fetch and generate last month gallery content
 
-//  useEffect(()=>{fetchImagesbyDate({start_date:formattedaMonthAgo, end_date:formattedToday})
-//  .then((data)=>{
-//    const pictures = data
-//    setgalleryPictures(pictures)
-//  })
-//  },[])
+ useEffect(()=>{fetchImagesbyDate({start_date:formattedaMonthAgo, end_date:formattedToday})
+ .then((data)=>{
+    const pictures = data
+   setgalleryPictures(pictures)
+   localStorage.setItem('pictures', JSON.stringify(pictures))
+ })
+ },[])
 
-//handleimgClick
+//handleSearchimgsClick
 
-const handleImageClick = ({url}:string) => {
- 
-   router.push(`/Gallery/$${encodeURIComponent(url)}`); // Aggiorna l'URL con il titolo dell'immagine
+function handleSearchimgsClick(){
+const start_date = start_date_Ref.current?.value
+const end_date = end_date_Ref.current?.value
+
+
+  
+  fetchImagesbyDate({start_date:start_date, end_date:end_date})
+  .then((data)=>{
+    const pics = data
+    setgalleryPictures(pics)
+  
+    
    
-};
+})
+}
 
 
 
- const galleryContent = generateGalleryContent({data:pictures, handleClick:handleImageClick })
+
+
+ const galleryContent = generateGalleryContent({data:galleryPictures})
 
 
 
@@ -95,7 +118,10 @@ const handleImageClick = ({url}:string) => {
 
   <SearchBar
   buttonText='SEARCH IMAGES'
-  className=' items-center w-full flex justify-center justify-center  '/>
+  className=' items-center w-full flex justify-center justify-center  '
+  handleClick={()=>{handleSearchimgsClick()}}
+  firstInputRef={start_date_Ref}
+  secondInputRef={end_date_Ref}/>
  
 
 

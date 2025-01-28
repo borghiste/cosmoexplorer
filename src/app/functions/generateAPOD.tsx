@@ -1,4 +1,4 @@
-
+import Link from "next/link"
 export default function generateAPOD({APOD, onClick}){
 
     //check media type
@@ -14,7 +14,7 @@ export default function generateAPOD({APOD, onClick}){
                             key={APOD.url} 
                             src={APOD.url} 
                             title="YouTube video player" 
-                            frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                             referrerPolicy="strict-origin-when-cross-origin" 
                             allowFullScreen></iframe>
  
@@ -29,8 +29,9 @@ export default function generateAPOD({APOD, onClick}){
 
             <h3 className="text-3xl">{APOD.title}</h3> 
            
-
+<Link href={`/Gallery/${encodeURIComponent(JSON.stringify(APOD))}`}>
             {Content}
+</Link>
 
             
                <p className="text-left text-justify max-w-fit ">{APOD.explanation}</p> 
