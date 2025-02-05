@@ -1,7 +1,7 @@
  'use client'
  export default function Quiz(){
     
-const chooseALevel = ['base','medium','advanced'].map(string =>(<li onClick={(e)=>{console.log(e)}}>{string}</li>))
+const chooseALevel = ['base','medium','advanced'].map(string =>(<li className="rounded border-2" onClick={(e)=>{console.log(e)}}>{string}</li>))
  
 
     return(

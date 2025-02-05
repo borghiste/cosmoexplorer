@@ -2,7 +2,7 @@ import { useGLTF } from "@react-three/drei";
 
 export default function AstroCore({AstroRef, position, scale}){
 
-   const {scene}= useGLTF('astro_core.glb');
+   const {scene}= useGLTF('/models/astro_core.glb');
 
    return(
       <>

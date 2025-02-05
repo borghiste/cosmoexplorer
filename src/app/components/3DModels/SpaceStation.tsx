@@ -5,7 +5,7 @@ import { useGLTF } from "@react-three/drei"
 export default function SpaceStation({scale, position, rotation, SpaceStationRef}){
 
 
-    const {scene} = useGLTF('/space_station.glb')
+    const {scene} = useGLTF('/models/space_station.glb')
     return(
         <primitive
         object={scene}

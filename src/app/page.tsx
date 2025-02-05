@@ -2,17 +2,25 @@
 
 import { Canvas, useFrame } from "@react-three/fiber";
 import { ScrollControls, Scroll, Html } from "@react-three/drei";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Script from "next/script";
-// import './globals.css'
+ import './globals.css'
 
 import SpaceStation from "./components/3DModels/SpaceStation";
-import Galaxy from "./components/3DModels/Galaxy";
+
 import AstroCore from "./components/3DModels/AstroCore";
 import SolarSystemModel from "./components/3DModels/SolarsystemModel";
 import Satellite from './components/3DModels/Satellite';
 import Astronaut from "./components/3DModels/Astronaut";
-import SliderShow from "./components/UI/SliderShow";
+import SlidesShow from "./components/UI/SlidesShow";
+import Link from "next/link";
+import images from '../mock/astronomy-pictures.json';
+
+
+
+
+
+
 
 // Custom Hooks
 const useOscillation = (ref, axis) => {
@@ -35,8 +43,8 @@ const useRotation = (ref, axis) => {
 const useArc = (ref, x, y) => {
   useFrame(({ clock }) => {
     const time = clock.getElapsedTime();
-    ref.current.position.x += Math.sin(time) * 0.2;
-    ref.current.position.y -= Math.cos(time) * 0.2;
+    ref.current.position.x += Math.sin(time) * 0.01;
+    ref.current.position.y -= Math.cos(time) * 0.01;
   });
 };
 
@@ -47,16 +55,21 @@ const Scene = () => {
   const AstronautRef = useRef();
   const SpaceStationRef = useRef();
   const SatelliteRef = useRef();
+ 
+
+  
 
   useRotation(SpaceStationRef, 'y');
   useOscillation(AstroRef, 'x');
   useOscillation(AstroRef, 'y');
   useOscillation(AstronautRef, 'y');
   useRotation(GalaxyRef, 'y');
-  // useArc(SatelliteRef, 'x', 'y');
+   useArc(SatelliteRef, 'x', 'y');
 
 
-  const pictures =  localStorage.getItem('pictures')
+
+
+
  
 
   return (
@@ -66,16 +79,18 @@ const Scene = () => {
       <pointLight position={[-2, -8, -8]} decay={0} intensity={9} />
       <SpaceStation scale={[0.5, 0.5, 0.5]} position={[0, -0.5, -2]} rotation={[0, 0.05, 0]} SpaceStationRef={SpaceStationRef} />
       {/* <Galaxy scale={[1, 1, 1]} position={[4.5, 2, -2]} GalaxyRef={GalaxyRef} /> */}
-      <AstroCore position={[3, -3, 1]} scale={[0.01, 0.01, 0.01]} AstroRef={AstroRef} />
-      <SolarSystemModel scale={[0.01, 0.01, 0.005]} position={[-1, -10, -0.3]} />
-       <Satellite position={[0, -15, 2]} rotation={[0, 2.1, 0]} SatelliteRef={SatelliteRef} /> 
-      <Astronaut position={[0, -9, 1]} scale={[0.05, 0.05, 0.05]} rotation={[-2, 0, 3]} AstronautRef={AstronautRef} />
+      <AstroCore position={[4, -5, 1]} scale={[0.01, 0.01, 0.01]} AstroRef={AstroRef} />
+      <SolarSystemModel scale={[0.01, 0.01, 0.005]} position={[-1, -12, -0.3]} />
+       <Satellite position={[0, -20, 2]} rotation={[0, 2.5, 0]} SatelliteRef={SatelliteRef} /> 
+      <Astronaut position={[0, -12, 1]} scale={[0.05, 0.05, 0.05]} rotation={[-2, 0, 3]} AstronautRef={AstronautRef} />
     </>
   );
 };
 
 // Main Home Component
 export default function Home() {
+ 
+  
   return (
     <>
       <Script src="https://kit.fontawesome.com/394b7dd8e2.js" crossOrigin="anonymous" />
@@ -107,22 +122,37 @@ const HeroSection = () => (
 );
 
 // Gallery Section Component
-const GallerySection = () => (
+
+
+
+
+const GallerySection = () => {
+  
+ 
+
+   
+  return(
   <div className="flex justify-between pt-96 mt-96 bt-96 w-full items-center">
-    <div className="text-2xl h-50 w-50">
-      <p className="text-justify w-80">
-        gallery Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores esse delectus numquam, suscipit obcaecati porro totam natus exercitationem nobis eaque.
+    
+      <p className=" text-2xl text-justify w-80 h-30">
+      The gallery section contains the most wonderfull snd incredible photos took of the outer space
       </p>
-    </div>
+    
     <div className="h-50 w-50 justify-center items-center flex items-center justify-center flex-col">
-      <SliderShow images={pictures}/>
+     
+     
+
+      <SlidesShow slides={preloadImages} />
+    
+     
+     
       <button className="rounded bg-cyan-950 pt-1 h-10 w-80 z-20">
-        <a href="/Gallery">Visit Gallery</a>
+        <Link href="/Gallery">Visit Gallery</Link>
       </button>
     </div>
   </div>
 );
-
+}
 // Solar System Section Component
 const SolarSystemSection = () => (
   <div className="flex w-full justify-end pt-36 pb-96 mb-96">

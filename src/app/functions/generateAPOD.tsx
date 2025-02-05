@@ -21,7 +21,7 @@ export default function generateAPOD({APOD, onClick}){
 
         return(
             <div className={ 'hover:cursor-pointer hover:brightness-95 row-span-3 flex  flex-col'}>
-            <h2 className='text-4xl pb-5   '>PHOTO OF THE DAY</h2> 
+            <h2 className='text-4xl pb-5   '>{APOD.media_type == 'video' ? 'VIDEO' : 'PHOTO'} OF THE DAY</h2> 
            
             
           <div className=" h-full">

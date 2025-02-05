@@ -7,7 +7,7 @@ import { useEffect, useState, useRef } from 'react';
 
 
 // import components
-import Modal from './components/Modal';
+
 import SearchBar from '../components/UI/SearchBar';
 
 //import functions
@@ -17,6 +17,8 @@ import generateGalleryContent from '../functions/generateGalleryContent';
 
 import generateAPOD from '../functions/generateAPOD';
 import { useRouter } from 'next/navigation';
+
+
 
 
 
@@ -41,7 +43,7 @@ export default function Gallery(){
 
  const router = useRouter();
 
- const [galleryPictures, setgalleryPictures]= useState([])
+  const [galleryPictures, setgalleryPictures]= useState([])
 
  const today = new Date();
  const formattedToday = today.toISOString().split('T')[0];
@@ -52,12 +54,6 @@ export default function Gallery(){
  const formattedaMonthAgo = today.toISOString().split('T')[0]; 
 
 
-//local storage
-useEffect(()=>{
-  localStorage.setItem('pictures', JSON.stringify(galleryPictures))
-})
-
-
 
   //fetch APOD
 
@@ -66,15 +62,22 @@ useEffect(()=>{
 
 .then((data)=>{setAPOD(data)})},[])
 
+
 // fetch and generate last month gallery content
 
  useEffect(()=>{fetchImagesbyDate({start_date:formattedaMonthAgo, end_date:formattedToday})
  .then((data)=>{
     const pictures = data
-   setgalleryPictures(pictures)
-   localStorage.setItem('pictures', JSON.stringify(pictures))
- })
- },[])
+   setgalleryPictures(pictures);
+
+
+   
+  })
+},[])
+
+
+
+
 
 //handleSearchimgsClick
 
@@ -93,6 +96,8 @@ const end_date = end_date_Ref.current?.value
    
 })
 }
+
+
 
 
 
