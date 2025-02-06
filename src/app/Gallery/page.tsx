@@ -41,17 +41,28 @@ export default function Gallery(){
 
  const end_date_Ref = useRef();
 
- const router = useRouter();
-
-  const [galleryPictures, setgalleryPictures]= useState([])
-
- const today = new Date();
- const formattedToday = today.toISOString().split('T')[0];
 
 
- const aMonthAgo = today.setMonth(today.getMonth() - 1); // Modifica direttamente l'oggetto `today`
+  const [galleryPictures, setgalleryPictures]= useState([]) //stato delle immagini fetchate
 
- const formattedaMonthAgo = today.toISOString().split('T')[0]; 
+  const todayDate = new Date().toISOString().split('T')[0]; //  today date
+
+  console.log('today',todayDate)
+  const aMonthAgoDate = new Date(todayDate); // today date copy
+  
+  aMonthAgoDate.setMonth(aMonthAgoDate.getMonth() - 1); // today date copy minus 1 month
+  
+  const formattedAMonthAgo = aMonthAgoDate.toISOString().split('T')[0]; // formatted date
+  console.log('month',formattedAMonthAgo); 
+  
+
+
+
+
+
+
+
+
 
 
 
@@ -65,15 +76,16 @@ export default function Gallery(){
 
 // fetch and generate last month gallery content
 
- useEffect(()=>{fetchImagesbyDate({start_date:formattedaMonthAgo, end_date:formattedToday})
- .then((data)=>{
-    const pictures = data
-   setgalleryPictures(pictures);
+  useEffect(()=>{fetchImagesbyDate({start_date:formattedAMonthAgo, end_date:todayDate})
+  .then((data)=>{
+     const pictures = data;
+     console.log(pictures)
+    setgalleryPictures(pictures);
 
 
    
-  })
-},[])
+   })
+ },[])
 
 
 

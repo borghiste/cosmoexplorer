@@ -15,6 +15,7 @@ import Astronaut from "./components/3DModels/Astronaut";
 import SlidesShow from "./components/UI/SlidesShow";
 import Link from "next/link";
 import images from '../mock/astronomy-pictures.json';
+import fetchImagesbyDate from "./functions/fetchImagesbyDate";
 
 
 
@@ -124,27 +125,60 @@ const HeroSection = () => (
 // Gallery Section Component
 
 
-
-
 const GallerySection = () => {
+
+
+  const  [slides, setSlides] = useState([]);
   
- 
+const todayDate = new Date().toISOString().split('T')[0];
+
+
+const fiveDaysAgoDate = new Date() ;
+
+fiveDaysAgoDate.setDate(fiveDaysAgoDate.getDate() -3);
+
+const formattedfiveDaysAgoDate = fiveDaysAgoDate.toISOString().split('T')[0];
+
+
+useEffect(()=>{
+  async function fetchSlides(){
+    const response = await fetchImagesbyDate({start_date:formattedfiveDaysAgoDate, 
+                                            end_date:todayDate});
+          if(response){setSlides(response)}
+  }
+
+  fetchSlides();
+},[]);
+
+
+
+
+
+
+
+
+
+
+
 
    
   return(
   <div className="flex justify-between pt-96 mt-96 bt-96 w-full items-center">
     
       <p className=" text-2xl text-justify w-80 h-30">
-      The gallery section contains the most wonderfull snd incredible photos took of the outer space
+      The gallery section contains the most wonderful snd incredible photos taken of the outer space
       </p>
     
     <div className="h-50 w-50 justify-center items-center flex items-center justify-center flex-col">
      
      
 
-      <SlidesShow slides={preloadImages} />
-    
-     
+{ slides.length > 0 ? ( 
+ <SlidesShow slides={slides}  key={slides.length}/>   ) : (
+  <p>loading</p>
+ )
+ 
+}
      
       <button className="rounded bg-cyan-950 pt-1 h-10 w-80 z-20">
         <Link href="/Gallery">Visit Gallery</Link>
