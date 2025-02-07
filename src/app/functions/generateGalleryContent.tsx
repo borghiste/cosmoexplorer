@@ -31,7 +31,7 @@ export default  function generateGalleryContent({data, handleClick}){
 // if data is video generate youtube video
 const generatedVideos = data?.filter((object)=>object.media_type == 'video').map((object)=>(
  
-<iframe width="400" height="200" key={object.url} src={object.url} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
+<iframe width="400" height="200" key={object.url} src={object.url} title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen></iframe>
 ))
 
 

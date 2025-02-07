@@ -1,5 +1,5 @@
 import { useGLTF } from "@react-three/drei";
-export default function SolarSystemModel({scale, position}){
+export default function SolarSystemModel({scale, position, rotation}){
     
     const {scene} = useGLTF('/models/solar_system.glb')
 
@@ -7,7 +7,8 @@ export default function SolarSystemModel({scale, position}){
         <primitive object={scene}
                     position={position}
                     scale={scale}
-                    rotation={[0,-0.2,0]}/>
+                    rotation={rotation}
+                   />
     )
 }
 

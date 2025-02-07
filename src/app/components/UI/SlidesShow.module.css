@@ -4,6 +4,7 @@
 
 .container{
 position: relative;
+padding-right: 0.1rem;;
 }
 /* Hide the images by default */
 .Slides{
@@ -41,9 +42,19 @@ position: relative;
 
 /* On hover, add a black background color with a little bit see-through */
 .prev:hover, .next:hover {
-  background-color: rgba(0,0,0,0.8);
+
+  background-color: #000000cc;
 }
 
+.text{
+  top:90%;
+  width:auto;
+
+ margin-top: -1.5rem;
+  position: absolute;
+  color:black;
+  
+}
 
 
 
