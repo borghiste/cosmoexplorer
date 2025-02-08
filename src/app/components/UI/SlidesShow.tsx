@@ -55,38 +55,6 @@ return(
 
 )
 
-
-
-//     return(
-
-// //  <div>
-
-// //   {
-// //     <div>
-
-// //     <img
-// //   src={currentSlide.url}
-// //   height={500}
-// //   width={500}
-// //   className="aspect-square"/>
-// //   </div>
-  
-// //   }
-  
-// //   <button className="text-4xl"
-// //           onClick={()=>{prevSlide()}}>&larr;
-
-// //   </button>
-// //   <button className='text-4xl' 
-// //   onClick={()=>{nextSlide()}}>&rarr;
-// //   </button>
-// // </div> 
-   
-  
-
-
-//     )
-
   
 
 }

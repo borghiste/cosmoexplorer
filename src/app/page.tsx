@@ -1,10 +1,14 @@
 'use client';
 
+
+//******************* HOOKS *******************/
 import { Canvas, useFrame } from "@react-three/fiber";
 import { ScrollControls, Scroll, Html } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import Script from "next/script";
- import './globals.css'
+ import './globals.css';
+
+ //******************* COMPONENTS *******************/
 
 import SpaceStation from "./components/3DModels/SpaceStation";
 
@@ -14,45 +18,21 @@ import Satellite from './components/3DModels/Satellite';
 import Astronaut from "./components/3DModels/Astronaut";
 import SlidesShow from "./components/UI/SlidesShow";
 import Link from "next/link";
-import { Cache } from "react";
+
 import fetchImagesbyDate from "./functions/fetchImagesbyDate";
 
 
+// *******************  CUSTOM HOOKS *******************/
+
+import { useOscillation } from "./animations/useOscillation";
+import { useRotation } from "./animations/useRotation";
+import { useArc } from "./animations/useArc";
 
 
 
 
 
-// Custom Hooks
-
-
-const useOscillation = (ref, axis) => {
-  useFrame(({ clock }) => {
-    const time = clock.getElapsedTime();
-    if (ref.current) {
-      ref.current.position[axis] = Math.sin(time);
-    }
-  });
-};
-
-const useRotation = (ref, axis) => {
-  useFrame(() => {
-    if (ref.current) {
-      ref.current.rotation[axis] += 0.01;
-    }
-  });
-};
-
-const useArc = (ref, x, y) => {
-  useFrame(({ clock }) => {
-    const time = clock.getElapsedTime();
-    ref.current.position.x += Math.sin(time) * 0.01;
-    ref.current.position.y -= Math.cos(time) * 0.01;
-  });
-};
-
-
-// Scene Component
+//******************* SCENE COMPONENT *******************
 const Scene = () => {
   const GalaxyRef = useRef();
   const AstroRef = useRef();
@@ -91,7 +71,8 @@ const Scene = () => {
   );
 };
 
-// Main Home Component
+//******************* MAIN HOME COMPONENT *******************/
+
 export default function Home() {
  
   
@@ -117,7 +98,7 @@ export default function Home() {
   );
 }
 
-// Hero Component
+// ******************* HERO SECTION *******************/
 
 
 const HeroSection = () => (
@@ -128,7 +109,7 @@ const HeroSection = () => (
   </div>
 );
 
-// Gallery Section Component
+// ******************* GALLERY SECTION *******************/
 
 
 const GallerySection = () => {
@@ -145,7 +126,7 @@ fiveDaysAgoDate.setDate(fiveDaysAgoDate.getDate() -5);
 
 const formattedfiveDaysAgoDate = fiveDaysAgoDate.toISOString().split('T')[0];
 
-//fetch slides
+//******************* FETCH HOME PAGE SLIDES *******************/
 
 useEffect(()=>{
     async function fetchSlides(){
@@ -188,7 +169,7 @@ localStorage.setItem('slides', JSON.stringify(slides))
   </div>
 );
 }
-// Solar System Section Component
+//******************* SOLAR SYSTEM SECTION *******************/
 const SolarSystemSection = () => (
   <div className="flex w-screen justify-end border-8 mt-80">
     
@@ -202,7 +183,7 @@ const SolarSystemSection = () => (
   </div>
 );
 
-// News Section Component
+// ******************* NEW SECTION COMPONENT *******************/
 const NewsSection = () => (
   <div className="flex justify-around w-2/3 h-full mt-96 pt-96">
     <i className="fa-solid fa-newspaper text-6xl"></i>
