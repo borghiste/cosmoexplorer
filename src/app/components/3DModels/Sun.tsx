@@ -6,7 +6,7 @@ import { useGLTF } from '@react-three/drei';
 export default function Sun({ position, scale}) {
 
 
-const { scene}= useGLTF('/sun.glb')
+const { scene}= useGLTF('models//sun.glb')
 
   return (
     
