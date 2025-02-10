@@ -4,8 +4,7 @@
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { useMemo, useRef } from "react";
-import { useEffect, useState } from "react";
-import { forwardRef } from "react";
+
 
 
 
@@ -15,27 +14,50 @@ import Planet from "./components/Planet";
 import Orbit from "./components/Orbit";
 
 
-export default function SolarSystemMap() {
+const useOrbit = (ref) => {
+  useFrame(({ clock }) => {
+    if (ref.current) {
+      const t = clock.getElapsedTime() * 0.5; // Velocità dell'orbita
+      const radius = 5;
+      const angle = t; // Usa il tempo per mantenere un movimento fluido
+
+      const x = Math.cos(angle) * radius;
+      const z = Math.sin(angle) * radius;
+
+      ref.current.position.set(x, 0.5, z);
+    }
+  });
+};
+
+
+
+function SolarSystemPlanets(){
+  const PlanetRef  = useRef();
+
+  useOrbit(PlanetRef);
+
+  return(
+<Planet position={[-5, -1, 0]} 
+            color={"blue"} 
+            scale={[1, 32, 16]}  
+            ref={PlanetRef}/>
+  )
+
+}
+  export default function SolarSystemMap() {
+    
+    
+    
+    
+    
+
   
-const PlanetRef = useRef();
+ 
+  
 
+  
 
-
-//   function useOrbit(ref){
-
-// useFrame(()=> {
-
-
-// if(ref){
-//   ref.current.position.x -= 0.01
-//         }
-// })
-//   }
-
-
-//   useOrbit(PlanetRef)
-
-
+  
   // Creiamo i punti per la linea orbitale
   const orbitPoints = useMemo(() => {
     const radius = 5;
@@ -47,9 +69,12 @@ const PlanetRef = useRef();
       0,
     ]);
   }, []);
-
-
   
+  
+  
+
+
+
   return(
 
 
@@ -75,10 +100,8 @@ const PlanetRef = useRef();
 
 
         {/* Pianeta in orbita */}
-        <Planet position={[-5, 0, 0]} 
-                color={"blue"} 
-                scale={[1, 32, 16]}  
-                ref={PlanetRef}/>
+          
+        <SolarSystemPlanets/>
 
       </Canvas>
     </div>

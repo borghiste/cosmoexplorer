@@ -14,7 +14,7 @@ import Satellite from './components/3DModels/Satellite';
 import Astronaut from "./components/3DModels/Astronaut";
 import SlidesShow from "./components/UI/SlidesShow";
 import Link from "next/link";
-import { Cache } from "react";
+
 import fetchImagesbyDate from "./functions/fetchImagesbyDate";
 
 
