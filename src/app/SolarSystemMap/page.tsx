@@ -1,87 +1,120 @@
 'use client';
 
 
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, ThreeElements, useFrame } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import { useMemo, useRef } from "react";
+import { createRef, Ref, useEffect, useMemo, useRef, useState } from "react";
+import { Text } from "@react-three/drei";
 
 
 
+
+
+import mock from '../../mock/planetData.json';
+
+import React from "react";
 
 //******************** COMPONENTS  *****************************/
-import Sun from "../components/3DModels/Sun";
+import SunComponent from "../components/3DModels/Sun";
 import Planet from "./components/Planet";
 import Orbit from "./components/Orbit";
 
+//********** HOOKS******* */
 
-const useOrbit = (ref) => {
-  useFrame(({ clock }) => {
-    if (ref.current) {
-      const t = clock.getElapsedTime() * 0.5; // Velocità dell'orbita
-      const radius = 5;
-      const angle = t; // Usa il tempo per mantenere un movimento fluido
-
-      const x = Math.cos(angle) * radius;
-      const z = Math.sin(angle) * radius;
-
-      ref.current.position.set(x, 0.5, z);
-    }
-  });
-};
+import useOrbit from "./functions_&hooks/useOrbit";
+import calculatePlanetSize from "./functions_&hooks/calculatePlanetSize";
+import * as THREE from 'three';
 
 
+//**** FUNCTIONS */
+import fetchPlanets from "./functions_&hooks/fetchPlanets";
 
-function SolarSystemPlanets(){
-  const PlanetRef  = useRef();
+import fetchallData from "./functions_&hooks/fetchallData";
 
-  useOrbit(PlanetRef);
+ //fetchare tutti i corpi celesti
+ //dai dati controllare se i corpi sono pianeti, se lo sono generare il pianeta componente corrispettivo e il relativo riferimento per l'orbita
+
+ // se è il sole niente riferimento
+
+ //calcolare le dimensioni del pianeta
+
+
+export default function SolarSystemMap() {
+  const [data, setData] = useState([]);
+
+  useEffect(()=>{
+
+    fetchallData()
+   .then(res => setData(res))
+  },[])
+
+
+
+
+
+  const Sun =  () => {
+    const  sundata =  data?.find((body) => body.englishName.toLowerCase() === 'sun')
+
+
+console.log('sundata',sundata)
+
+const scale = useMemo(() => {
+  if (!data?.volValue || !data?.massValue) return [[1, 1, 1]]; // Fallback di sicurezza
+
+  const r = Math.cbrt((3 * data.volValue) / (4 * Math.PI)) / 10; // Volume di una sfera corretto
+
+  return [[r * 2, r * 2, r * 2]]; // Restituisce un array 3D corretto
+}, [data.volValue, data.massValue]);
+
+
+console.log('scale',scale)
+
+
+
+    return(
+      <>
+      <SunComponent position={[0,0,0]} />
+     <Text position={[0,-22,0]} fontSize={8}
+            rotation={[0,1,0]}
+            font="/fonts/Polaris-2/Polaris.ttf">TEST</Text>
+
+
+      </>
+    )
+
+  }
+
+  const Planets = () => {
+    const PlanetRefs = useRef([]);
+  
+   return  data.filter((body) => body.isPlanet).map((planet, i) => {
+      if (!PlanetRefs.current[i]) {
+        PlanetRefs.current[i] = createRef();
+      }
+      const scale = calculatePlanetSize(planet)
+  
+      return (
+        <Planet
+          scale={scale}
+          ref={PlanetRefs.current[i]}
+          key={i}
+          data={planet}
+          name={planet.name}
+        />
+      );
+    });
+  };
+
+
+
+
+  
 
   return(
-<Planet position={[-5, -1, 0]} 
-            color={"blue"} 
-            scale={[1, 32, 16]}  
-            ref={PlanetRef}/>
-  )
 
-}
-  export default function SolarSystemMap() {
-    
-    
-    
-    
-    
-
-  
- 
-  
-
-  
-
-  
-  // Creiamo i punti per la linea orbitale
-  const orbitPoints = useMemo(() => {
-    const radius = 5;
-    const segments = 64;
-    const angleStep = (Math.PI * 2) / segments;
-    return Array.from({ length: segments + 1 }, (_, i) => [
-      Math.cos(i * angleStep) * radius,
-      Math.sin(i * angleStep) * radius,
-      0,
-    ]);
-  }, []);
-  
-  
-  
-
-
-
-  return(
-
-
- 
     
      <div style={{ width: '100vw', height: '90vh' }}>
-   <Canvas camera={{ fov: 75, near: 0.1, far: 2000, position: [0, 0, 15] }}>
+   <Canvas camera={{ fov: 100, near: 0.1, far: 2000, position: [20, 20, 15] }}>
         {/* Illuminazione */}
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 10]} intensity={1.5} castShadow />
@@ -92,18 +125,21 @@ function SolarSystemPlanets(){
         <OrbitControls maxPolarAngle={Math.PI / 2} minPolarAngle={0} maxDistance={50} />
 
         {/* Sole */}
-        <Sun scale={[0.2, 0.2, 0.2]} position={[0, 0, 0]} />
+     
+   <Sun  position={[0, 0, 0]} />  
 
-        {/* Orbita come linea */}
+
+  
        
-        <Orbit rotation={[-5,0,0]} orbitPoints={orbitPoints}/>
+        {/* <Orbit rotation={[-5,0,0]} orbitPoints={orbitPoints}/> */}
 
 
         {/* Pianeta in orbita */}
-          
-        <SolarSystemPlanets/>
+       <Planets/>
+       
 
       </Canvas>
     </div>
- );
+ )
  }
+
