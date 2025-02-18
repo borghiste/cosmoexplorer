@@ -5,14 +5,29 @@ const chooseALevel = ['base','medium','advanced'].map(string =>(<li className="r
  
 
     return(
-     
         <div  className="flex flex-col justify-center items-center h-[90vh] ">
-<div className="h-[50vh] w-[50vw] bg-slate-400 bg-opacity-50 flex justify-center items-center flex-col">
-    <h2 className="text-red-500-500 ">choose a level</h2>
-    <ul className="h-20  flex justify-center flex-col hover:cursor-pointer ">
-{chooseALevel}
-    </ul>
-</div>
+         <div className="h-[80vh] w-[50vw] bg-slate-400 bg-opacity-50 flex justify-center items-center flex-col">
+             <h2 className="text-red-500-500 ">question</h2>
+             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Iusto asperiores dolore, sequi nesciunt, sit natus libero dolores omnis, enim molestiae ducimus! Maiores, velit. Non, architecto!</p>
+             
+             <ul>
+                <li> <input type="radio" />option1</li>
+                <li> <input type="radio" />option2</li>
+                <li> <input type="radio" />option3</li>
+                <li> <input type="radio" />option4</li>
+             </ul>
+       
+         </div>
+         </div>
+    )
+     
+//         <div  className="flex flex-col justify-center items-center h-[90vh] ">
+// <div className="h-[50vh] w-[50vw] bg-slate-400 bg-opacity-50 flex justify-center items-center flex-col">
+//     <h2 className="text-red-500-500 ">choose a level</h2>
+//     <ul className="h-20  flex justify-center flex-col hover:cursor-pointer ">
+// {/* {chooseALevel} */}
+//     </ul>
+// </div>
 
 {/* <div className="h-[50vh] w-[50vw] bg-slate-400 bg-opacity-50 flex justify-center items-center flex-col">
     <h2 className="text-red-500-500 ">Question #1</h2>
@@ -26,11 +41,12 @@ const chooseALevel = ['base','medium','advanced'].map(string =>(<li className="r
 
 
 
-            </div>
+            // </div>
+          
     
     
     
-    )
+    
 
         {/* <p>Ecco alcune idee per le domande di un quiz di astronomia, suddivise per livelli di difficoltà:
 

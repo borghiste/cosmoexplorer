@@ -22,7 +22,7 @@ import Orbit from "./components/Orbit";
 //********** HOOKS******* */
 
 import useOrbit from "./functions_&hooks/useOrbit";
-import calculatePlanetSize from "./functions_&hooks/calculatePlanetSize";
+import calculateBodySize from "./functions_&hooks/calculateBodySize";
 import * as THREE from 'three';
 
 
@@ -30,6 +30,7 @@ import * as THREE from 'three';
 import fetchPlanets from "./functions_&hooks/fetchPlanets";
 
 import fetchallData from "./functions_&hooks/fetchallData";
+import { styleText } from "util";
 
  //fetchare tutti i corpi celesti
  //dai dati controllare se i corpi sono pianeti, se lo sono generare il pianeta componente corrispettivo e il relativo riferimento per l'orbita
@@ -49,34 +50,42 @@ export default function SolarSystemMap() {
   },[])
 
 
+ 
 
 
 
+
+
+  const  sundata =  data?.find((body) => body.englishName.toLowerCase() === 'sun')
   const Sun =  () => {
-    const  sundata =  data?.find((body) => body.englishName.toLowerCase() === 'sun')
+
+const [toolTip, setToolTip] = useState(false)
 
 
-console.log('sundata',sundata)
-
-const scale = useMemo(() => {
-  if (!data?.volValue || !data?.massValue) return [[1, 1, 1]]; // Fallback di sicurezza
-
-  const r = Math.cbrt((3 * data.volValue) / (4 * Math.PI)) / 10; // Volume di una sfera corretto
-
-  return [[r * 2, r * 2, r * 2]]; // Restituisce un array 3D corretto
-}, [data.volValue, data.massValue]);
+    
 
 
-console.log('scale',scale)
+
+
+const scale = calculateBodySize(sundata)
+
+
+
+
+
 
 
 
     return(
       <>
-      <SunComponent position={[0,0,0]} />
+      <SunComponent position={[0,0,0]} scale={scale}    />
      <Text position={[0,-22,0]} fontSize={8}
-            rotation={[0,1,0]}
-            font="/fonts/Polaris-2/Polaris.ttf">TEST</Text>
+            rotation={[-0.9,0.9,0]}
+           
+            onPointerEnter={()=>setToolTip(!toolTip)}
+           visible={ toolTip ? true : false}
+        
+            font="/fonts/Polaris-2/Polaris.ttf">{sundata?.englishName} </Text>
 
 
       </>
@@ -86,20 +95,31 @@ console.log('scale',scale)
 
   const Planets = () => {
     const PlanetRefs = useRef([]);
+    const [toolTip, setToolTip] = useState(false)
   
    return  data.filter((body) => body.isPlanet).map((planet, i) => {
-      if (!PlanetRefs.current[i]) {
+       if (!PlanetRefs.current[i]) {
         PlanetRefs.current[i] = createRef();
       }
-      const scale = calculatePlanetSize(planet)
+   
+
+      const scale = calculateBodySize(planet)
+
+   
+
+      
   
       return (
         <Planet
           scale={scale}
           ref={PlanetRefs.current[i]}
           key={i}
-          data={planet}
-          name={planet.name}
+          body={planet}
+          name={planet.englishName}
+          sundata={sundata}
+          onPointerEnter={()=> setToolTip(!toolTip)}
+          toolTip={toolTip}
+          color={'red'}
         />
       );
     });
@@ -114,7 +134,7 @@ console.log('scale',scale)
 
     
      <div style={{ width: '100vw', height: '90vh' }}>
-   <Canvas camera={{ fov: 100, near: 0.1, far: 2000, position: [20, 20, 15] }}>
+   <Canvas camera={{ fov: 100, near: 0.1, far: 2000, position: [20, 100, 80] }}>
         {/* Illuminazione */}
         <ambientLight intensity={0.5} />
         <directionalLight position={[10, 10, 10]} intensity={1.5} castShadow />
@@ -126,7 +146,7 @@ console.log('scale',scale)
 
         {/* Sole */}
      
-   <Sun  position={[0, 0, 0]} />  
+ {/* <Sun  position={[0, 0, 0]} />      */}
 
 
   
@@ -135,7 +155,7 @@ console.log('scale',scale)
 
 
         {/* Pianeta in orbita */}
-       <Planets/>
+        <Planets/> 
        
 
       </Canvas>
