@@ -1,60 +1,72 @@
-
 import { useFrame } from "@react-three/fiber";
-import { Ref } from "react";
- export default function  useOrbit({PlanetRef, body, sundata}){
 
-    useFrame(({clock})=>{
+export default function useOrbit({PlanetRef, body, sundata}){
+  const scaleFactor = 10      // Fattore di scala per regolare la dimensione della scena
+  const orbitRadius = body.perihelion + body.aphelion / 2  // distanza media  dal centro. numero nell'ordine delle decine
+  const e = body.eccentricity // eccentricità. numero compreso tra 0 e 1
+   const orbitTime = (body.sideralOrbit  / 24) * 60 * 60 / 100000;      // Tempo impiegato per un'orbita completa (in secondi)
 
-  // tempo trascorso dall'ultimo passaggio perielico 
-  const t = clock.getElapsedTime()
-  // inclinazione
-  const i = body.inclination
-// eccentricità
-const e = body.eccentricity;
-// tempo orbitale
-const T = body.sideralOrbit
-  //semi asse maggiore dell'orbita: perielio + afelio / 2 // 
-    const a =  (body.perihelion + body.aphelion / 2) ;
+   useFrame(({clock})=>{
+    // Tempo trascorso (rallentato per evitare movimenti troppo rapidi)
+      const t = clock.getElapsedTime() * 0.1;
+
+      // Anomalia media
+      const M = (2 * Math.PI * t) / orbitTime;
+
+      // Anomalia vera (approssimata per semplicità)
+      const v = 2 * Math.atan2(
+        Math.sqrt(1 + e) * Math.sin(M / 2),
+        Math.sqrt(1 - e) * Math.cos(M / 2)
+      )
+
+  // Raggio orbitale corretto con il fattore di scala
+      const r = (orbitRadius * (1 - e ** 2)) / (1 + e * Math.cos(v)) / 100000000;
+
+      // Posizione orbitale nel piano XY (moltiplicata per il fattore di scala)
+      const x = Math.cos(v) * r * scaleFactor;
+     const z = Math.sin(v) * r * scaleFactor;
+
+      // Spostiamo il pianeta nella nuova posizione
+      PlanetRef.current.position.set(x, 0, z);
+   })
+}
 
 
-// anomalia vera
 
-const M = (2 * Math.PI * t) / T;  // Anomalia media
-const E = M; // Approssimazione dell'ano malia eccentrica (soluzione numerica più complessa, ma per ora va bene come approssimazione)
-const v = 2 * Math.atan2(Math.sqrt(1 + e) * Math.sin(E / 2), Math.sqrt(1 - e) * Math.cos(E / 2)); // Anomalia vera
-
-
-
-    // raggio dell'orbita: semi asse maggiore orbita * (1 - eccentricità dell'orbita alla seconda) / 1 + eccentricità per coseno dell'anomalia vera
-
-    const r = a * (1 -e * e) /(1 + e * Math.cos(v)) /1000000000
-    console.log(r)
+//  export default function useOrbit({
+//    PlanetRef,
+//    body,
+//    orbitRadius = 1,      // Distanza media dal centro
+//    eccentricity = 0.2,   // Eccentricità dell'orbita (0 = cerchio, >0 = ellisse)
+//    orbitTime = 12,       // Tempo impiegato per un'orbita completa (in secondi)
+//    scaleFactor = 10      // Fattore di scala per regolare la dimensione della scena
+//  }) {
+//    useFrame(({ clock }) => {
     
-    // calcolo x: raggio orbita * coseno di anomalia vera
-    const x = r * Math.cos(v)
-   
 
-    
+//      // Tempo trascorso (rallentato per evitare movimenti troppo rapidi)
+//      const t = clock.getElapsedTime() * 0.2;
 
-    // calcolo y: raggio orbita * coseno di inclinazione
-    const y = r * Math.cos(v)
+//      // Anomalia media
+//      const M = (2 * Math.PI * t) / orbitTime;
 
-    // calcolo z: raggio orbita * seno di anomalia vera
-    const z = r * Math.sin(v)
-    if(PlanetRef.current){
-       PlanetRef.current.position.set(x, y, z)
-    }
+//      // Anomalia vera (approssimata per semplicità)
+//      const v = 2 * Math.atan2(
+//        Math.sqrt(1 + eccentricity) * Math.sin(M / 2),
+//        Math.sqrt(1 - eccentricity) * Math.cos(M / 2)
+//      );
 
-    
-    console.log('t:', t);
-    console.log('a:', a);
-    console.log('e:', e);
-    console.log('v:', v);
-    console.log('r:', r);
-    console.log('x:', x);
-    console.log('y:', y);
-    console.log('z:', z);
-  })
-  
-  
- }
+//      // Raggio orbitale corretto con il fattore di scala
+//      const r = (orbitRadius * (1 - eccentricity ** 2)) / (1 + eccentricity * Math.cos(v));
+
+//      // Posizione orbitale nel piano XY (moltiplicata per il fattore di scala)
+//      const x = Math.cos(v) * r * scaleFactor;
+//     const z = Math.sin(v) * r * scaleFactor;
+
+//      // Spostiamo il pianeta nella nuova posizione
+//      PlanetRef.current.position.set(x, 0, z);
+//    });
+//  }
+
+
+

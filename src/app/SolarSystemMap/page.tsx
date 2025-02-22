@@ -41,25 +41,26 @@ import { styleText } from "util";
 
 
 export default function SolarSystemMap() {
-  const [data, setData] = useState([]);
+   const [data, setData] = useState([]);
 
-  useEffect(()=>{
+   useEffect(()=>{
 
-    fetchallData()
-   .then(res => setData(res))
-  },[])
+     fetchallData()
+    .then(res => setData(res))
+   },[])
 
 
  
 
+// ******************** SUNDATA **********************
 
 
+   const  sundata =  data?.find((body) => body.englishName.toLowerCase() === 'sun');
 
+   console.log(sundata)
+   const Sun =  () => {
 
-  const  sundata =  data?.find((body) => body.englishName.toLowerCase() === 'sun')
-  const Sun =  () => {
-
-const [toolTip, setToolTip] = useState(false)
+ const [toolTip, setToolTip] = useState(true)
 
 
     
@@ -67,7 +68,7 @@ const [toolTip, setToolTip] = useState(false)
 
 
 
-const scale = calculateBodySize(sundata)
+ const scale = calculateBodySize(sundata)
 
 
 
@@ -76,90 +77,90 @@ const scale = calculateBodySize(sundata)
 
 
 
-    return(
-      <>
-      <SunComponent position={[0,0,0]} scale={scale}    />
-     <Text position={[0,-22,0]} fontSize={8}
-            rotation={[-0.9,0.9,0]}
+     return(
+       <>
+       <SunComponent position={[0,0,0]} scale={scale}    />
+      <Text position={[0,-22,0]} fontSize={8}
+             rotation={[-0.9,0.9,0]}
            
-            onPointerEnter={()=>setToolTip(!toolTip)}
-           visible={ toolTip ? true : false}
+            //  onPointerEnter={()=>setToolTip(!toolTip)}
+            visible={ toolTip ? true : false}
         
-            font="/fonts/Polaris-2/Polaris.ttf">{sundata?.englishName} </Text>
+             font="/fonts/Polaris-2/Polaris.ttf">{sundata?.englishName} </Text>
 
 
-      </>
-    )
+       </>
+     )
 
-  }
+   }
 
-  const Planets = () => {
-    const PlanetRefs = useRef([]);
-    const [toolTip, setToolTip] = useState(false)
+   const Planets = () => {
+     const PlanetRefs = useRef([]);
+     const [toolTip, setToolTip] = useState(false)
   
-   return  data.filter((body) => body.isPlanet).map((planet, i) => {
-       if (!PlanetRefs.current[i]) {
-        PlanetRefs.current[i] = createRef();
-      }
+    return  data.filter((body) => body.isPlanet).map((planet, i) => {
+        if (!PlanetRefs.current[i]) {
+         PlanetRefs.current[i] = createRef();
+       }
    
 
-      const scale = calculateBodySize(planet)
+       const scale = calculateBodySize(planet)
 
    
 
       
   
       return (
-        <Planet
-          scale={scale}
-          ref={PlanetRefs.current[i]}
-          key={i}
-          body={planet}
-          name={planet.englishName}
-          sundata={sundata}
-          onPointerEnter={()=> setToolTip(!toolTip)}
-          toolTip={toolTip}
-          color={'red'}
-        />
-      );
-    });
-  };
+         <Planet
+           scale={scale}
+           ref={PlanetRefs.current[i]}
+           key={i}
+           body={planet}
+           name={planet.englishName}
+           sundata={sundata}
+           onPointerEnter={()=> setToolTip(!toolTip)}
+           toolTip={toolTip}
+           color={'red'}
+         />
+       );
+     });
+   };
 
 
 
 
   
 
-  return(
+   return(
 
     
-     <div style={{ width: '100vw', height: '90vh' }}>
-   <Canvas camera={{ fov: 100, near: 0.1, far: 2000, position: [20, 100, 80] }}>
-        {/* Illuminazione */}
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[10, 10, 10]} intensity={1.5} castShadow />
-        <pointLight position={[2, 8, 8]} intensity={2} />
-        <pointLight position={[-2, -8, -8]} intensity={2} />
+      <div style={{ width: '100vw', height: '90vh' }}>
+    <Canvas camera={{ fov: 100, near: 0.1, far: 2000, position: [20, 150, 80] }}>
+         {/* Illuminazione */}
+         <ambientLight intensity={0.5} />
+         <directionalLight position={[10, 10, 10]} intensity={1.5} castShadow />
+         <pointLight position={[2, 8, 8]} intensity={2} />
+         <pointLight position={[-2, -8, -8]} intensity={2} />
 
-        {/* Controlli */}
-        <OrbitControls maxPolarAngle={Math.PI / 2} minPolarAngle={0} maxDistance={50} />
+         {/* Controlli */}
+         <OrbitControls maxPolarAngle={Math.PI / 2} minPolarAngle={0} maxDistance={50} />
 
-        {/* Sole */}
+         {/* Sole */}
      
- {/* <Sun  position={[0, 0, 0]} />      */}
+  <Sun  position={[0, 0, 0]} />    
 
 
   
        
-        {/* <Orbit rotation={[-5,0,0]} orbitPoints={orbitPoints}/> */}
+         {/* <Orbit rotation={[-5,0,0]} orbitPoints={orbitPoints}/> */}
 
 
-        {/* Pianeta in orbita */}
-        <Planets/> 
+         {/* Pianeta in orbita */}
+         <Planets/> 
        
 
-      </Canvas>
-    </div>
- )
+       </Canvas>
+     </div>
+  )
  }
 
