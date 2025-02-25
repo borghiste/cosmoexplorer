@@ -80,8 +80,9 @@ export default function SolarSystemMap() {
      return(
        <>
        <SunComponent position={[0,0,0]} scale={scale}    />
-      <Text position={[0,-22,0]} fontSize={8}
-             rotation={[-0.9,0.9,0]}
+      <Text position={[0,15,0]} 
+            fontSize={8}
+             
            
             //  onPointerEnter={()=>setToolTip(!toolTip)}
             visible={ toolTip ? true : false}
@@ -98,7 +99,17 @@ export default function SolarSystemMap() {
      const PlanetRefs = useRef([]);
      const [toolTip, setToolTip] = useState(false)
   
-    const colors = ['grey', 'yellow', 'skyblue', 'orange', 'brown', 'beige', 'aquamarine', 'blue'];
+     const planetColors: { [key: string]: string } = {
+      Mercury: 'gray',
+      Venus: 'yellow',
+      Earth: 'blue',
+      Mars: 'red',
+      Jupiter: 'brown',
+      Saturn: 'goldenrod',
+      Uranus: 'lightblue',
+      Neptune: 'darkblue'
+    };
+    
     return  data.filter((body) => body.isPlanet).map((planet, i) => {
             
         if (!PlanetRefs.current[i]) {
@@ -107,7 +118,7 @@ export default function SolarSystemMap() {
    
 
        const scale = calculateBodySize(planet)
-      const color = colors[i % colors.length] 
+      const color = planetColors[planet.englishName]
    
 
       
@@ -123,6 +134,7 @@ export default function SolarSystemMap() {
            onPointerEnter={()=> setToolTip(!toolTip)}
            toolTip={toolTip}
            color={color}
+           
          />
        );
      });
@@ -137,7 +149,7 @@ export default function SolarSystemMap() {
 
     
       <div style={{ width: '100vw', height: '90vh' }}>
-    <Canvas camera={{ fov: 100, near: 0.1, far: 2000, position: [20, 150, 80] }}>
+    <Canvas camera={{ fov: 100, near: 0.1, far: 2000, position: [20, 100, 80] }}>
          {/* Illuminazione */}
          <ambientLight intensity={0.5} />
          <directionalLight position={[10, 10, 10]} intensity={1.5} castShadow />

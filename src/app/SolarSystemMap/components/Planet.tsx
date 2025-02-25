@@ -15,7 +15,7 @@ import useOrbit from "../functions_&hooks/useOrbit";
       <sphereGeometry args={scale} />
       <meshStandardMaterial color={color}/>
       <Text position={[0,-0.5,0]}
-            fontSize={9}
+            fontSize={5}
             // visible={toolTip ? true : false}
             onPointerEnter={onPointerEnter}>{name}</Text>
     </mesh>
