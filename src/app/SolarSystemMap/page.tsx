@@ -98,14 +98,16 @@ export default function SolarSystemMap() {
      const PlanetRefs = useRef([]);
      const [toolTip, setToolTip] = useState(false)
   
+    const colors = ['grey', 'yellow', 'skyblue', 'orange', 'brown', 'beige', 'aquamarine', 'blue'];
     return  data.filter((body) => body.isPlanet).map((planet, i) => {
+            
         if (!PlanetRefs.current[i]) {
          PlanetRefs.current[i] = createRef();
        }
    
 
        const scale = calculateBodySize(planet)
-
+      const color = colors[i % colors.length] 
    
 
       
@@ -120,7 +122,7 @@ export default function SolarSystemMap() {
            sundata={sundata}
            onPointerEnter={()=> setToolTip(!toolTip)}
            toolTip={toolTip}
-           color={'red'}
+           color={color}
          />
        );
      });
