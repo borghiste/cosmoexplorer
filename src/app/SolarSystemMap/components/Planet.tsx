@@ -1,12 +1,23 @@
 
 import { forwardRef } from "react";
-import { Mesh } from "@react-three/fiber";
 
- const Planet = forwardRef(({ position, color, scale }, ref) => {
+import { Text } from "@react-three/drei";
+import useOrbit from "../functions_&hooks/useOrbit";
+
+ const Planet = forwardRef(({ position, color, scale, name, body, sundata, toolTip, onPointerEnter } , ref) => {
+
+   useOrbit({PlanetRef:ref, body:body, sundata:sundata})
+
+
+
   return (
     <mesh ref={ref} position={position}>
       <sphereGeometry args={scale} />
-      <meshStandardMaterial color={color} />
+      <meshStandardMaterial color={color}/>
+      <Text position={[0,-0.5,0]}
+            fontSize={5}
+            // visible={toolTip ? true : false}
+            onPointerEnter={onPointerEnter}>{name}</Text>
     </mesh>
   );
 });
@@ -17,14 +28,7 @@ export default Planet;
   
 
 
-// export default function Planet({position, color, scale, ref}){
-     
 
-//      return(
 
-//          <mesh position={position} ref={ref}>
-//          <sphereGeometry args={scale} />
-//           <meshStandardMaterial color={color} />
-//        </mesh>
-//      )
-//  }
+
+
