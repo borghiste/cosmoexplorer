@@ -5,7 +5,7 @@
 I want to build an App that allows users discover/study astronomy in an interactive and modern way. 
 The purpose of this app is to provide free and fun tool for students and enthusiasts.
 
-the app must be fast, cool, animated and with a modern and intuitive design. I will also develop the mopile version in the future.
+the app must be fast, cool, animated and with a modern and intuitive design. I will also develop the mobile version in the future.
 
 the app will feature:
 

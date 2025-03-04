@@ -4,9 +4,9 @@ import { forwardRef } from "react";
 import { Text } from "@react-three/drei";
 import useOrbit from "../functions_&hooks/useOrbit";
 
- const Planet = forwardRef(({ position, color, scale, name, body, sundata, toolTip, onPointerEnter } , ref) => {
+ const Planet = forwardRef(({ position, color, scale, name, body} , ref) => {
 
-   useOrbit({PlanetRef:ref, body:body, sundata:sundata})
+   useOrbit({PlanetRef:ref, body:body})
 
 
 
@@ -14,10 +14,11 @@ import useOrbit from "../functions_&hooks/useOrbit";
     <mesh ref={ref} position={position}>
       <sphereGeometry args={scale} />
       <meshStandardMaterial color={color}/>
-      <Text position={[0,-0.5,0]}
-            fontSize={5}
-            // visible={toolTip ? true : false}
-            onPointerEnter={onPointerEnter}>{name}</Text>
+      <Text position={[0,-1,0]}
+            rotation={[5,0,0]}
+            fontSize={5}>
+              {name}
+      </Text>
     </mesh>
   );
 });

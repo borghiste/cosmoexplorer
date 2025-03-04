@@ -1,10 +1,15 @@
+'use client'
 import Link from "next/link";
 import Image from "next/image";
 import logo from '../../../../public/images/logo.png';
+import styles from '../UI//Header.module.css'
+import { useState } from "react";
 export default function(){
 
+    const [toggleHamburger, settoggleHamburger ] = useState(false)
+
     return(
-        <header className="items-center flex justify-between ">
+        <header className="items-center flex justify-between header  ">
             {/* <Image
             src={logo}
             height="200"
@@ -12,7 +17,16 @@ export default function(){
             alt="cosmo explorer logo"
             className="ml-2"/> */}
 
-<nav className="mr-8">
+    {/* <button
+        
+        onClick={()=>{settoggleHamburger(!toggleHamburger)}}
+        type="button"
+        id="hamburger">
+        <span className={styles.span}></span>
+        <span className={styles.span}></span>
+        <span className={styles.span}></span>
+      </button> */}
+<nav className={`mr-8  `}>
     
     <Link className="text-sm px-3" href="/">HOME</Link>
     <Link className="text-sm px-3" href="/Gallery" >GALLERY</Link>

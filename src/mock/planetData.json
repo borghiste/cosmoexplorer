@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 {
     "id": "terre",
     "name": "La Terre",
@@ -33,7 +33,7 @@
     "dimension": "",
     "sideralOrbit": 365.25600,
     "sideralRotation": 23.93450,
-=======
+
 [{
     "id": "venus",
     "name": "Vénus",
@@ -63,12 +63,12 @@
     "dimension": "",
     "sideralOrbit": 224.701,
     "sideralRotation": -5832.5,
->>>>>>> map
+
     "aroundPlanet": null,
     "discoveredBy": "",
     "discoveryDate": "",
     "alternativeName": "",
-<<<<<<< HEAD
+
     "axialTilt": 23.4393,
     "avgTemp": 288,
     "mainAnomaly": 358.61700,
@@ -76,7 +76,7 @@
     "longAscNode": 18.27200,
     "bodyType": "Planet"
 }
-=======
+
     "axialTilt": 177.36,
     "avgTemp": 737,
     "mainAnomaly": 50.115,
@@ -86,4 +86,4 @@
     "rel": "https://api.le-systeme-solaire.net/rest/bodies/venus"
   }
 ]
->>>>>>> map
+

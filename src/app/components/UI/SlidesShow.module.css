@@ -47,8 +47,12 @@ padding-right: 0.1rem;;
 }
 
 .text{
-  top:90%;
-  width:auto;
+  background-color: aliceblue;
+  top:95%;
+  
+  text-align: center;
+  
+ 
 
  margin-top: -1.5rem;
   position: absolute;

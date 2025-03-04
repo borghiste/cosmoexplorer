@@ -171,7 +171,7 @@ localStorage.setItem('slides', JSON.stringify(slides))
 }
 //******************* SOLAR SYSTEM SECTION *******************/
 const SolarSystemSection = () => (
-  <div className="flex w-screen justify-end border-8 mt-80">
+  <div className="flex w-screen justify-end  mt-80">
     
     <p className="text-justify w-1/3 pr-12 flex flex-col items-center">
       
