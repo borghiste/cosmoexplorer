@@ -1,0 +1,60 @@
+[ {"question": "what's the nearest planet to the sun?",
+    "options":["mercury", "pluto", " the moon","jupiter"],
+    "solution": "mercury"},
+
+    {"question": "what's the biggest planet in the Solar System?",
+    "options": ["earth", "mars", "jupiter", "the sun"],
+    "solution": "jupiter"},
+    {
+    "question": "what's the name of the galaxy we live in?",
+    "options": ["alpha centauri","Solar System","universe","milky way"],
+    "solution": "milky way"
+    },
+
+    {"question": "How Many Planets there are in the Solar System?",
+    "options": [5,6,7,8],
+    "solution": 8},
+
+    {"question":"what's the natural Satellite of the Earth?",
+    "options":["the Sun", "none","the moon", "mars"]}
+
+]
+
+
+
+// Livello Intermedio
+//         Quale pianeta ha il maggior numero di satelliti?
+//         Saturno
+//         Qual è il nome della più famosa cintura di asteroidi nel Sistema Solare?
+//         Cintura degli asteroidi tra Marte e Giove
+//         Cosa sono le aurore boreali e dove si verificano?
+//         Fenomeni luminosi nell'atmosfera terrestre, visibili ai poli.
+//         Qual è il nome della stella più vicina alla Terra dopo il Sole?
+//         Proxima Centauri
+//         Qual è il periodo di rotazione della Terra attorno al Sole?
+//         365 giorni (circa un anno)
+//         Livello Avanzato
+//         Cos’è un buco nero e come si forma?
+//         È una regione con una forza gravitazionale talmente intensa da non permettere nemmeno alla luce di sfuggire; si forma dal collasso di una stella molto massiccia.
+//         Cosa distingue una stella nana bianca da una stella di neutroni?
+//         La nana bianca è un residuo di una stella di massa simile al Sole, mentre la stella di neutroni è il residuo di stelle più massicce.
+//         Qual è la teoria più accettata sull'origine dell'universo?
+//         Il Big Bang
+//         Come si chiama il fenomeno per cui un oggetto che si allontana emette luce spostata verso il rosso?
+//         Redshift (o spostamento verso il rosso)
+//         Cos'è una supernova?
+//         L'esplosione di una stella alla fine della sua vita
+//         Livello Esperto
+//         Come si chiama il più grande radiotelescopio al mondo, situato in Cina?
+//         FAST (Five-hundred-meter Aperture Spherical Telescope)
+//         Quali sono le principali prove dell’espansione dell’universo?
+//         L'effetto redshift delle galassie lontane e la radiazione cosmica di fondo
+//         Qual è la differenza tra materia oscura ed energia oscura?
+//         La materia oscura è una forma di materia che non emette luce e ha effetti gravitazionali, mentre l'energia oscura è una forza che sembra accelerare l'espansione dell'universo.
+//         Qual è la durata della vita del Sole?
+//         Circa 10 miliardi di anni
+//         Cosa significa che una stella è "di sequenza principale"?
+//         È nella fase di vita in cui fonde l'idrogeno in elio nel suo nucleo.</p> */}
+       
+    
+// }
