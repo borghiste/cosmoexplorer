@@ -1,13 +1,16 @@
-import Link from "next/link"
+import Link from "next/link";
+import Image from "next/image";
 export default function generateAPOD({APOD, onClick}){
 
     //check media type
 
  const Content = APOD.media_type=='image' ? 
-    <img src={APOD.url} 
+    <Image src={APOD.url} 
         alt={APOD.title}
-        className=" w-1/2"
-        onClick={onClick}/> : 
+        className=" "
+        onClick={onClick}
+        width={500}
+        height={500}/> : 
         
         <iframe width="400" 
                             height="200" 
@@ -21,7 +24,7 @@ export default function generateAPOD({APOD, onClick}){
 
         return(
             <div className={ 'hover:cursor-pointer hover:brightness-95 row-span-3 flex  flex-col'}>
-            <h2 className='text-4xl pb-5   '>{APOD.media_type == 'video' ? 'VIDEO' : 'PHOTO'} OF THE DAY</h2> 
+            <h2 className='text-4xl pb-5    '>{APOD.media_type == 'video' ? 'VIDEO' : 'PHOTO'} OF THE DAY</h2> 
            
             
           <div className=" h-full">

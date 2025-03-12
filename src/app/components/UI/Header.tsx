@@ -17,16 +17,17 @@ export default function(){
             alt="cosmo explorer logo"
             className="ml-2"/> */}
 
-    {/* <button
+     <button
         
         onClick={()=>{settoggleHamburger(!toggleHamburger)}}
         type="button"
-        id="hamburger">
+        id="hamburger"
+        className={`${styles.hamburger} ${toggleHamburger ? styles.toggle : ""}`}>
+        <span className={`${styles.span}`}></span>
         <span className={styles.span}></span>
         <span className={styles.span}></span>
-        <span className={styles.span}></span>
-      </button> */}
-<nav className={`mr-8  `}>
+      </button> 
+<nav className={`mr-8 ${styles.navigation} ${toggleHamburger  ? styles.visible : "" }`}>
     
     <Link className="text-sm px-3" href="/">HOME</Link>
     <Link className="text-sm px-3" href="/Gallery" >GALLERY</Link>

@@ -41,7 +41,7 @@ const generatedContent = [...(generatedImages || []), ...(generatedVideos || [])
 return(
   <>
 
-  <div className="flex  pt-10 flex-wrap border-2">{
+  <div className="flex md:flex-col pt-10 flex-wrap border-2">{
     generatedContent.reverse()}
   </div>
     </>

@@ -2,7 +2,7 @@
 
 
 //******************* HOOKS *******************/
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { ScrollControls, Scroll, Html } from "@react-three/drei";
 import { useEffect, useRef, useState } from "react";
 import Script from "next/script";
@@ -41,6 +41,15 @@ const Scene = () => {
   const SatelliteRef = useRef();
  
 
+  //responsive scale
+  const {size} = useThree();
+  const [responsiveScaleFactor, SetresponsiveScaleFactor] = useState(0.5);
+
+// useEffect(()=>{
+//   const scaleFactor = size.width / 1000
+//   SetresponsiveScaleFactor([scaleFactor, scaleFactor, scaleFactor])
+// }, [])
+
   
 
   useRotation(SpaceStationRef, 'y');
@@ -54,6 +63,7 @@ const Scene = () => {
 
 
 
+
  
 
   return (
@@ -61,9 +71,11 @@ const Scene = () => {
       <ambientLight intensity={2} />
       <pointLight position={[2, 8, 8]} decay={0} intensity={9} castShadow={false} />
       <pointLight position={[-2, -8, -8]} decay={0} intensity={9} />
-      <SpaceStation scale={[0.5, 0.5, 0.5]} position={[0, -2, -2]} rotation={[0.1, 0.1, 0]} SpaceStationRef={SpaceStationRef} />
+      <SpaceStation dimensions={[0.5, 0.5, 0.5]} position={[0, -2, -2]} rotation={[0.1, 0.1, 0]} SpaceStationRef={SpaceStationRef}>
+      
+      </SpaceStation>
 
-    <AstroCore position={[2, -5, 1]} scale={[0.01, 0.01, 0.01]} AstroRef={AstroRef} />
+    <AstroCore position={[3, -3, 0]} scale={[0.005, 0.005, 0.005]} AstroRef={AstroRef} />
       <SolarSystemModel scale={[0.01, 0.01, 0.005]} position={[-1, -10, -0.4]} rotation={[0,0.2,0]} />
        <Satellite position={[0, -20, 2]} rotation={[0, 2.5, 0]} SatelliteRef={SatelliteRef} /> 
       <Astronaut position={[0, -12, 1]} scale={[0.05, 0.05, 0.05]} rotation={[-2, 0, 3]} AstronautRef={AstronautRef} />
@@ -148,7 +160,7 @@ localStorage.setItem('slides', JSON.stringify(slides))
   <div className="flex justify-between box-content  w-full  items-center  mt-96">
     
       <p className=" text-2xl text-justify w-96">
-      The gallery section contains the most wonderful and incredible photos taken of the outer space
+      The gallery section contains the most wonderful and incredible photos taken of the outer space.
       </p>
     
     <div className="h-50 w-50 justify-center items-center flex items-center justify-center flex-col">

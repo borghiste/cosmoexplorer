@@ -125,8 +125,8 @@ const end_date = end_date_Ref.current?.value
 
   return(
    <>
- <div>
-  <h1 className='text-8xl text-center '>GALLERY</h1>
+ <div className='md:flex-col'>
+  <h1 className='text-8xl text-center  '>GALLERY</h1>
   <p className='text-center'>search for images</p>
   <main className='grid grid-flow-col span-4 z-10 relative '>
 

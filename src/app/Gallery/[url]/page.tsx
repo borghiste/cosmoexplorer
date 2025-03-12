@@ -28,7 +28,7 @@ export default function Modal() {
         setError("Parametro URL non valido")
       }
     } catch (e) {
-      setError("Errore nel decodificare l'URL")
+      setError("Error decoding URL")
     }
   }, [params.URL])
 
@@ -43,42 +43,28 @@ export default function Modal() {
   
 
     return(
-      <div>
+      <div className="">
       <Link  
       href="/Gallery"
       className="absolute z-20  text-4xl text-red-600">&larr;</Link>
-      <div className="flex  justify-center ">
+      <div className="  md:flex-col   ">
      
-        <img src={image.url} 
-            alt={image.title}        className="max-w-min aspect-square"  />
+        <Image src={image.url} 
+            alt={image.title}        
+            className=" aspect-square  "
+            width={500}
+            height={500}/>
      
-        <div className="flex flex-col">
+        <div className="flex flex-col ">
      
       <h2 className="text-4xl ">{image.title}</h2>
       <br />
-      <p className="text-justify    ">{image.explanation}</p>
+      <p className="text-justify ">{image.explanation}</p>
       </div>
         </div>
      
       </div>
     )
-  // return (
-  //   <div className="container mx-auto px-4 py-8">
-  //     <Link href="/Gallery" className="text-blue-500 hover:underline mb-4 inline-block">
-  //       &larr; Back to Gallery
-  //     </Link>
-  //     <div className="relative w-full max-w-2xl mx-auto aspect-[3/2]">
-  //       <img
-  //         src={image.url}
-  //         alt="Full size image"
-  //         height={500}
-  //         width={500}
-  //         style={{ objectFit: "contain" }}
-  //         sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-  //       />
-        
-  //     </div>
-  //   </div>
-  // )
+
 }
 
