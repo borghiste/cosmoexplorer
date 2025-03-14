@@ -35,10 +35,10 @@ export default function RootLayout({
       
 
 
-        <Background/> 
-         <Header/> 
+         <Background/>  
+          <Header/>  
         {children}
-        {/* <Footer/> */}
+          <Footer/>  
 
 
       </body>

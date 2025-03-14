@@ -1,40 +1,5 @@
-
+[
 {
-    "id": "terre",
-    "name": "La Terre",
-    "englishName": "Earth",
-    "isPlanet": true,
-    "moons": [
-        {
-            "moon": "La Lune",
-            "rel": "https://api.le-systeme-solaire.net/rest/bodies/lune"
-        }
-    ],
-    "semimajorAxis": 149598023,
-    "perihelion": 147095000,
-    "aphelion": 152100000,
-    "eccentricity": 0.01670,
-    "inclination": 0,
-    "mass": {
-        "massValue": 5.97237,
-        "massExponent": 24
-    },
-    "vol": {
-        "volValue": 1.08321,
-        "volExponent": 12
-    },
-    "density": 5.51360,
-    "gravity": 9.80000,
-    "escape": 11190.00000,
-    "meanRadius": 6371.00840,
-    "equaRadius": 6378.13660,
-    "polarRadius": 6356.80000,
-    "flattening": 0.00335,
-    "dimension": "",
-    "sideralOrbit": 365.25600,
-    "sideralRotation": 23.93450,
-
-[{
     "id": "venus",
     "name": "Vénus",
     "englishName": "Venus",
@@ -43,47 +8,35 @@
     "semimajorAxis": 108208475,
     "perihelion": 107477000,
     "aphelion": 108939000,
-    "eccentricity": 0.0067,
-    "inclination": 3.39,
+    "eccentricity": 0.00670,
+    "inclination": 3.39000,
     "mass": {
-      "massValue": 4.86747,
-      "massExponent": 24
+        "massValue": 4.86747,
+        "massExponent": 24
     },
     "vol": {
-      "volValue": 9.2843,
-      "volExponent": 11
+        "volValue": 9.28430,
+        "volExponent": 11
     },
-    "density": 5.243,
-    "gravity": 8.87,
-    "escape": 10360,
-    "meanRadius": 6051.8,
-    "equaRadius": 6051.8,
-    "polarRadius": 6051.8,
+    "density": 5.24300,
+    "gravity": 8.87000,
+    "escape": 10360.00000,
+    "meanRadius": 6051.80000,
+    "equaRadius": 6051.80000,
+    "polarRadius": 6051.80000,
     "flattening": 0,
     "dimension": "",
-    "sideralOrbit": 224.701,
-    "sideralRotation": -5832.5,
-
+    "sideralOrbit": 224.70100,
+    "sideralRotation": -5832.50000,
     "aroundPlanet": null,
     "discoveredBy": "",
     "discoveryDate": "",
     "alternativeName": "",
-
-    "axialTilt": 23.4393,
-    "avgTemp": 288,
-    "mainAnomaly": 358.61700,
-    "argPeriapsis": 85.90100,
-    "longAscNode": 18.27200,
-    "bodyType": "Planet"
-}
-
     "axialTilt": 177.36,
     "avgTemp": 737,
-    "mainAnomaly": 50.115,
-    "argPeriapsis": 54.78,
-    "longAscNode": 76.785,
-    "bodyType": "Planet",
-    "rel": "https://api.le-systeme-solaire.net/rest/bodies/venus"
-  }
+    "mainAnomaly": 50.11500,
+    "argPeriapsis": 54.78000,
+    "longAscNode": 76.78500,
+    "bodyType": "Planet"
+}
 ]
-
