@@ -20,6 +20,7 @@ import SlidesShow from "./components/UI/SlidesShow";
 import Link from "next/link";
 import Loading from './Loading';
 import fetchImagesbyDate from "./functions/fetchImagesbyDate";
+import Image from "next/image";
 
 
 // *******************  CUSTOM HOOKS *******************/
@@ -27,6 +28,7 @@ import fetchImagesbyDate from "./functions/fetchImagesbyDate";
 import { useOscillation } from "./animations/useOscillation";
 import { useRotation } from "./animations/useRotation";
 import { useArc } from "./animations/useArc";
+import { div } from "three/tsl";
 
 
 
@@ -71,13 +73,13 @@ const Scene = () => {
       <ambientLight intensity={2} />
       <pointLight position={[2, 8, 8]} decay={0} intensity={9} castShadow={false} />
       <pointLight position={[-2, -8, -8]} decay={0} intensity={9} />
-      <SpaceStation dimensions={[0.5, 0.5, 0.5]} position={[0, -2, -2]} rotation={[0.1, 0.1, 0]} SpaceStationRef={SpaceStationRef}>
+      <SpaceStation scale={[0.5, 0.5, 0.5]} position={[0, -2, -2]} rotation={[0.1, 0.1, 0]} SpaceStationRef={SpaceStationRef}>
       
       </SpaceStation>
 
     <AstroCore position={[3, -3, 0]} scale={[0.005, 0.005, 0.005]} AstroRef={AstroRef} />
       <SolarSystemModel scale={[0.01, 0.01, 0.005]} position={[-1, -10, -0.4]} rotation={[0,0.2,0]} />
-       <Satellite position={[0, -20, 2]} rotation={[0, 2.5, 0]} SatelliteRef={SatelliteRef} /> 
+       <Satellite position={[3, -15, 2]} rotation={[0, 2.5, 0]} SatelliteRef={SatelliteRef} /> 
       <Astronaut position={[0, -12, 1]} scale={[0.05, 0.05, 0.05]} rotation={[-2, 0, 3]} AstronautRef={AstronautRef} />
     </>
   );
@@ -101,7 +103,7 @@ export default function Home() {
               <HeroSection />
               <GallerySection />
               <SolarSystemSection />
-              <NewsSection />
+              <QuizSection />
             </Html>
           </ScrollControls>
         </Canvas>
@@ -160,7 +162,7 @@ localStorage.setItem('slides', JSON.stringify(slides))
   <div className="flex justify-between box-content  w-full  items-center  mt-96">
     
       <p className=" text-2xl text-justify w-96">
-      The gallery section contains the most wonderful and incredible photos taken of the outer space.
+      The gallery section contains the most wonderful and incredible photos taken of the outer space. come take a look closer to the beauties of the cosmos!
       </p>
     
     <div className="h-50 w-50 justify-center items-center flex items-center justify-center flex-col">
@@ -183,23 +185,33 @@ localStorage.setItem('slides', JSON.stringify(slides))
 }
 //******************* SOLAR SYSTEM SECTION *******************/
 const SolarSystemSection = () => (
-  <div className="flex w-screen justify-end  mt-80">
+  <div className="flex w-screen justify-end  mt-40">
     
-    <p className="text-justify w-1/3 pr-12 flex flex-col items-center">
+    <p className="text-justify w-[30rem] pr-12 flex flex-col items-center text-2xl">
       
       
      
-      sun Lorem, ipsum dolor sit amet consectetur adipisicing elit. Maiores esse delectus numquam, suscipit obcaecati porro totam natus exercitationem nobis eaque.
+     The solar system section gives you a 3D rappresentation of the solar system and includes multiple datas from all the planets orbitating around the Sun.
         <Link className="bg-slate-500 " href="/SolarSystemMap">EXPLORE THE SOLAR SYSTEM</Link>
     </p>
   </div>
 );
 
 // ******************* NEW SECTION COMPONENT *******************/
-const NewsSection = () => (
-  <div className="flex justify-around w-2/3 h-full mt-96 pt-96">
-    <i className="fa-solid fa-newspaper text-6xl"></i>
-    <i className="fa-solid fa-newspaper text-6xl"></i>
-    <i className="fa-solid fa-newspaper text-6xl"></i>
+const QuizSection = () => (
+<div className="mt-[50rem] flex justify-between w-full">
+  
+  <p className="text-2xl text-wrap w-[30rem]  pt-20">Challenge your knowledge by playing the cosmo Quiz! </p>
+
+<div>
+
+  <Image 
+  src={'/images/quiz.jpg'}
+  height={500}
+  width={500}/>
+  <button className="rounded bg-cyan-950 pt-1 h-10 w-full z-20">
+        <Link href="/Quiz">PLAY THE QUIZ</Link>
+      </button>
   </div>
-);
+      </div>
+)
