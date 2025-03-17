@@ -14,7 +14,7 @@ import React from "react";
 import SunComponent from "../components/3DModels/Sun";
 import Planet from "./components/Planet";
 import Orbit from "./components/Orbit";
-import Cards from './components/Cards';
+import Card from './components/Card';
 
 
 //********** HOOKS******* */
@@ -27,7 +27,7 @@ import calculateBodySize from "./functions_&hooks/calculateBodySize";
 
 import fetchallData from "./functions_&hooks/fetchallData";
 import SliderShow from "../components/UI/SlidesShow";
-import mock from '../../mock/planetData.json';
+import mock from '../../mock/astronomy-pictures.json';
 
 
 
@@ -63,7 +63,7 @@ export default function SolarSystemMap() {
      return(
        <>
        <SunComponent position={[0,0,0]} scale={scale}    />
-      <Text position={[0,19,0]} fontSize={5}
+      <Text position={[0,15,0]} fontSize={5}
              rotation={[0,0.3,0]}
            
            
@@ -125,7 +125,7 @@ export default function SolarSystemMap() {
 
     
       <div style={{ width: '100vw', height: '90vh' }}>
-    <Canvas camera={{ fov: 100, near: 0.1, far: 1000, position: [20, 100, 80] }}>
+    <Canvas camera={{ fov: 100, near: 0.1, far: 2000, position: [20, 150, 80] }}>
          {/* Illuminazione */}
          <ambientLight intensity={0.5} />
          <directionalLight position={[10, 10, 10]} intensity={1.5} castShadow />
@@ -137,22 +137,15 @@ export default function SolarSystemMap() {
 
          {/* Sun */}
      
-  <Sun/>    
+  <Sun   />    
 
          {/* <Orbit rotation={[-5,0,0]} orbitPoints={orbitPoints}/> */}
 
 
          {/* Planets */}
-          <Planets/>
-
-
-       <Html position={[0,-10,0]} style={{display:'flex', justifyContent:'start'}}  occlude={'blending'} fullscreen zIndexRange={10}   >
-         
-       <Cards data={planets} /> 
+         <Planets/> 
+       <Html position={[0,-15,-15]} style={{display:'flex', justifyContent:'flex-end', zIndex: 20}}  occlude={'blending'} fullscreen  >
       
-
-
-        
        </Html>
 
        </Canvas>

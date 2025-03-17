@@ -2,7 +2,7 @@
   
   export default function Satellite({position, rotation, SatelliteRef}){
     
-    const { scene}= useGLTF('/models/astro_obliterator_thing/astro_obliterator_thing.glb', true)
+    const { scene}= useGLTF('/models/astro_obliterator_thing/astro_obliterator_thing.glb')
 
     return(
      

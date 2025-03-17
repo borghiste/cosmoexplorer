@@ -9,7 +9,7 @@ export default function Astronaut({position, scale, rotation, AstronautRef}){
  
     
     
-    const { scene } = useGLTF('/models/astronaut.dae/astronaut.glb', true);
+    const { scene } = useGLTF('/models/astronaut.dae/astronaut.glb');
   
    
       return (

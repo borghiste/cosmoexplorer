@@ -11,13 +11,12 @@ import useOrbit from "../functions_&hooks/useOrbit";
 
 
   return (
-    <mesh ref={ref} position={position}
-    rotation={[0,0,0]}>
+    <mesh ref={ref} position={position}>
       <sphereGeometry args={scale} />
       <meshStandardMaterial color={color}/>
-      <Text position={[0,0,0]}
-            rotation={[0,0,0]}
-            fontSize={3}>
+      <Text position={[0,-1,0]}
+            rotation={[5,0,0]}
+            fontSize={5}>
               {name}
       </Text>
     </mesh>
