@@ -6,7 +6,7 @@ export default function Sun({ position, scale}) {
 
 
 
-const { scene}= useGLTF('/models/sun.glb');
+const { scene}= useGLTF('/models/sun.glb', true);
 
 
 

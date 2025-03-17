@@ -9,7 +9,7 @@ export default function SpaceStation({dimensions, position, rotation, SpaceStati
    
 
   
-    const {scene} = useGLTF('/models/space_station.glb');
+    const {scene} = useGLTF('/models/space_station.glb', true);
     return(
         <primitive
         object={scene}

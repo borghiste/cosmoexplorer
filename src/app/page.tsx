@@ -18,7 +18,7 @@ import Satellite from './components/3DModels/Satellite';
 import Astronaut from "./components/3DModels/Astronaut";
 import SlidesShow from "./components/UI/SlidesShow";
 import Link from "next/link";
-
+import Loading from './Loading';
 import fetchImagesbyDate from "./functions/fetchImagesbyDate";
 
 
@@ -169,7 +169,7 @@ localStorage.setItem('slides', JSON.stringify(slides))
 
 { slides.length > 0 ? ( 
  <SlidesShow slides={slides}  key={slides.length}/>   ) : (
-  <p>loading</p>
+  <Loading/>
  )
  
 }

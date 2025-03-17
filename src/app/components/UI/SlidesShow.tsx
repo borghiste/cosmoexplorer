@@ -4,7 +4,7 @@ import { useState } from "react";
 import images from '../../../mock/astronomy-pictures.json'
 
 export default function SliderShow({slides}:Object) {
-console.log('slides ricevute',slides)
+
 const[Slides, setSlides] = useState(slides)
   const [slideIndex, setSlideIndex] = useState(0);
    const [currentSlide, setcurrentSlide] = useState(Slides[0]);

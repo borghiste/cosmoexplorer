@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* In styles/globals.css */
+
 @font-face {
   font-family: 'Polaris';
   src: url('../app/fonts/Polaris-2/Polaris.ttf') format('woff2');
