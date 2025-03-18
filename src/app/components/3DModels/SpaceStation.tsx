@@ -6,16 +6,19 @@ import { useEffect, useState } from "react"
 
 export default function SpaceStation({scale, position, rotation, SpaceStationRef}){
 
-   const {size} = useThree();
-   const responsiveScaleFactor = size.width
-   console.log(size.width)
+   const {size, camera} = useThree();
+   console.log(camera);
+
+   const responsiveScaleFactor = size.width / (scale[0] * 10000)
+   
+
 
   
     const {scene} = useGLTF('/models/space_station.glb', true);
     return(
         <primitive
         object={scene}
-        scale={scale * responsiveScaleFactor}
+        scale={scale}
         position={position}
         rotation={rotation}
         ref={SpaceStationRef}/>

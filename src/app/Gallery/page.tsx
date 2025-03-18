@@ -11,11 +11,11 @@ import { useEffect, useState, useRef } from 'react';
 import SearchBar from '../components/UI/SearchBar';
 
 //import functions
-import fetchAPOD from '../functions/fetchAPOD';
-import fetchImagesbyDate from '../functions/fetchImagesbyDate';
-import generateGalleryContent from '../functions/generateGalleryContent';
+import fetchAPOD from './functions/fetchAPOD';
+import fetchImagesbyDate from './functions/fetchImagesbyDate';
+import generateGalleryContent from './functions/generateGalleryContent';
 
-import generateAPOD from '../functions/generateAPOD';
+import generateAPOD from './functions/generateAPOD';
 import { useRouter } from 'next/navigation';
 
 
@@ -135,7 +135,7 @@ const end_date = end_date_Ref.current?.value
 
   <SearchBar
   buttonText='SEARCH IMAGES'
-  className=' items-center w-full flex justify-center justify-center  '
+  className=' items-center w-full flex justify-center   '
   handleClick={()=>{handleSearchimgsClick()}}
   firstInputRef={start_date_Ref}
   secondInputRef={end_date_Ref}/>

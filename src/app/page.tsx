@@ -4,7 +4,7 @@
 //******************* HOOKS *******************/
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { ScrollControls, Scroll, Html } from "@react-three/drei";
-import { useEffect, useRef, useState } from "react";
+import { Suspense, useEffect, useRef, useState } from "react";
 import Script from "next/script";
  import './globals.css';
 
@@ -19,7 +19,7 @@ import Astronaut from "./components/3DModels/Astronaut";
 import SlidesShow from "./components/UI/SlidesShow";
 import Link from "next/link";
 import Loading from './Loading';
-import fetchImagesbyDate from "./functions/fetchImagesbyDate";
+import fetchImagesbyDate from "./Gallery/functions/fetchImagesbyDate";
 import Image from "next/image";
 
 
@@ -30,7 +30,7 @@ import { useRotation } from "./animations/useRotation";
 import { useArc } from "./animations/useArc";
 import { div } from "three/tsl";
 
-
+import Footer from "./components/UI/Footer";
 
 
 
@@ -73,11 +73,11 @@ const Scene = () => {
       <ambientLight intensity={2} />
       <pointLight position={[2, 8, 8]} decay={0} intensity={9} castShadow={false} />
       <pointLight position={[-2, -8, -8]} decay={0} intensity={9} />
-      <SpaceStation scale={[0.5, 0.5, 0.5]} position={[0, -2, -2]} rotation={[0.1, 0.1, 0]} SpaceStationRef={SpaceStationRef}>
+      <SpaceStation scale={[0.5, 0.5, 0.5]} position={ responsiveScaleFactor < 900 ? [0, -1,-2] : [0, -9, -2]} rotation={[0.1, 0.1, 0]} SpaceStationRef={SpaceStationRef}>
       
       </SpaceStation>
 
-    <AstroCore position={[3, -3, 0]} scale={[0.005, 0.005, 0.005]} AstroRef={AstroRef} />
+    <AstroCore position={ size.width < 990 ? [0,-4,0] : [3, -3, 0] } scale={[0.005, 0.005, 0.005]} AstroRef={AstroRef} />
       <SolarSystemModel scale={[0.01, 0.01, 0.005]} position={[-1, -10, -0.4]} rotation={[0,0.2,0]} />
        <Satellite position={[3, -15, 2]} rotation={[0, 2.5, 0]} SatelliteRef={SatelliteRef} /> 
       <Astronaut position={[0, -12, 1]} scale={[0.05, 0.05, 0.05]} rotation={[-2, 0, 3]} AstronautRef={AstronautRef} />
@@ -93,17 +93,19 @@ export default function Home() {
   return (
     <>
       <Script src="https://kit.fontawesome.com/394b7dd8e2.js" crossOrigin="anonymous" />
-      <div style={{ width: '100vw', height: '90vh'}} className="md:shrink-0 flex ">
-        <Canvas camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 5] }} style={{position:'fixed'}} >
-          <ScrollControls pages={5} damping={0.1} distance={1} style={{ fontFamily: 'Polaris' }} >
+      <div style={{ height: '100vh', width:'100vw'}} className="md:shrink-0  flex w-full ">
+        <Canvas camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 5] }} style={{position:'sticky'}} >
+          <ScrollControls pages={5} damping={0.1} distance={1} style={{ fontFamily: 'Polaris',  }} >
             <Scroll>
               <Scene />
+                
             </Scroll>
-            <Html position={[0, 0, -15]} style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', flexDirection: 'column', zIndex: 10 }} fullscreen occlude={'blending'} className="md:flex-col">
+            <Html position={[0, 0, -15]} style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', flexDirection: 'column', zIndex: 10  }} fullscreen occlude={'blending'} className="">
               <HeroSection />
               <GallerySection />
               <SolarSystemSection />
               <QuizSection />
+              
             </Html>
           </ScrollControls>
         </Canvas>
@@ -117,9 +119,9 @@ export default function Home() {
 
 const HeroSection = () => (
   <div className="pt-9 w-screen flex items-center flex-col">
-    <p className="text-7xl pt-30 ">COSMOEXPLORER</p>
-    <p className="text-4xl text-center pt-5">Explore the Wonders of the Night Sky</p>
-    <p className="text-center  min-w-40  text-justify pt-5 text-2xl w-[41rem] ">Behind every star there's a story ready to be unveiled in the great picture of the universe. Cosmoexplorer is a new way to explore space and discover the cosmo's secrets.</p>
+    <h1 className="sm:text-4xl    pt-30 ">COSMOEXPLORER</h1>
+    <p className=" md:text-2xl text-center pt-5">Explore the Wonders of the Night Sky</p>
+    <p className="text-center  min-w-40  text-justify pt-5 lg:text-2xl md:text-md  md:w-[41rem] md:w-8 ">Behind every star there's a story ready to be unveiled in the great picture of the universe. Cosmoexplorer is a new way to explore space and discover the cosmo's secrets.</p>
   </div>
 );
 
@@ -159,9 +161,9 @@ localStorage.setItem('slides', JSON.stringify(slides))
 
    
   return(
-  <div className="flex justify-between box-content  w-full  items-center  mt-96">
+  <div className="flex justify-between box-content  w-full  items-center  mt-96 sm:flex-col w-96 xl:flex-row ">
     
-      <p className=" text-2xl text-justify w-96">
+      <p className="  text-justify w-96 lg:text-sm  text-2xl ">
       The gallery section contains the most wonderful and incredible photos taken of the outer space. come take a look closer to the beauties of the cosmos!
       </p>
     
@@ -170,8 +172,11 @@ localStorage.setItem('slides', JSON.stringify(slides))
      
 
 { slides.length > 0 ? ( 
+  
+
  <SlidesShow slides={slides}  key={slides.length}/>   ) : (
-  <Loading/>
+
+  <p>test</p>
  )
  
 }
@@ -185,9 +190,9 @@ localStorage.setItem('slides', JSON.stringify(slides))
 }
 //******************* SOLAR SYSTEM SECTION *******************/
 const SolarSystemSection = () => (
-  <div className="flex w-screen justify-end  mt-40">
+  <div className="flex w-screen justify-end  mt-40 md:mt-[40rem]">
     
-    <p className="text-justify w-[30rem] pr-12 flex flex-col items-center text-2xl">
+    <p className="text-justify w-[30rem] pr-12 flex flex-col items-center text-2xl sm:mt-64">
       
       
      
@@ -197,19 +202,19 @@ const SolarSystemSection = () => (
   </div>
 );
 
-// ******************* NEW SECTION COMPONENT *******************/
+// ******************* QUIZ SECTION COMPONENT *******************/
 const QuizSection = () => (
-<div className="mt-[50rem] flex justify-between w-full">
+<div className="mt-[20rem] flex justify-between lg:w-full sm:flex-col ">
   
-  <p className="text-2xl text-wrap w-[30rem]  pt-20">Challenge your knowledge by playing the cosmo Quiz! </p>
+  <p className="m-auto text-2xl pt-20 w-[500px">Challenge your knowledge by playing the cosmo Quiz! </p>
 
-<div>
+<div className="flex flex-col">
 
   <Image 
   src={'/images/quiz.jpg'}
   height={500}
   width={500}/>
-  <button className="rounded bg-cyan-950 pt-1 h-10 w-full z-20">
+  <button className="rounded bg-cyan-950 pt-1 h-10  w-[500px] z-20">
         <Link href="/Quiz">PLAY THE QUIZ</Link>
       </button>
   </div>
