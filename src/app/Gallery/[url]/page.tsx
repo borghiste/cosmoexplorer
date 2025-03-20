@@ -47,7 +47,7 @@ export default function Modal() {
       <Link  
       href="/Gallery"
       className="absolute z-20  text-4xl text-red-600">&larr;</Link>
-      <div className="  md:flex-col   ">
+      <div className="  flex-col flex lg:flex-row lg:h-screen  ">
      
         <Image src={image.url} 
             alt={image.title}        
@@ -55,7 +55,7 @@ export default function Modal() {
             width={500}
             height={500}/>
      
-        <div className="flex flex-col ">
+        <div className="flex flex-col lg:justify-center ">
      
       <h2 className="text-4xl ">{image.title}</h2>
       <br />

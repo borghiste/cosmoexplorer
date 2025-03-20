@@ -7,9 +7,12 @@ import { useEffect, useState } from "react"
 export default function SpaceStation({scale, position, rotation, SpaceStationRef}){
 
    const {size, camera} = useThree();
-   console.log(camera);
+   const [responsiveScaleFactor, SetresponsiveScaleFactor] = useState(scale);
 
-   const responsiveScaleFactor = size.width / (scale[0] * 10000)
+  
+    const scaleFactor = size.width / 4000
+    
+ 
    
 
 
@@ -18,7 +21,7 @@ export default function SpaceStation({scale, position, rotation, SpaceStationRef
     return(
         <primitive
         object={scene}
-        scale={scale}
+        scale={scaleFactor}
         position={position}
         rotation={rotation}
         ref={SpaceStationRef}/>

@@ -1,0 +1,20 @@
+  import { useGLTF } from "@react-three/drei"
+  
+  export default function Satellite2({position, rotation, SatelliteRef}){
+    
+    const { scene}= useGLTF('/models/astro_obliterator_thing/astro_obliterator_thing.glb', true)
+
+    return(
+     
+      <primitive object={scene} 
+                 scale={[0.004,0.004,0.004]} 
+                  position={position}
+                  rotation={rotation}
+                  ref={SatelliteRef}
+                 
+                 />
+ 
+
+                 
+    )
+}

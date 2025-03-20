@@ -39,9 +39,9 @@ setcurrentIndex((prev) => {
 
 
 
-<div className="ms-auto ">
+<div className="md:ms-auto  md:my-auto mb-8 h-auto">
 
-<div className="ms-auto mx-8  max-w-md overflow-hidden rounded-xl shadow-md md:max-w-2xl ">
+<div className="ms-auto h-auto shrink  max-w-md overflow-hidden rounded-xl shadow-md md:max-w-2xl ">
   <div className="md:flex flex-col ">
     <div className="md:shrink-0 ">
       <Image
@@ -52,21 +52,22 @@ setcurrentIndex((prev) => {
         alt={`${currentCard.englishName} image`}
       />
     </div>
-    <div className="p-8 ">
-      <h2 className="text-sm font-semibold tracking-wide text-indigo-500 uppercase ">name: {currentCard.englishName}</h2>
+
+    <div className="   ">
+      <h2 className="text-sm font-semibold tracking-wide text-indigo-500 uppercase   ">name: {currentCard.englishName}</h2>
   
-    </div>
-  </div>
-      <ul className=" text-white-500  ">
+      <ul className=" text-white-500 object-contain overflow-auto  ">
         <li> diameter: {currentCard.meanRadius * 2}</li>
         <li>mass: {currentCard.mass.massValue}</li>
         <li>orbit time</li>
         <li>avg tmp</li>
       </ul>
+    </div>
+  </div>
 
 
    <a className={'pr-8 text-4xl hover:cursor-pointer'} onClick={()=>{prevCard()}}>&#10094;</a>
-   <a className={'pl-16 ml-16 text-4xl hover:cursor-pointer'} onClick={()=>{nextCard()}}>&#10095;</a>
+   <a className={' ml-16 text-4xl hover:cursor-pointer'} onClick={()=>{nextCard()}}>&#10095;</a>
 </div>
 </div>
 

@@ -71,7 +71,7 @@ const checkAnswer = (answer, solution)=>{
        
 
         
-        <form className="bg-[#151740] w-[51rem] mt-20 rounded-lg z-0 "
+        <form className="bg-[#151740] w-auto pb-64 mt-20 rounded-lg z-0 h-screen "
                 onSubmit={e=> {
                     e.preventDefault();
                    

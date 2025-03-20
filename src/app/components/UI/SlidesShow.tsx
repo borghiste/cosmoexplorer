@@ -1,7 +1,7 @@
 
 import styles from './SlidesShow.module.css'
 import { useState } from "react";
-import images from '../../../mock/astronomy-pictures.json'
+import Image from 'next/image';
 
 export default function SliderShow({slides}:Object) {
 
@@ -42,7 +42,7 @@ return(
     {currentSlide.media_type === 'image'
      ?
       
-      <img  src={currentSlide.url} height={500} width={500} className='aspect-square  rounded-xl '/>
+      <Image  src={currentSlide.url} height={500} width={500} className='aspect-square  rounded-xl '/>
    :
      ( <iframe width="400" height="200"  src={currentSlide.url} title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen className='aspect-square rounded-lg'></iframe>
      )
@@ -53,7 +53,7 @@ return(
 
   <a className={styles.prev} onClick={()=>{prevSlide()}}>&#10094;</a>
   <a className={styles.next} onClick={()=>{nextSlide()}}>&#10095;</a>
-  <p  className={`${styles.text} `}>{currentSlide.title}</p>
+  <p  className={`${styles.text} w-full`}>{currentSlide.title}</p>
 
 </div>
 

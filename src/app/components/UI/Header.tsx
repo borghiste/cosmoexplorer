@@ -10,24 +10,19 @@ export default function(){
 
     return(
         <header className="items-center flex justify-between header  ">
-            {/* <Image
-            src={logo}
-            height="200"
-            width="auto"
-            alt="cosmo explorer logo"
-            className="ml-2"/> */}
+            
 
      <button
         
         onClick={()=>{settoggleHamburger(!toggleHamburger)}}
         type="button"
         id="hamburger"
-        className={`${styles.hamburger} ${toggleHamburger ? styles.toggle : ""}`}>
+        className={`${styles.hamburger} ${toggleHamburger ? styles.toggle : ""} z-20`}>
         <span className={`${styles.span}`}></span>
         <span className={styles.span}></span>
         <span className={styles.span}></span>
       </button> 
-<nav className={`mr-8 ${styles.navigation} ${toggleHamburger  ? styles.visible : "" }`}>
+<nav className={`  md:mr-8 ${styles.navigation} ${toggleHamburger  ? styles.visible : "" }`} onClick={()=>{ toggleHamburger ? settoggleHamburger(!toggleHamburger) : null}}>
     
     <Link className="text-sm px-3" href="/">HOME</Link>
     <Link className="text-sm px-3" href="/Gallery" >GALLERY</Link>

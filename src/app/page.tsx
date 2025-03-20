@@ -12,9 +12,9 @@ import Script from "next/script";
 
 import SpaceStation from "./components/3DModels/SpaceStation";
 
-import AstroCore from "./components/3DModels/AstroCore";
+import Satellite from "./components/3DModels/Satellite";
 import SolarSystemModel from "./components/3DModels/SolarsystemModel";
-import Satellite from './components/3DModels/Satellite';
+import Satellite2 from './components/3DModels/Satellite2';
 import Astronaut from "./components/3DModels/Astronaut";
 import SlidesShow from "./components/UI/SlidesShow";
 import Link from "next/link";
@@ -45,12 +45,9 @@ const Scene = () => {
 
   //responsive scale
   const {size} = useThree();
-  const [responsiveScaleFactor, SetresponsiveScaleFactor] = useState(0.5);
+   const responsiveScaleFactor = size.width
 
-// useEffect(()=>{
-//   const scaleFactor = size.width / 1000
-//   SetresponsiveScaleFactor([scaleFactor, scaleFactor, scaleFactor])
-// }, [])
+
 
   
 
@@ -73,14 +70,14 @@ const Scene = () => {
       <ambientLight intensity={2} />
       <pointLight position={[2, 8, 8]} decay={0} intensity={9} castShadow={false} />
       <pointLight position={[-2, -8, -8]} decay={0} intensity={9} />
-      <SpaceStation scale={[0.5, 0.5, 0.5]} position={ responsiveScaleFactor < 900 ? [0, -1,-2] : [0, -9, -2]} rotation={[0.1, 0.1, 0]} SpaceStationRef={SpaceStationRef}>
+      <SpaceStation scale={[0.5, 0.5, 0.5]} position={ responsiveScaleFactor < 1200 ? [0, 0,-2] : [0, -1, -2]} rotation={[0.1, 0.1, 0]} SpaceStationRef={SpaceStationRef}/>
       
-      </SpaceStation>
+      
 
-    <AstroCore position={ size.width < 990 ? [0,-4,0] : [3, -3, 0] } scale={[0.005, 0.005, 0.005]} AstroRef={AstroRef} />
-      <SolarSystemModel scale={[0.01, 0.01, 0.005]} position={[-1, -10, -0.4]} rotation={[0,0.2,0]} />
-       <Satellite position={[3, -15, 2]} rotation={[0, 2.5, 0]} SatelliteRef={SatelliteRef} /> 
+    <Satellite position={ size.width < 1200 ? [-1,-4,0] : [3, -3, 0] } scale={[0.005, 0.005, 0.005]} AstroRef={AstroRef} />
+      <SolarSystemModel scale={[0.01, 0.01, 0.005]} position={[-1, -10, -0.4]} rotation={ responsiveScaleFactor < 500 ? [0,0.9,0] : [0,0.2,0]} />
       <Astronaut position={[0, -12, 1]} scale={[0.05, 0.05, 0.05]} rotation={[-2, 0, 3]} AstronautRef={AstronautRef} />
+       <Satellite2 position={ responsiveScaleFactor < 640 ? [0, -15, 2]: [-2, -20, 2]} rotation={[0, 2.5, 0]} SatelliteRef={SatelliteRef} /> 
     </>
   );
 };
@@ -93,9 +90,9 @@ export default function Home() {
   return (
     <>
       <Script src="https://kit.fontawesome.com/394b7dd8e2.js" crossOrigin="anonymous" />
-      <div style={{ height: '100vh', width:'100vw'}} className="md:shrink-0  flex w-full ">
+      <div style={{ height: '100vh', width:'100vw'}} className="md:shrink-0  flex w-full  ">
         <Canvas camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 5] }} style={{position:'sticky'}} >
-          <ScrollControls pages={5} damping={0.1} distance={1} style={{ fontFamily: 'Polaris',  }} >
+          <ScrollControls pages={3} damping={0.1} distance={1} style={{ fontFamily: 'Polaris',  }} >
             <Scroll>
               <Scene />
                 
@@ -119,9 +116,9 @@ export default function Home() {
 
 const HeroSection = () => (
   <div className="pt-9 w-screen flex items-center flex-col">
-    <h1 className="sm:text-4xl    pt-30 ">COSMOEXPLORER</h1>
-    <p className=" md:text-2xl text-center pt-5">Explore the Wonders of the Night Sky</p>
-    <p className="text-center  min-w-40  text-justify pt-5 lg:text-2xl md:text-md  md:w-[41rem] md:w-8 ">Behind every star there's a story ready to be unveiled in the great picture of the universe. Cosmoexplorer is a new way to explore space and discover the cosmo's secrets.</p>
+    <h1 className="text-4xl sm:text-4xl md:text-6xl    pt-30  ">COSMOEXPLORER</h1>
+    <h2 className="  text-center text-3xl pt-5 sm:text-3xl md:text-4xl">Explore the Wonders of the Night Sky</h2>
+    <p className="text-center  min-w-40  text-justify pt-5 text-xl lg:text-2xl sm:text-2xl md:text-lg  md:w-[41rem] md:w-8 ">Behind every star there's a story ready to be unveiled in the great picture of the universe. Cosmoexplorer is a new way to explore space and discover the cosmo's secrets.</p>
   </div>
 );
 
@@ -161,9 +158,9 @@ localStorage.setItem('slides', JSON.stringify(slides))
 
    
   return(
-  <div className="flex justify-between box-content  w-full  items-center  mt-96 sm:flex-col w-96 xl:flex-row ">
+  <div className="flex justify-between box-content  w-full  items-center  mt-[20rem] flex-col  xl:flex-row  ">
     
-      <p className="  text-justify w-96 lg:text-sm  text-2xl ">
+      <p className=" mb-16 w-auto text-justify text-xl md:w-[25rem]">
       The gallery section contains the most wonderful and incredible photos taken of the outer space. come take a look closer to the beauties of the cosmos!
       </p>
     
@@ -190,12 +187,11 @@ localStorage.setItem('slides', JSON.stringify(slides))
 }
 //******************* SOLAR SYSTEM SECTION *******************/
 const SolarSystemSection = () => (
-  <div className="flex w-screen justify-end  mt-40 md:mt-[40rem]">
+  <div className="flex w-screen justify-end  mt-20 ">
     
-    <p className="text-justify w-[30rem] pr-12 flex flex-col items-center text-2xl sm:mt-64">
+    <p className=" w-auto flex flex-col  text-xl  md:w-[40rem] md:mt-[20rem] md:w-[30rem]   text-justify text-center">
       
-      
-     
+  
      The solar system section gives you a 3D rappresentation of the solar system and includes multiple datas from all the planets orbitating around the Sun.
         <Link className="bg-slate-500 " href="/SolarSystemMap">EXPLORE THE SOLAR SYSTEM</Link>
     </p>
@@ -204,17 +200,17 @@ const SolarSystemSection = () => (
 
 // ******************* QUIZ SECTION COMPONENT *******************/
 const QuizSection = () => (
-<div className="mt-[20rem] flex justify-between lg:w-full sm:flex-col ">
+<div className=" flex md:justify-between  flex-col md:mt-[40rem] md:flex-row md:justify-betweeen md:w-screen">
   
-  <p className="m-auto text-2xl pt-20 w-[500px">Challenge your knowledge by playing the cosmo Quiz! </p>
+  <p className="text-2xl text-justify  md:w-64 md:text-center mt-[40rem]">Challenge your knowledge by playing the cosmo Quiz! </p>
 
-<div className="flex flex-col">
+<div className="flex flex-col mt-[40rem] m-auto">
 
   <Image 
   src={'/images/quiz.jpg'}
   height={500}
   width={500}/>
-  <button className="rounded bg-cyan-950 pt-1 h-10  w-[500px] z-20">
+  <button className="rounded bg-cyan-950 pt-1 h-10 z-20 ">
         <Link href="/Quiz">PLAY THE QUIZ</Link>
       </button>
   </div>

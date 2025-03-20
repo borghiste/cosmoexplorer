@@ -7,7 +7,7 @@ export default function generateAPOD({APOD, onClick}){
  const Content = APOD.media_type=='image' ? 
     <Image src={APOD.url} 
         alt={APOD.title}
-        className=" "
+        className="aspect-square "
         onClick={onClick}
         width={500}
         height={500}/> : 
@@ -23,11 +23,12 @@ export default function generateAPOD({APOD, onClick}){
  
 
         return(
+          <>
             <div className={ 'hover:cursor-pointer hover:brightness-95 row-span-3 flex  flex-col'}>
-            <h2 className='text-4xl pb-5    '>{APOD.media_type == 'video' ? 'VIDEO' : 'PHOTO'} OF THE DAY</h2> 
+            <h2 className='text-4xl w-full    '>{APOD.media_type == 'video' ? 'VIDEO' : 'PHOTO'} OF THE DAY</h2> 
            
             
-          <div className=" h-full">
+          <div className="  flex flex-col ">
 
 
             <h3 className="text-3xl">{APOD.title}</h3> 
@@ -42,6 +43,8 @@ export default function generateAPOD({APOD, onClick}){
             
           </div>
             </div>
+            <br />
+          </>
            
         )
     }

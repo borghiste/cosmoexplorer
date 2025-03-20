@@ -115,7 +115,7 @@ const end_date = end_date_Ref.current?.value
 
 
 
- const galleryContent = generateGalleryContent({data:galleryPictures})
+ const galleryContent = generateGalleryContent({data:galleryPictures, handleClick:()=>{setisModalOpen(!isModalOpen)}})
 
 
 
@@ -125,22 +125,25 @@ const end_date = end_date_Ref.current?.value
 
   return(
    <>
- <div className='md:flex-col'>
-  <h1 className='text-8xl text-center  '>GALLERY</h1>
-  <p className='text-center'>search for images</p>
-  <main className='grid grid-flow-col span-4 z-10 relative '>
+ <div className='flex-col overflow-visible'>
+  <h1 className='text-7xl text-center  '>GALLERY</h1>
+  <br />
+  <p className='text-center text-xl'>Explore the cosmo gallery and be amazed by the beauty of the space. With the gallery section you can take a look of the many images from the NASA archives searching for pictures by date. </p>
+  <br />
+  
+  <main className='  z-10  relative lg:grid  lg:grid-flow-col   '>
+
+
 
 {generateAPOD({APOD:APOD, onClick:()=>{setisModalOpen(!isModalOpen); setselectedPic(APOD)}})}
-
-
   <SearchBar
   buttonText='SEARCH IMAGES'
   className=' items-center w-full flex justify-center   '
   handleClick={()=>{handleSearchimgsClick()}}
   firstInputRef={start_date_Ref}
   secondInputRef={end_date_Ref}/>
- 
 
+ 
 
 
 { galleryContent}

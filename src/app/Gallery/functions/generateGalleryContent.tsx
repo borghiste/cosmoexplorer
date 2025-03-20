@@ -1,5 +1,6 @@
 
 import Link from "next/link";
+import Image from "next/image";
 
 
 export default  function generateGalleryContent({data, handleClick}){
@@ -12,15 +13,13 @@ export default  function generateGalleryContent({data, handleClick}){
 
   
 <Link href={`/Gallery/${encodeURIComponent(JSON.stringify(object))}`} >
-  <img src={object.url}
+  <Image src={object.url}
        alt={object.title}
        key={object.url}
-       height={100}
-       width={100}
+       height={500}
+       width={500}
        
-       
-       
-       className="hover:cursor-pointer hover:brightness-95 px-1 aspect-square h-40"
+       className="hover:cursor-pointer hover:brightness-95  aspect-square h-40 lg:w-40 object-cover  "
        />
        </Link>
        
@@ -41,8 +40,10 @@ const generatedContent = [...(generatedImages || []), ...(generatedVideos || [])
 return(
   <>
 
-  <div className="flex  pt-10 flex-wrap border-2">{
-    generatedContent.reverse()}
+  <div className="   border-2 flex-row flex-wrap sm:flex-row flex  justify-center lg:flex-row  ">
+    {
+    generatedContent.reverse() }
+   
   </div>
     </>
 )
