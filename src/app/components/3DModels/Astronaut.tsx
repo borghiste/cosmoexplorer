@@ -1,10 +1,19 @@
 'use client';
-import { useRef } from "react";
-import { useScroll } from "@react-three/drei";
+import { MutableRefObject, useRef } from "react";
+
 import { useGLTF } from "@react-three/drei";
-import { useFrame } from "@react-three/fiber";
-import { group } from "console";
-export default function Astronaut({position, scale, rotation, AstronautRef}){
+
+import { Mesh } from "three";
+
+interface AstronautProps {
+  position: [number, number, number],
+  scale:[
+  number, number, number],
+  rotation:[number, number, number],
+  AstronautRef: MutableRefObject<Mesh | null>
+}
+
+export default function Astronaut({position, scale, rotation, AstronautRef}:AstronautProps){
 
  
     
@@ -14,7 +23,8 @@ export default function Astronaut({position, scale, rotation, AstronautRef}){
    
       return (
 
-        <group ref={AstronautRef}>
+
+
 
       <primitive object={scene} 
                         position={position} 
@@ -22,7 +32,8 @@ export default function Astronaut({position, scale, rotation, AstronautRef}){
                         rotation={rotation} 
                         ref={AstronautRef}
                         />
-                        </group>
+                       
+                      
  )
  
    

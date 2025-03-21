@@ -1,8 +1,18 @@
 import { useState } from "react";
 import Image from "next/image";
 
+interface Cardata {
+  englishName: string,
+  mass:{massValue: number},
+  meanRadius: number,
+  sideralOrbit: number
+  
+}
+interface CardsData {
+data: Cardata[]
+}
 
-export default function Cards({data}){
+export default function Cards({data}:CardsData){
   const cards = useState(data);
   const [currentIndex, setcurrentIndex] = useState(0);
   const [currentCard, setCurrentCard] = useState(data[0]);
@@ -39,7 +49,7 @@ setcurrentIndex((prev) => {
 
 
 
-<div className="md:ms-auto  md:my-auto mb-8 h-auto">
+<div className="md:ms-auto  md:my-auto ml-80 h-auto">
 
 <div className="ms-auto h-auto shrink  max-w-md overflow-hidden rounded-xl shadow-md md:max-w-2xl ">
   <div className="md:flex flex-col ">
@@ -59,7 +69,7 @@ setcurrentIndex((prev) => {
       <ul className=" text-white-500 object-contain overflow-auto  ">
         <li> diameter: {currentCard.meanRadius * 2}</li>
         <li>mass: {currentCard.mass.massValue}</li>
-        <li>orbit time</li>
+        <li>orbit time:{currentCard.sideralOrbit}</li>
         <li>avg tmp</li>
       </ul>
     </div>

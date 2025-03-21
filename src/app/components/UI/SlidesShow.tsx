@@ -3,7 +3,19 @@ import styles from './SlidesShow.module.css'
 import { useState } from "react";
 import Image from 'next/image';
 
-export default function SliderShow({slides}:Object) {
+interface Slide {
+  title:string,
+  media_type: string,
+  url:string,
+  explanation: string
+}
+
+interface SlidesProps {
+  slides: Slide[];
+}
+
+
+export default function SliderShow({slides}:SlidesProps ) {
 
 const[Slides, setSlides] = useState(slides)
   const [slideIndex, setSlideIndex] = useState(0);
@@ -42,7 +54,11 @@ return(
     {currentSlide.media_type === 'image'
      ?
       
-      <Image  src={currentSlide.url} height={500} width={500} className='aspect-square  rounded-xl '/>
+      <Image  src={currentSlide.url} 
+              height={500} 
+              width={500} 
+              alt={currentSlide.title}
+              className='aspect-square  rounded-xl '/>
    :
      ( <iframe width="400" height="200"  src={currentSlide.url} title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen className='aspect-square rounded-lg'></iframe>
      )

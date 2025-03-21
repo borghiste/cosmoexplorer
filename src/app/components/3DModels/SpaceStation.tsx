@@ -2,12 +2,20 @@
 
 import { useGLTF } from "@react-three/drei"
 import { useThree } from "@react-three/fiber";
-import { useEffect, useState } from "react"
+import { MutableRefObject} from "react";
+import { Mesh } from "three";
 
-export default function SpaceStation({scale, position, rotation, SpaceStationRef}){
 
-   const {size, camera} = useThree();
-   const [responsiveScaleFactor, SetresponsiveScaleFactor] = useState(scale);
+interface SpaceStation {
+    scale:[number, number, number ],
+    position:[number, number, number],
+    rotation:[number, number, number],
+    SpaceStationRef: MutableRefObject <Mesh | null >
+}
+
+export default function SpaceStation({scale, position, rotation, SpaceStationRef}:SpaceStation){
+
+const {size} = useThree(); 
 
   
     const scaleFactor = size.width / 4000

@@ -1,4 +1,23 @@
-export default function calculateBodySize(body) {
+
+
+ export interface body {
+            body:{
+            englishName: string,
+            vol:{volValue:number},
+            sideralOrbit: number,
+            eccentricity: number,
+            perihelion: number,
+            aphelion:number
+            },
+            perihelion: number,
+            aphelion: number,
+            eccentricity: number,
+            sideralOrbit: number, 
+            axialTilt: number
+  }
+
+
+export default function calculateBodySize({body}:body) {
 
 
 

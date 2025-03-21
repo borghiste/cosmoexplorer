@@ -1,10 +1,22 @@
 
-import { forwardRef } from "react";
+import { forwardRef, MutableRefObject } from "react";
 
 import { Text } from "@react-three/drei";
 import useOrbit from "../functions_&hooks/useOrbit";
+import { ForwardRefComponent } from "@react-three/drei/helpers/ts-utils";
+import { body } from "../functions_&hooks/calculateBodySize";
 
- const Planet = forwardRef(({ position, color, scale, name, body} , ref) => {
+interface PlanetProps {
+  position:[number, number, number], 
+  color: string, 
+  scale:[number, number, number], 
+  name:string, 
+  body:body
+
+} 
+
+
+ const Planet = forwardRef(({ position, color, scale, name, body}:PlanetProps , {ref}:any) => {
 
    useOrbit({PlanetRef:ref, body:body})
 

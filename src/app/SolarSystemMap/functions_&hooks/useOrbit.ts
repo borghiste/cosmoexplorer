@@ -1,6 +1,27 @@
 import { useFrame } from "@react-three/fiber";
 
-export default function useOrbit({body, PlanetRef}){
+
+import { MutableRefObject } from "react";
+import { Mesh } from "three";
+
+interface body {
+  body:{
+    perihelion: number,
+    aphelion: number
+  }
+  perihelion: number,
+  aphelion: number,
+  eccentricity: number,
+  sideralOrbit: number,
+  axialTilt: number
+}
+
+interface useOrbitProps {body:body,
+                        PlanetRef:MutableRefObject<Mesh>
+
+}
+
+export default function useOrbit({body, PlanetRef}:useOrbitProps){
   // scale factor
   const scaleFactor = 2.8;
 

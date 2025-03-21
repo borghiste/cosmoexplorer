@@ -13,7 +13,7 @@ import React from "react";
 //******************** COMPONENTS  *****************************/
 import SunComponent from "../components/3DModels/Sun";
 import Planet from "./components/Planet";
-import Orbit from "./components/Orbit";
+
 import Cards from './components/Cards';
 
 
@@ -30,9 +30,13 @@ import SliderShow from "../components/UI/SlidesShow";
 import mock from '../../mock/planetData.json';
 
 
+interface body {englishName: string,
+                isPlanet: boolean
+}
+
 
 export default function SolarSystemMap() {
-   const [data, setData] = useState([]);
+   const [data, setData] = useState<body[]>([]);
    const [showPointLight, setShowPointLight] = useState(false);
 
    const planets = data.filter((body)=>body.isPlanet)

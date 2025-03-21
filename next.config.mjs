@@ -2,7 +2,7 @@
 
  const nextConfig = {
 images:{
-  domains: ['apod.nasa.gov']
+  domains: ['apod.nasa.gov'],
 }
  }
  

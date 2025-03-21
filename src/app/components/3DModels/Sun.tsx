@@ -2,7 +2,12 @@
 
 import { useGLTF } from '@react-three/drei';
 
-export default function Sun({ position, scale}) {
+interface SunProps {
+  position:[number, number, number],
+  scale: [number, number, number]
+}
+
+export default function Sun({ position, scale}:SunProps ) {
 
 
 

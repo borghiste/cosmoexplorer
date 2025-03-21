@@ -4,7 +4,8 @@
 //******************* HOOKS *******************/
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { ScrollControls, Scroll, Html } from "@react-three/drei";
-import { Suspense, useEffect, useRef, useState } from "react";
+import { LegacyRef, Suspense, useEffect, useRef, useState } from "react";
+import { Mesh } from "three";
 import Script from "next/script";
  import './globals.css';
 
@@ -18,7 +19,7 @@ import Satellite2 from './components/3DModels/Satellite2';
 import Astronaut from "./components/3DModels/Astronaut";
 import SlidesShow from "./components/UI/SlidesShow";
 import Link from "next/link";
-import Loading from './Loading';
+
 import fetchImagesbyDate from "./Gallery/functions/fetchImagesbyDate";
 import Image from "next/image";
 
@@ -28,19 +29,18 @@ import Image from "next/image";
 import { useOscillation } from "./animations/useOscillation";
 import { useRotation } from "./animations/useRotation";
 import { useArc } from "./animations/useArc";
-import { div } from "three/tsl";
 
-import Footer from "./components/UI/Footer";
+
 
 
 
 //******************* SCENE COMPONENT *******************
 const Scene = () => {
-  const GalaxyRef = useRef();
-  const AstroRef = useRef();
-  const AstronautRef = useRef();
-  const SpaceStationRef = useRef();
-  const SatelliteRef = useRef();
+  
+  const SatelliteRef = useRef<Mesh | null>(null);
+  const AstronautRef = useRef(null);
+  const SpaceStationRef = useRef(null);
+  const Satellite2Ref = useRef<Mesh | null>(null);
  
 
   //responsive scale
@@ -51,12 +51,12 @@ const Scene = () => {
 
   
 
-  useRotation(SpaceStationRef, 'y');
-  useOscillation(AstroRef, 'x');
-  useOscillation(AstroRef, 'y');
-  useOscillation(AstronautRef, 'y');
-  useRotation(GalaxyRef, 'y');
-   useArc(SatelliteRef, 'x', 'y');
+  useRotation({ref:SpaceStationRef, axis:'y'});
+  useOscillation({ref:SatelliteRef, axis:'x'});
+  useOscillation({ref:AstronautRef, axis:'y'});
+  
+  
+   useArc({ref:Satellite2Ref, x:'x', y:'y'});
 
 
 
@@ -74,10 +74,10 @@ const Scene = () => {
       
       
 
-    <Satellite position={ size.width < 1200 ? [-1,-4,0] : [3, -3, 0] } scale={[0.005, 0.005, 0.005]} AstroRef={AstroRef} />
+    <Satellite position={ size.width < 1200 ? [-1,-4,0] : [3, -3, 0] } scale={[0.005, 0.005, 0.005]} SatelliteRef={SatelliteRef} />
       <SolarSystemModel scale={[0.01, 0.01, 0.005]} position={[-1, -10, -0.4]} rotation={ responsiveScaleFactor < 500 ? [0,0.9,0] : [0,0.2,0]} />
       <Astronaut position={[0, -12, 1]} scale={[0.05, 0.05, 0.05]} rotation={[-2, 0, 3]} AstronautRef={AstronautRef} />
-       <Satellite2 position={ responsiveScaleFactor < 640 ? [0, -15, 2]: [-2, -20, 2]} rotation={[0, 2.5, 0]} SatelliteRef={SatelliteRef} /> 
+       <Satellite2 position={ responsiveScaleFactor < 640 ? [0, -15, 2]: [-2, -20, 2]} rotation={[0, 2.5, 0]} SatelliteRef={Satellite2Ref} scale={[0.004,0.004,0.004]} /> 
     </>
   );
 };
@@ -173,7 +173,7 @@ localStorage.setItem('slides', JSON.stringify(slides))
 
  <SlidesShow slides={slides}  key={slides.length}/>   ) : (
 
-  <p>test</p>
+  <p>loading</p>
  )
  
 }
@@ -209,7 +209,8 @@ const QuizSection = () => (
   <Image 
   src={'/images/quiz.jpg'}
   height={500}
-  width={500}/>
+  width={500}
+  alt='Quiz Image'/>
   <button className="rounded bg-cyan-950 pt-1 h-10 z-20 ">
         <Link href="/Quiz">PLAY THE QUIZ</Link>
       </button>

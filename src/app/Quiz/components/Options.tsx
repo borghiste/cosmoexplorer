@@ -1,26 +1,37 @@
-import { useState } from "react"
+import { useState } from "react";
+import { Dispatch } from "react";
+import { SetStateAction } from "react";
 
-export default function Options({options, setcheckedAnswer, checkSolution, solution}){
+interface OptonsProps {
+    options: [string, string, string, string] ,
+    setcheckedAnswer: Dispatch<SetStateAction<undefined>>, 
+    checkSolution:(value:string | undefined, solution:string)=>void, 
+    solution: string
+}
 
- const [options2, setOptions] = useState(options)
+export default function Options({options, setcheckedAnswer, checkSolution, solution}:OptonsProps){
 
-    const test = options2?.map((option)=>(
+ const [choices, setOptions] = useState(options)
+
+    const Options = options?.map((option)=>(
       <li className="bg-[#80d2f2] rounded-full flex 
-      items-center my-2  text-[#351826] w-96 right-4 relative" 
+      items-center my-2  text-[#351826] max-w-96 min-w-80  w-auto  relative" 
       key={option}>
 <input type="radio" id={option} 
-name={options} 
+name={option} 
 onChange={(e)=>{setcheckedAnswer}} 
 value={option}
 className=' size-4' 
 
-onClick={(e)=>{checkSolution(e.target.value, solution)}}/>{option}</li>      
+onClick={(e)=>{
+    const value = e.target instanceof HTMLElement ? e.target.dataset.value: ''
+    checkSolution(value, solution)}}/>{option}</li>      
     ))
     return(
-        <ul className=" z-20 absolute  pt-[1rem] text-left">
+        <ul className="  absolute  pt-[4rem]  text-left flex flex-col mx-auto lg:w-auto">
 
             
-        {test}
+         {Options} 
             
 
         

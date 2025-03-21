@@ -2,8 +2,20 @@
 import Link from "next/link";
 import Image from "next/image";
 
+interface Object {
+  title:string,
+        url:string,
+        explanation: string,
+        media_type:string
 
-export default  function generateGalleryContent({data, handleClick}){
+}
+interface genrrateContentProps  {
+  data: Object[], 
+  handleClick:()=>void
+
+}
+
+export default  function generateGalleryContent({data, handleClick}:genrrateContentProps){
 
   // if data is image generate image
 

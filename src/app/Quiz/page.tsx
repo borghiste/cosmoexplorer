@@ -2,9 +2,9 @@
  import data from './components/questions.json';
 
  // COMPONENTS
- import Question from './components/Window';
+
  import Options from './components/Options';
-import Window from './components/Window';
+
 import { useState } from 'react';
 
 
@@ -34,21 +34,24 @@ setCurrentQuestionOptions(data[QuestionIndex].options)
     
 
 
-const options = currentQuestionOptions?.map((option)=>(
-    <li className="bg-[#80d2f2] rounded-full flex 
-                    items-center my-2  text-[#351826] w-96 right-4 relative" >
-<input type="radio" id={option} 
-        name={option.valueOf} 
-        onChange={(e)=>{setcheckedAnswer(e.target.value)}} 
-        value={option}
-        className=' size-4' 
-        key={option}
-onClick={()=>{checkAnswer(option, currentQuestion.solution)}}/>{option}</li>
-))
+// const options = currentQuestionOptions?.map((option)=>(
+//     <li className="bg-[#80d2f2] rounded-full flex 
+//                     items-center my-2  text-[#351826] w-96 right-4 relative" >
+// <input type="radio" id={option} 
+//         name={option.valueOf} 
+//         onChange={(e)=>{setcheckedAnswer(e.target.value)}} 
+//         value={option}
+//         className=' size-4' 
+//         key={option}
+// onClick={()=>{checkAnswer(option, currentQuestion.solution)}}/>{option}</li>
+// ))
 
+interface checkAnswerarguments {
+answer: string,
+solution: string
+}
 
-
-const checkAnswer = (answer, solution)=>{
+const checkAnswer = ({answer, solution}:checkAnswerarguments)=>{
     if(answer === solution){
         console.log(true)
        totalScore ++;
@@ -62,40 +65,39 @@ const checkAnswer = (answer, solution)=>{
 
     return(
        <>
-        <div className="flex justify-between ">
+        <div className="flex justify-center flex-col ">
         <div className='flex flex-col '>
-        <h1 className="text-9xl">QUIZ</h1>
-            <p className='w-[16rem]'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptatibus laudantium blanditiis odit id delectus error culpa quos, veniam doloribus officiis?</p>
+        <h1 className="lg:text-7xl text-4xl">QUIZ</h1>
+            <p className='sm:mx-auto sm:w-auto text-2xl text-justify'>Find out how much do you know about astronomy and play the Quiz!</p>
         </div>
 
        
 
         
-        <form className="bg-[#151740] w-auto pb-64 mt-20 rounded-lg z-0 h-screen "
+        <form className=" w-auto pb-64 mt-20 rounded-lg z-0 mb-80 flex flex-col md:flex-row md:justify-center "
                 onSubmit={e=> {
                     e.preventDefault();
                    
                     
                 }}>
 
-<p className="text-overflow  text-center  ">{currentQuestion.question}
+<p className="text-overflow  text-center min-w-40 pb-16    md:ml-40 text-2xl">{currentQuestion.question}
 </p>
 
-<ul className='z-20 absolute text-left'>
 
-<Options options={currentQuestionOptions} 
+
+<Options options={currentQuestionOptions as [string, string, string, string]} 
         setcheckedAnswer={setcheckedAnswer}
-        checkSolution={checkAnswer}
-        solution={currentQuestion.solution}/>
+        checkSolution={checkAnswer as ()=>void}
+        solution={currentQuestion.solution as string}/>
     
-</ul>
-
-
-
-<p className='pl-9  text-center'>{QuestionIndex  ? `${totalScore} correct answers/${Questions.length}` : null }</p>
 <button type='submit'  
-        className=" hoover:cursor-pointer px-80  text-xl text-nowrap ml-20 pt-21"
+        className=" hoover:cursor-pointer  mt-40 lg:mt-60 md:pt-92 lg:mr-80 text-2xl "
         onClick={()=>{nextQuestion()}}> next &#10095;</button>
+
+
+
+        <p className='  text-center'>{QuestionIndex  ? `${totalScore} correct answers/${Questions.length}` : null }</p>
 
 </form>
                 

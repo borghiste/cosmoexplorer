@@ -1,4 +1,15 @@
-export default function SearchBar({handleClick, buttonText, firstInputRef, secondInputRef, className}){
+import { MutableRefObject } from "react";
+import { LegacyRef } from "react";
+
+interface SEarchBarProps {
+  handleClick: ()=> void,
+  buttonText: string, 
+  firstInputRef:LegacyRef<HTMLInputElement>, 
+  secondInputRef:LegacyRef<HTMLInputElement>, 
+  className: string
+}
+
+export default function SearchBar({handleClick, buttonText, firstInputRef, secondInputRef, className}:SEarchBarProps){
     return(
       <>
         <div className={className}>

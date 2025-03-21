@@ -3,7 +3,7 @@
 //import libraries
 
 // import '../global.css';
-import { useEffect, useState, useRef } from 'react';
+import { useEffect, useState, useRef, LegacyRef } from 'react';
 
 
 // import components
@@ -26,20 +26,23 @@ import { useRouter } from 'next/navigation';
 export interface ImageObject {
   url: string
   title: string
-  explanation: string
-}
+  explanation: string,
+  media_type:string
+} 
 export default function Gallery(){
   //states, Refs & dates
 
   const [isModalOpen,setisModalOpen ] = useState(false);
 
-  const [APOD, setAPOD]= useState({})
 
-  const [selectedPic, setselectedPic]= useState({});
 
- const start_date_Ref = useRef();
+  const [APOD, setAPOD]= useState<ImageObject >()
 
- const end_date_Ref = useRef();
+  const [selectedPic, setselectedPic]= useState<ImageObject >();
+
+ const start_date_Ref = useRef<HTMLInputElement>(null);
+
+ const end_date_Ref = useRef<HTMLInputElement>(null);
 
 
 
@@ -94,9 +97,11 @@ export default function Gallery(){
 //handleSearchimgsClick
 
 function handleSearchimgsClick(){
-const start_date = start_date_Ref.current?.value
-const end_date = end_date_Ref.current?.value
 
+ 
+const start_date = start_date_Ref.current?.value || ''
+const end_date = end_date_Ref.current?.value || ''
+  
 
   
   fetchImagesbyDate({start_date:start_date, end_date:end_date})
@@ -135,7 +140,9 @@ const end_date = end_date_Ref.current?.value
 
 
 
-{generateAPOD({APOD:APOD, onClick:()=>{setisModalOpen(!isModalOpen); setselectedPic(APOD)}})}
+{
+generateAPOD({APOD:APOD, onClick:()=>{setisModalOpen(!isModalOpen); setselectedPic(APOD)}})
+}
   <SearchBar
   buttonText='SEARCH IMAGES'
   className=' items-center w-full flex justify-center   '
