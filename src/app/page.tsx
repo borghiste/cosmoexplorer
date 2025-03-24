@@ -37,7 +37,7 @@ import { useArc } from "./animations/useArc";
 //******************* SCENE COMPONENT *******************
 const Scene = () => {
   
-  const SatelliteRef = useRef<Mesh >(null);
+  const SatelliteRef = useRef(null);
    const AstronautRef = useRef(null);
   const SpaceStationRef = useRef(null);
   const Satellite2Ref = useRef<Mesh | null>(null);

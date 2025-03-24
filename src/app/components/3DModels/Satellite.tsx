@@ -10,7 +10,7 @@ export interface SatelliteProps {
    scale:[number, number, number]
 }
 
-const  Satellite = forwardRef<Group,SatelliteProps> (({ position, scale}, ref) => {
+const  Satellite = forwardRef<Group, SatelliteProps> (({ position, scale}, ref) => {
 
    
    
@@ -24,7 +24,7 @@ const  Satellite = forwardRef<Group,SatelliteProps> (({ position, scale}, ref) =
      
       
 
-      <group ref={ref}>
+      <group ref={ref as any}>
 
     <primitive object={scene} scale={scale}
                 position={position}
