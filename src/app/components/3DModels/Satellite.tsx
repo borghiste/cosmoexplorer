@@ -1,15 +1,16 @@
 import { useGLTF } from "@react-three/drei";
 import { useThree } from "@react-three/fiber";
-import { MutableRefObject } from "react";
+import { forwardRef, MutableRefObject } from "react";
 import { Mesh } from "three";
+import { Group } from "three/examples/jsm/libs/tween.module.js";
 
 export interface SatelliteProps {
-   SatelliteRef: MutableRefObject< Mesh | null>,
+   
    position:[number, number, number],
    scale:[number, number, number]
 }
 
-export default function Satellite({SatelliteRef, position, scale}:SatelliteProps){
+const  Satellite = forwardRef<Group,SatelliteProps> (({ position, scale}, ref) => {
 
    
    
@@ -23,14 +24,19 @@ export default function Satellite({SatelliteRef, position, scale}:SatelliteProps
      
       
 
-      
+      <group ref={ref}>
+
     <primitive object={scene} scale={scale}
                 position={position}
                 rotation={[1,1,0]}
-                ref={SatelliteRef}
+                
                 
                 />
+                </group>
                 
                 </>
    )
-}
+
+})
+
+export default Satellite

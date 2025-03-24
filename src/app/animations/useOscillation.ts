@@ -9,7 +9,8 @@ export const useOscillation = ({ref, axis}:useOscillationProps): void => {
     useFrame(({ clock }) => {
       const time = clock.getElapsedTime();
       if (ref.current) {
-        ref.current.position[axis] = Math.sin(time);
+        
+        ref.current.position[axis] =  Math.sin(time);
       }
     });
   };

@@ -1,30 +1,31 @@
 
 
- export interface body {
-            body:{
+ export type Body  = {
+            
             englishName: string,
-            vol:{volValue:number},
+            vol:{volValue:number },
+            mass:{massValue: number},
             sideralOrbit: number,
             eccentricity: number,
             perihelion: number,
-            aphelion:number
-            },
-            perihelion: number,
-            aphelion: number,
-            eccentricity: number,
-            sideralOrbit: number, 
-            axialTilt: number
+            aphelion:number,
+            axialTilt: number,
+            isPlanet: boolean,
+            meanRadius: number
+            
+            
+  }
+  export type Sundata = {
+    englishName: string
+    vol:{volValue: number}
   }
 
 
-export default function calculateBodySize({body}:body) {
+
+export default function calculateBodySize(body: Body | Sundata ):[number, number, number] {
 
 
-
-
-
-
-  const planetRadius = Math.cbrt((3 * body?.vol.volValue) / (4 * Math.PI)); // Ricaviamo il raggio dalla formula del volume
+  const planetRadius = Math.cbrt((3 * body.vol.volValue ) / (4 * Math.PI)); // raggio dalla formula del volume
 
   let scaleFactor = 0.05;
 

@@ -3,20 +3,11 @@ import { useFrame } from "@react-three/fiber";
 
 import { MutableRefObject } from "react";
 import { Mesh } from "three";
+import { Body } from "./calculateBodySize";
 
-interface body {
-  body:{
-    perihelion: number,
-    aphelion: number
-  }
-  perihelion: number,
-  aphelion: number,
-  eccentricity: number,
-  sideralOrbit: number,
-  axialTilt: number
-}
 
-interface useOrbitProps {body:body,
+
+interface useOrbitProps {body:Body,
                         PlanetRef:MutableRefObject<Mesh>
 
 }

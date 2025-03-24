@@ -37,8 +37,8 @@ import { useArc } from "./animations/useArc";
 //******************* SCENE COMPONENT *******************
 const Scene = () => {
   
-  const SatelliteRef = useRef<Mesh | null>(null);
-  const AstronautRef = useRef(null);
+  const SatelliteRef = useRef<Mesh >(null);
+   const AstronautRef = useRef(null);
   const SpaceStationRef = useRef(null);
   const Satellite2Ref = useRef<Mesh | null>(null);
  
@@ -53,7 +53,7 @@ const Scene = () => {
 
   useRotation({ref:SpaceStationRef, axis:'y'});
   useOscillation({ref:SatelliteRef, axis:'x'});
-  useOscillation({ref:AstronautRef, axis:'y'});
+     useOscillation({ref:AstronautRef, axis:'y'});
   
   
    useArc({ref:Satellite2Ref, x:'x', y:'y'});
@@ -74,10 +74,10 @@ const Scene = () => {
       
       
 
-    <Satellite position={ size.width < 1200 ? [-1,-4,0] : [3, -3, 0] } scale={[0.005, 0.005, 0.005]} SatelliteRef={SatelliteRef} />
+    <Satellite position={ size.width < 1200 ? [4,-3,0] : [4, -3, 0] } scale={[0.005, 0.005, 0.005]} ref={SatelliteRef} />
       <SolarSystemModel scale={[0.01, 0.01, 0.005]} position={[-1, -10, -0.4]} rotation={ responsiveScaleFactor < 500 ? [0,0.9,0] : [0,0.2,0]} />
-      <Astronaut position={[0, -12, 1]} scale={[0.05, 0.05, 0.05]} rotation={[-2, 0, 3]} AstronautRef={AstronautRef} />
-       <Satellite2 position={ responsiveScaleFactor < 640 ? [0, -15, 2]: [-2, -20, 2]} rotation={[0, 2.5, 0]} SatelliteRef={Satellite2Ref} scale={[0.004,0.004,0.004]} /> 
+       <Astronaut position={[0, -12, 1]} scale={[0.05, 0.05, 0.05]} rotation={[-2, 0, 3]} ref={AstronautRef} /> 
+       <Satellite2 position={ responsiveScaleFactor < 640 ? [0, -9, 2]: [1, -20, 2]} rotation={[0, 2.5, 0]} SatelliteRef={Satellite2Ref} scale={[0.004,0.004,0.004]} /> 
     </>
   );
 };
@@ -178,8 +178,9 @@ localStorage.setItem('slides', JSON.stringify(slides))
  
 }
      
-      <button className="rounded bg-cyan-950 pt-1 h-10 w-80 z-20">
-        <Link href="/Gallery">Visit Gallery</Link>
+      <button className="rounded bg-[cyan-950] pt-1 h-10 w-80 z-20">
+        <Link href="/Gallery"
+        >Visit Gallery</Link>
       </button>
     </div>
   </div>
@@ -187,14 +188,14 @@ localStorage.setItem('slides', JSON.stringify(slides))
 }
 //******************* SOLAR SYSTEM SECTION *******************/
 const SolarSystemSection = () => (
-  <div className="flex w-screen justify-end  mt-20 ">
+  <div className="flex w-auto justify-end  flex-col ">
     
-    <p className=" w-auto flex flex-col  text-xl  md:w-[40rem] md:mt-[20rem] md:w-[30rem]   text-justify text-center">
+    <p className="  flex flex-col  text-xl text-justify text-center w-auto max-w-[20rem] ">
       
   
      The solar system section gives you a 3D rappresentation of the solar system and includes multiple datas from all the planets orbitating around the Sun.
-        <Link className="bg-slate-500 " href="/SolarSystemMap">EXPLORE THE SOLAR SYSTEM</Link>
     </p>
+    <Link className="max-w-[20rem] bg-slate-500  " href="/SolarSystemMap">EXPLORE THE SOLAR SYSTEM</Link>
   </div>
 );
 

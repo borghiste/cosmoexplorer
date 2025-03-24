@@ -1,40 +1,24 @@
 'use client';
-import { MutableRefObject, useRef } from "react";
 
+import { forwardRef } from "react";
 import { useGLTF } from "@react-three/drei";
-
-import { Mesh } from "three";
+import { Group } from "three";
 
 interface AstronautProps {
-  position: [number, number, number],
-  scale:[
-  number, number, number],
-  rotation:[number, number, number],
-  AstronautRef: MutableRefObject<Mesh | null>
+  position: [number, number, number];
+  scale: [number, number, number];
+  rotation: [number, number, number];
 }
 
-export default function Astronaut({position, scale, rotation, AstronautRef}:AstronautProps){
+// Correggiamo l'uso della ref con forwardRef
+const Astronaut = forwardRef<Group, AstronautProps>(({ position, scale, rotation }, ref) => {
+  const { scene } = useGLTF('/models/astronaut.dae/astronaut.glb', true);
 
- 
-    
-    
-    const { scene } = useGLTF('/models/astronaut.dae/astronaut.glb', true);
-  
-   
-      return (
+  return (
+    <group ref={ref}>
+      <primitive object={scene} position={position} scale={scale} rotation={rotation} />
+    </group>
+  );
+});
 
-
-
-
-      <primitive object={scene} 
-                        position={position} 
-                        scale={scale} 
-                        rotation={rotation} 
-                        ref={AstronautRef}
-                        />
-                       
-                      
- )
- 
-   
-  }
+export default Astronaut;

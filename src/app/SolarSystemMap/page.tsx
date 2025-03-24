@@ -3,10 +3,10 @@
 
 import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
-import { createRef, useEffect, useRef, useState } from "react";
+import { createRef, MutableRefObject, RefObject, useEffect, useRef, useState } from "react";
 import { Text, Html } from "@react-three/drei";
-
-
+import { BufferGeometry } from "three";
+import { CardsData } from "./components/Cards";
 
 import React from "react";
 
@@ -20,7 +20,8 @@ import Cards from './components/Cards';
 //********** HOOKS******* */
 
 import calculateBodySize from "./functions_&hooks/calculateBodySize";
-
+import { Sundata } from "./functions_&hooks/calculateBodySize";
+import { Mesh } from "three";
 
 
 //**** FUNCTIONS */
@@ -28,16 +29,16 @@ import calculateBodySize from "./functions_&hooks/calculateBodySize";
 import fetchallData from "./functions_&hooks/fetchallData";
 import SliderShow from "../components/UI/SlidesShow";
 import mock from '../../mock/planetData.json';
+import { Body } from "./functions_&hooks/calculateBodySize";
+import { NormalBufferAttributes } from "three";
+import { Cardata } from "./components/Cards";
 
 
-interface body {englishName: string,
-                isPlanet: boolean
-}
 
 
 export default function SolarSystemMap() {
-   const [data, setData] = useState<body[]>([]);
-   const [showPointLight, setShowPointLight] = useState(false);
+   const [data, setData] = useState<Body[]>([]);
+   
 
    const planets = data.filter((body)=>body.isPlanet)
 
@@ -61,7 +62,9 @@ export default function SolarSystemMap() {
  
 
 
- const scale = calculateBodySize(sundata)
+ const scale:[number, number, number] = sundata  ? calculateBodySize(sundata) : [1,1,1]
+
+
 
 
      return(
@@ -84,7 +87,7 @@ export default function SolarSystemMap() {
 
 //********************** PLANETS  ***********************************/
    const Planets = () => {
-     const PlanetRefs = useRef([]);
+     const PlanetRefs = useRef<RefObject<any>[]>([]);
  
   
      const planetColors = {
@@ -96,7 +99,8 @@ export default function SolarSystemMap() {
       saturn: 'beige',
       uranus: 'aquamarine',
       neptune: 'blue',
-    };
+    } 
+    
     return  data.filter((body) => body.isPlanet).map((planet, i) => {
             
         if (!PlanetRefs.current[i]) {
@@ -104,18 +108,18 @@ export default function SolarSystemMap() {
        }
    
 
-       const scale = calculateBodySize(planet)
-      const color =  planetColors[planet.englishName.toLowerCase()]
+       const scale = calculateBodySize(planet);
+      const color =  planetColors[planet.englishName.toLowerCase() as keyof typeof planetColors]
    
       return (
          <Planet
            scale={scale}
            ref={PlanetRefs.current[i]}
            key={i}
-           body={planet}
+           body={planet as Body}
            name={planet.englishName}
-           sundata={sundata}
-           pointLight={true }
+           sundata={sundata as Sundata}
+          
            color={color}
            
          />
@@ -150,7 +154,7 @@ export default function SolarSystemMap() {
           <Planets/>
 
 
-       <Html position={[0,-10,0]} style={{display:'flex', justifyContent:'start'}}  occlude={'blending'} fullscreen zIndexRange={10}   >
+       <Html position={[0,-10,0]} style={{display:'flex', justifyContent:'start'}}  occlude={'blending'} fullscreen>
          
        <Cards data={planets} /> 
       

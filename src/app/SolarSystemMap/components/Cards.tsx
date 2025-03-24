@@ -1,15 +1,16 @@
 import { useState } from "react";
 import Image from "next/image";
+import { Body } from "../functions_&hooks/calculateBodySize";
 
-interface Cardata {
+export interface Cardata {
   englishName: string,
   mass:{massValue: number},
   meanRadius: number,
   sideralOrbit: number
   
 }
-interface CardsData {
-data: Cardata[]
+export interface CardsData {
+data: Body[]
 }
 
 export default function Cards({data}:CardsData){
