@@ -17,7 +17,7 @@ export default function generateAPOD({APOD, onClick}:generateAPODProps){
  const Content = APOD?.media_type=='image' ? 
     <Image src={APOD.url} 
         alt={APOD.title}
-        className="aspect-square "
+        className=" "
         onClick={onClick}
         width={500}
         height={500}/> : 

@@ -12,8 +12,6 @@ export interface SatelliteProps {
 
 const  Satellite = forwardRef<Group, SatelliteProps> (({ position, scale}, ref) => {
 
-   
-   
 
    const {scene}= useGLTF('/models/astro_core.glb', true);
 

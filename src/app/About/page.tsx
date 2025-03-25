@@ -1,9 +1,15 @@
 export default function About(){
 
     return(
-        <main>
-            <h1>About CosmoExplorer</h1>
-            <h2></h2>
+        <main className="flex flex-col">
+            <h1 className="text-7xl">About COSMOEXPLORER</h1>
+            <h2 className="text-4xl">The website</h2>
+            <p>Cosmoexplorer is a brand new way to explore the space from home trough an interactive experience</p>
+
+            <h2 className="text-4xl">The idea</h2>
+            <p>the idea was originally born from </p>
+
+            <h2 className="text-4xl">funcionality</h2>
         </main>
         // <p>1. Hero Section
         // Titolo Accattivante: Un’introduzione breve e chiara alla web app, ad esempio "Dietro le quinte di [Nome della Web App]".

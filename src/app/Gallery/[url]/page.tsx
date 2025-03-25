@@ -25,7 +25,7 @@ export default function Modal() {
         
         
       } else {
-        setError("Parametro URL non valido")
+        setError(" invalid URL ")
       }
     } catch (e) {
       setError("Error decoding URL")

@@ -70,14 +70,14 @@ const Scene = () => {
       <ambientLight intensity={2} />
       <pointLight position={[2, 8, 8]} decay={0} intensity={9} castShadow={false} />
       <pointLight position={[-2, -8, -8]} decay={0} intensity={9} />
-      <SpaceStation scale={[0.5, 0.5, 0.5]} position={ responsiveScaleFactor < 1200 ? [0, 0,-2] : [0, -1, -2]} rotation={[0.1, 0.1, 0]} SpaceStationRef={SpaceStationRef}/>
+      <SpaceStation scale={[0.5, 0.5, 0.5]} position={ responsiveScaleFactor < 1200 ? [0, -0.5,0] : [0, -1, -2]} rotation={[0.1, 0.1, 0]} SpaceStationRef={SpaceStationRef}/>
       
       
 
     <Satellite position={ size.width < 1200 ? [4,-3,0] : [4, -3, 0] } scale={[0.005, 0.005, 0.005]} ref={SatelliteRef} />
       <SolarSystemModel scale={[0.01, 0.01, 0.005]} position={[-1, -10, -0.4]} rotation={ responsiveScaleFactor < 500 ? [0,0.9,0] : [0,0.2,0]} />
-       <Astronaut position={[0, -12, 1]} scale={[0.05, 0.05, 0.05]} rotation={[-2, 0, 3]} ref={AstronautRef} /> 
-       <Satellite2 position={ responsiveScaleFactor < 640 ? [0, -9, 2]: [1, -20, 2]} rotation={[0, 2.5, 0]} SatelliteRef={Satellite2Ref} scale={[0.004,0.004,0.004]} /> 
+       <Astronaut position={[0, -11.5, 1]} scale={[0.05, 0.05, 0.05]} rotation={[-2, 0, 3]} ref={AstronautRef} /> 
+       <Satellite2 position={ responsiveScaleFactor < 640 ? [0, -19, 2]: [1.5, -18, 2]}  SatelliteRef={Satellite2Ref} scale={[0.004,0.004,0.004]} /> 
     </>
   );
 };
@@ -93,7 +93,7 @@ export default function Home() {
       <div style={{ height: '100vh', width:'100vw'}} className="md:shrink-0  flex w-full  ">
         <Canvas camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 5] }} style={{position:'sticky'}} >
           <ScrollControls pages={3} damping={0.1} distance={1} style={{ fontFamily: 'Polaris',  }} >
-            <Scroll>
+            <Scroll >
               <Scene />
                 
             </Scroll>
@@ -178,7 +178,7 @@ localStorage.setItem('slides', JSON.stringify(slides))
  
 }
      
-      <button className="rounded bg-[cyan-950] pt-1 h-10 w-80 z-20">
+      <button className="rounded bg-[#011826] pt-1 h-10 w-80 z-20">
         <Link href="/Gallery"
         >Visit Gallery</Link>
       </button>
@@ -188,14 +188,17 @@ localStorage.setItem('slides', JSON.stringify(slides))
 }
 //******************* SOLAR SYSTEM SECTION *******************/
 const SolarSystemSection = () => (
-  <div className="flex w-auto justify-end  flex-col ">
+  <div className="flex w-auto justify-end  flex-col lg:ms-[50rem] lg:mt-[30rem]">
     
-    <p className="  flex flex-col  text-xl text-justify text-center w-auto max-w-[20rem] ">
+    <p className="  flex flex-col  text-xl text-justify text-center w-auto max-w-[20rem] mt-8 lg:flex-row  ">
       
   
      The solar system section gives you a 3D rappresentation of the solar system and includes multiple datas from all the planets orbitating around the Sun.
     </p>
-    <Link className="max-w-[20rem] bg-slate-500  " href="/SolarSystemMap">EXPLORE THE SOLAR SYSTEM</Link>
+    <button className="rounded bg-[#011826] pt-1 h-10 w-80 z-20">
+        <Link href="/Gallery"
+        >Explore the Solar System</Link>
+      </button>
   </div>
 );
 
@@ -203,16 +206,16 @@ const SolarSystemSection = () => (
 const QuizSection = () => (
 <div className=" flex md:justify-between  flex-col md:mt-[40rem] md:flex-row md:justify-betweeen md:w-screen">
   
-  <p className="text-2xl text-justify  md:w-64 md:text-center mt-[40rem]">Challenge your knowledge by playing the cosmo Quiz! </p>
+  <p className="text-xl text-justify  md:w-64 ms-auto text-center mt-[60rem] w-auto max-w-[20rem] lg:mt-[20rem] lg:ms-[5rem] lg:w-[50rem]">Challenge your knowledge by playing the cosmo Quiz! answer the Questions and find out how much  do you know about astronomy. Are you ready?  </p>
 
-<div className="flex flex-col mt-[40rem] m-auto">
+<div className="flex flex-col mt-[10rem] m-auto mb-8">
 
   <Image 
   src={'/images/quiz.jpg'}
   height={500}
   width={500}
   alt='Quiz Image'/>
-  <button className="rounded bg-cyan-950 pt-1 h-10 z-20 ">
+  <button className="rounded bg-[#011826] pt-1 h-10 z-20 mb-[8rem] ">
         <Link href="/Quiz">PLAY THE QUIZ</Link>
       </button>
   </div>

@@ -2,11 +2,17 @@
 
 
   export default async function fetchAPOD() {
+
+    try{
      const res = await fetch(`${API}`)
      const data = await res.json()
-     
+    
     
      return data
+    }
+    catch(e){
+      console.error(e)
+    }
    }
 
 

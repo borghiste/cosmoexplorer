@@ -13,14 +13,16 @@ import { Mesh } from "three";
     const { scene}= useGLTF('/models/astro_obliterator_thing/astro_obliterator_thing.glb', true)
 
     return(
-     
+     <group ref={SatelliteRef}>
+
       <primitive object={scene} 
                  scale={scale} 
-                  position={position}
-                  rotation={rotation}
-                  ref={SatelliteRef}
+                 position={position}
+                 rotation={rotation}
+                 
                  
                  />
+                 </group>
  
 
                  

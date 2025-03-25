@@ -56,7 +56,7 @@ export default function Gallery(){
   aMonthAgoDate.setMonth(aMonthAgoDate.getMonth() - 1); // today date copy minus 1 month
   
   const formattedAMonthAgo = aMonthAgoDate.toISOString().split('T')[0]; // formatted date
-  console.log('month',formattedAMonthAgo); 
+  
   
 
 
