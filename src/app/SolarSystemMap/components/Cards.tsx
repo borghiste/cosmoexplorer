@@ -2,13 +2,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { Body } from "../functions_&hooks/calculateBodySize";
 
-export interface Cardata {
-  englishName: string,
-  mass:{massValue: number},
-  meanRadius: number,
-  sideralOrbit: number
-  
-}
+
 export interface CardsData {
 data: Body[]
 }
@@ -16,7 +10,7 @@ data: Body[]
 export default function Cards({data}:CardsData){
   const cards = useState(data);
   const [currentIndex, setcurrentIndex] = useState(0);
-  const [currentCard, setCurrentCard] = useState(data[0]);
+  const [currentCard, setCurrentCard] = useState<Body>(data[0]);
 
   
 
@@ -55,23 +49,25 @@ setcurrentIndex((prev) => {
 <div className="ms-auto h-auto shrink  max-w-md overflow-hidden rounded-xl shadow-md md:max-w-2xl ">
   <div className="md:flex flex-col ">
     <div className="md:shrink-0 ">
+{currentCard ?
       <Image
       width={500}
       height={500}
         className="h-48  w-full object-cover md:h-full md:w-48"
-        src={`/images/planets/${currentCard.englishName}.jpg`}
-        alt={`${currentCard.englishName} image`}
+        src={`/images/planets/${currentCard?.englishName}.jpg`}
+         alt={`${currentCard?.englishName} image`}
       />
+      : null }
     </div>
 
-    <div className="   ">
+    <div>
       <h2 className="text-sm font-semibold tracking-wide text-indigo-500 uppercase   ">name: {currentCard.englishName}</h2>
   
       <ul className=" text-white-500 object-contain overflow-auto  ">
         <li> diameter: {currentCard.meanRadius * 2}</li>
         <li>mass: {currentCard.mass.massValue}</li>
         <li>orbit time:{currentCard.sideralOrbit}</li>
-        <li>avg tmp</li>
+        <li>average Temperature:{currentCard.avgTemp}</li>
       </ul>
     </div>
   </div>

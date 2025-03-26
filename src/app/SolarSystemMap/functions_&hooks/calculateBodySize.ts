@@ -11,7 +11,9 @@
             aphelion:number,
             axialTilt: number,
             isPlanet: boolean,
-            meanRadius: number
+            meanRadius: number,
+            avgTemp: number,
+            
             
             
   }

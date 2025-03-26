@@ -50,7 +50,8 @@ export default function Gallery(){
 
   const todayDate = new Date().toISOString().split('T')[0]; //  today date
 
-  console.log('today',todayDate)
+
+
   const aMonthAgoDate = new Date(todayDate); // today date copy
   
   aMonthAgoDate.setMonth(aMonthAgoDate.getMonth() - 1); // today date copy minus 1 month
@@ -130,7 +131,7 @@ const end_date = end_date_Ref.current?.value || ''
 
   return(
    <>
- <div className='flex-col overflow-visible'>
+ <div className='flex-col border-4   '>
   <h1 className='text-7xl text-center  '>GALLERY</h1>
   <br />
   <p className='text-center text-xl'>Explore the cosmo gallery and be amazed by the beauty of the space. With the gallery section you can take a look of the many images from the NASA archives searching for pictures by date. </p>
