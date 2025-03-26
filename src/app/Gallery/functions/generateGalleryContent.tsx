@@ -24,7 +24,7 @@ export default  function generateGalleryContent({data, handleClick}:genrrateCont
  data?.filter((object)=>object.media_type == 'image').map((object)=>(
 
   
-<Link href={`/Gallery/${encodeURIComponent(JSON.stringify(object))}`}  key={object}>
+<Link href={`/Gallery/${encodeURIComponent(JSON.stringify(object))}`}  key={object.url}>
   <Image src={object.url}
        alt={object.title}
        key={object.url}

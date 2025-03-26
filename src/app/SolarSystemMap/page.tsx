@@ -6,7 +6,7 @@ import { OrbitControls } from "@react-three/drei";
 import { createRef, MutableRefObject, RefObject, useEffect, useRef, useState } from "react";
 import { Text, Html } from "@react-three/drei";
 import { BufferGeometry } from "three";
-import { CardsData } from "./components/Cards";
+
 
 import React from "react";
 
@@ -31,7 +31,7 @@ import SliderShow from "../components/UI/SlidesShow";
 import mock from '../../mock/planetData.json';
 import { Body } from "./functions_&hooks/calculateBodySize";
 import { NormalBufferAttributes } from "three";
-import { Cardata } from "./components/Cards";
+
 
 
 
