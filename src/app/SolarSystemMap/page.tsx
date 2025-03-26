@@ -154,7 +154,7 @@ export default function SolarSystemMap() {
           <Planets/>
 
 
-       <Html position={[0,-10,0]} style={{display:'flex', justifyContent:'start'}}  occlude={'blending'} fullscreen>
+       <Html position={[0,-10,0]} style={{display:'flex',flexDirection:'column', justifyContent:'start'}}  occlude={'blending'} fullscreen>
          
        <Cards data={planets} /> 
       
