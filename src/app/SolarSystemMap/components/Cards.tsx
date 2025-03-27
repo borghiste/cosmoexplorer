@@ -44,38 +44,41 @@ setcurrentIndex((prev) => {
 
 
 
-<div className=" ms-auto">
+<div className=" ms-auto overflow-hiddenflex flex-col ">
 
-<div className="ms-auto h-auto flex-col shrink  max-w-md overflow-hidden rounded-xl shadow-md md:max-w-2xl ">
-  <div className="">
-    <div className="flex justify-center ">
+<div className=" flex flex-col sm:ms-auto h-auto sm:flex-col shrink  max-w-md overflow-hidden rounded-xl shadow-md md:max-w-2xl b">
+  
+    
 {currentCard ?
       <Image
       width={500}
       height={500}
         className="
-       sm:object-cover md:h-full md:w-48"
+       sm:object-cover md:h-full md:w-48 min-w-auto"
         src={`/images/planets/${currentCard?.englishName}.jpg`}
          alt={`${currentCard?.englishName} image`}
       />
       : null }
-    </div>
+    
 
-    <div>
+    <div className="flex flex-col ">
       <h2 className="text-sm font-semibold tracking-wide text-indigo-500 uppercase   ">name: {currentCard?.englishName}</h2>
   
-      <ul className=" text-white-500 object-contain overflow-auto  ">
+      <ul className=" text-white-500 object-contain   ">
         <li> diameter: {currentCard?.meanRadius}</li>
         <li>mass: {currentCard?.mass.massValue}</li>
         <li>orbit time:{currentCard?.sideralOrbit}</li>
         <li>average Temperature:{currentCard?.avgTemp}</li>
       </ul>
     </div>
-  </div>
-
+ 
+<div className="flex justify-between overflow-hidden w-auto">
 
    <a className={'pr-8 text-4xl hover:cursor-pointer'} onClick={()=>{prevCard()}}>&#10094;</a>
    <a className={' ml-16 text-4xl hover:cursor-pointer'} onClick={()=>{nextCard()}}>&#10095;</a>
+</div>
+
+
 </div>
 </div>
 

@@ -69,7 +69,7 @@ export default function SolarSystemMap() {
 
      return(
        <>
-       <SunComponent position={[0,0,0]} scale={scale}    />
+       <SunComponent position={[0,0,10]} scale={scale}    />
       <Text position={[0,19,0]} fontSize={5}
              rotation={[0,0.3,0]}
            
@@ -141,7 +141,7 @@ export default function SolarSystemMap() {
          <pointLight position={[-2, -8, -8]} intensity={2} />
 
          {/* Controls */}
-         <OrbitControls maxPolarAngle={Math.PI / 2} minPolarAngle={0} maxDistance={50} />
+         {/* <OrbitControls maxPolarAngle={Math.PI / 2} minPolarAngle={0} maxDistance={50} /> */}
 
          {/* Sun */}
      

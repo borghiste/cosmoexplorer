@@ -34,17 +34,17 @@ setCurrentQuestionOptions(data[QuestionIndex].options)
     
 
 
-// const options = currentQuestionOptions?.map((option)=>(
-//     <li className="bg-[#80d2f2] rounded-full flex 
-//                     items-center my-2  text-[#351826] w-96 right-4 relative" >
-// <input type="radio" id={option} 
-//         name={option.valueOf} 
-//         onChange={(e)=>{setcheckedAnswer(e.target.value)}} 
-//         value={option}
-//         className=' size-4' 
-//         key={option}
-// onClick={()=>{checkAnswer(option, currentQuestion.solution)}}/>{option}</li>
-// ))
+ const options = currentQuestionOptions?.map((option)=>(
+     <li className="bg-[#80d2f2] rounded-full flex 
+                     items-center my-2  text-[#351826] w-96 right-4 relative" >
+ <input type="radio" id={option} 
+         name={option.valueOf} 
+         onChange={(e)=>{setcheckedAnswer(e.target.value)}} 
+         value={option}
+         className=' size-4' 
+         key={option}
+ onClick={()=>{checkAnswer(option, currentQuestion.solution)}}/>{option}</li>
+ ))
 
 interface checkAnswerarguments {
 answer: string,
@@ -74,7 +74,7 @@ const checkAnswer = ({answer, solution}:checkAnswerarguments)=>{
        
 
         
-        <form className=" w-auto pb-64 mt-20 rounded-lg z-0 mb-80 flex flex-col md:flex-row md:justify-center "
+        <form className=" w-auto pb-64 mt-20 rounded-lg z-0 mb-80 flex flex-col  justify-center "
                 onSubmit={e=> {
                     e.preventDefault();
                    
@@ -86,10 +86,10 @@ const checkAnswer = ({answer, solution}:checkAnswerarguments)=>{
 
 
 
-<Options options={currentQuestionOptions as [string, string, string, string]} 
+ <Options options={currentQuestionOptions as [string, string, string, string]} 
         setcheckedAnswer={setcheckedAnswer}
-        checkSolution={checkAnswer as ()=>void}
-        solution={currentQuestion.solution as string}/>
+        checkSolution={()=> checkAnswer( currentQuestion.solution, checkedAnswer )}
+        solution={currentQuestion.solution as string}/> 
     
 <button type='submit'  
         className=" hoover:cursor-pointer  mt-40 lg:mt-60 md:pt-92 lg:mr-80 text-2xl "
