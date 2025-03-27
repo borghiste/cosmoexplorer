@@ -6,6 +6,7 @@
  import Options from './components/Options';
 
 import { useState } from 'react';
+import { SetStateAction } from 'react';
 
 
  export default function Quiz(){
@@ -17,7 +18,7 @@ const [currentQuestion, setCurrentQuestion] = useState(data[0]);
 const [QuestionIndex, SetQuestionIndex] = useState(0)
 
 const [currentQuestionOptions, setCurrentQuestionOptions] = useState(data[0].options);
-const [checkedAnswer, setcheckedAnswer] = useState();
+const [checkedAnswer, setcheckedAnswer] = useState<SetStateAction<string | number>>();
 let [totalScore, setTotalScore] = useState(0);
 
 
@@ -34,17 +35,17 @@ setCurrentQuestionOptions(data[QuestionIndex].options)
     
 
 
- const options = currentQuestionOptions?.map((option)=>(
-     <li className="bg-[#80d2f2] rounded-full flex 
-                     items-center my-2  text-[#351826] w-96 right-4 relative" >
- <input type="radio" id={option} 
-         name={option.valueOf} 
-         onChange={(e)=>{setcheckedAnswer(e.target.value)}} 
-         value={option}
-         className=' size-4' 
-         key={option}
- onClick={()=>{checkAnswer(option, currentQuestion.solution)}}/>{option}</li>
- ))
+//  const options = currentQuestionOptions?.map((option)=>(
+//      <li className="bg-[#80d2f2] rounded-full flex 
+//                      items-center my-2  text-[#351826] w-96 right-4 relative" >
+//  <input type="radio" id={option as any} 
+//          name={option as any} 
+//          onChange={(e)=>{setcheckedAnswer(e.target.value)}} 
+//          value={option}
+//          className=' size-4' 
+//          key={option}
+//  onClick={()=>{checkAnswer(option)}}/>{option}</li>
+//  ))
 
 interface checkAnswerarguments {
 answer: string,
@@ -87,8 +88,8 @@ const checkAnswer = ({answer, solution}:checkAnswerarguments)=>{
 
 
  <Options options={currentQuestionOptions as [string, string, string, string]} 
-        setcheckedAnswer={setcheckedAnswer}
-        checkSolution={()=> checkAnswer( currentQuestion.solution, checkedAnswer )}
+        setcheckedAnswer={setcheckedAnswer as ()=> void}
+        checkSolution={()=> checkAnswer(checkedAnswer as any)}
         solution={currentQuestion.solution as string}/> 
     
 <button type='submit'  
