@@ -83,7 +83,7 @@ export default function Gallery(){
   useEffect(()=>{fetchImagesbyDate({start_date:formattedAMonthAgo, end_date:todayDate})
   .then((data)=>{
      const pictures = data;
-     console.log(pictures)
+   
     setgalleryPictures(pictures);
 
 

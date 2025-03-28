@@ -12,8 +12,9 @@ export default function Modal() {
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
+    
     try {
-      if (typeof params.url === "string") { // Usa "url" in minuscolo
+      if (typeof params.url === "string") { 
         const decodedImage = JSON.parse(decodeURIComponent(params.url)) as ImageObject
         setImage(decodedImage)
       } else {
