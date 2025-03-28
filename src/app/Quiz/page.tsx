@@ -75,7 +75,7 @@ const checkAnswer = ({answer, solution}:checkAnswerarguments)=>{
        
 
         
-        <form className=" w-auto pb-64 mt-20 rounded-lg z-0 mb-80 flex flex-col  justify-center "
+        <form className=" w-auto pb-64 mt-20 rounded-lg z-0 mb-80 flex flex-col    "
                 onSubmit={e=> {
                     e.preventDefault();
                    
@@ -93,7 +93,7 @@ const checkAnswer = ({answer, solution}:checkAnswerarguments)=>{
         solution={currentQuestion.solution as string}/> 
     
 <button type='submit'  
-        className=" hoover:cursor-pointer  mt-40 lg:mt-60 md:pt-92 lg:mr-80 text-2xl "
+        className=" hoover:cursor-pointer  mt-40 lg:mt-60 md:pt-92 text-2xl "
         onClick={()=>{nextQuestion()}}> next &#10095;</button>
 
 

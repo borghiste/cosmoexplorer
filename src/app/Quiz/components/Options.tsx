@@ -28,7 +28,7 @@ onClick={(e)=>{
     checkSolution(value, solution)}}/>{option}</li>      
     ))
     return(
-        <ul className="  absolute  pt-[4rem]  text-left flex flex-col mx-auto lg:w-auto">
+        <ul className=" lg:ml-92   pt-[4rem]  text-left flex flex-col mx-auto w-auto">
 
             
          {Options} 
