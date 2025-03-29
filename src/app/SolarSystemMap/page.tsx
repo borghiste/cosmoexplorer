@@ -133,7 +133,7 @@ export default function SolarSystemMap() {
 
     
       <div style={{ width: '100vw', height: '90vh' }}>
-    <Canvas camera={{ fov: 100, near: 0.1, far: 1000, position: [20, 100, 80] }}>
+    <Canvas camera={{ fov: 100, near: 0.1, far: 1000, position: [20, 10, 80] }}>
          {/* Illuminazione */}
          <ambientLight intensity={0.5} />
          <directionalLight position={[10, 10, 10]} intensity={1.5} castShadow />

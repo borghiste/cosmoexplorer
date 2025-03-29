@@ -1,16 +1,30 @@
+import Image from "next/image"
 export default function About(){
 
     return(
         <main className="flex flex-col">
             <h1 className="text-7xl">About COSMOEXPLORER</h1>
             <h2 className="text-4xl">The website</h2>
-            <p>Cosmoexplorer is a brand new way to explore the space from home trough an interactive experience</p>
+            <p className="text-xl">Cosmoexplorer is a brand new way to explore the space from home trough an interactive experience</p>
 
             <h2 className="text-4xl">The idea</h2>
-            <p>the idea was originally born from </p>
+            <p className="text-xl">the idea was originally born from the passion about astronomy and soon has come a tangible way to intrigue passionate and students. </p>
 
             <h2 className="text-4xl">funcionality</h2>
+            <p className="text-xl">Cosmoexplorer includes a gallery with all the latest pictures from NASA, a 3D rappresentations of the solar system with Data csrds and a trivia Quiz</p>
+
+            {/* <h2 className="text-4xl">About the Author</h2>
+            <div className="flex">
+                <Image
+                src={'/images/author.jpg'}
+                width={500}
+                height={500}
+                className=""
+                alt="author image"/>
+                <p className="text-xl">Stefano Borghi is a creative web  developer  </p>
+            </div> */}
         </main>
+
         // <p>1. Hero Section
         // Titolo Accattivante: Un’introduzione breve e chiara alla web app, ad esempio "Dietro le quinte di [Nome della Web App]".
         // Sottotitolo: 1-2 frasi che descrivano lo scopo della web app, ad esempio "Aiutiamo le persone a gestire il loro tempo in modo efficace" o "La tua libreria digitale sempre a portata di clic".
