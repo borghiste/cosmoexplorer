@@ -69,7 +69,7 @@ const checkAnswer = ({answer, solution}:checkAnswerarguments)=>{
         <div className="flex justify-center flex-col ">
         <div className='flex flex-col '>
         <h1 className="lg:text-7xl text-4xl">QUIZ</h1>
-            <p className='sm:mx-auto sm:w-auto text-2xl text-justify'>Find out how much do you know about astronomy and play the Quiz!</p>
+            <p className='sm:mx-auto sm:w-auto text-3xl text-justify'>Find out how much do you know about astronomy by playing the Quiz!</p>
         </div>
 
        
@@ -82,7 +82,7 @@ const checkAnswer = ({answer, solution}:checkAnswerarguments)=>{
                     
                 }}>
 
-<p className="text-overflow  text-center min-w-40 pb-16    md:ml-40 text-2xl">{currentQuestion.question}
+<p className="text-overflow  text-center     text-2xl">{currentQuestion.question}
 </p>
 
 
@@ -93,7 +93,7 @@ const checkAnswer = ({answer, solution}:checkAnswerarguments)=>{
         solution={currentQuestion.solution as string}/> 
     
 <button type='submit'  
-        className=" hoover:cursor-pointer  mt-40 lg:mt-60 md:pt-92 text-2xl "
+        className=" hoover:cursor-pointer     text-2xl "
         onClick={()=>{nextQuestion()}}> next &#10095;</button>
 
 

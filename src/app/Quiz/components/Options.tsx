@@ -21,14 +21,14 @@ export default function Options({options, setcheckedAnswer, checkSolution, solut
 name={option} 
 onChange={(e)=>{setcheckedAnswer}} 
 value={option}
-className=' size-4' 
+className=' ' 
 
 onClick={(e)=>{
     const value = e.target instanceof HTMLElement ? e.target.dataset.value: ''
     checkSolution(value, solution)}}/>{option}</li>      
     ))
     return(
-        <ul className=" lg:ml-92   pt-[4rem]  text-left flex flex-col mx-auto w-auto">
+        <ul className=" lg:ml-92   pt-[2rem]  text-left flex flex-col mx-auto w-auto">
 
             
          {Options} 
