@@ -5,7 +5,7 @@ import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import { createRef, MutableRefObject, RefObject, useEffect, useRef, useState } from "react";
 import { Text, Html } from "@react-three/drei";
-import { BufferGeometry } from "three";
+import { BufferGeometry, Raycaster } from "three";
 
 
 import React from "react";
@@ -133,7 +133,7 @@ export default function SolarSystemMap() {
 
     
       <div style={{ width: '100vw', height: '90vh' }}>
-    <Canvas camera={{ fov: 100, near: 0.1, far: 1000, position: [20, 10, 80] }}>
+    <Canvas camera={{ fov: 100, near: 0.1, far: 1000, position: [20, 10, 80] } }>
          {/* Illuminazione */}
          <ambientLight intensity={0.5} />
          <directionalLight position={[10, 10, 10]} intensity={1.5} castShadow />
@@ -154,13 +154,11 @@ export default function SolarSystemMap() {
           <Planets/>
 
 
-       <Html position={[0,-10,0]} style={{display:'flex',flexDirection:'column', justifyContent:'start'}}  occlude={'blending'} fullscreen>
+       <Html position={[0,-10,0]} style={{display:'flex',flexDirection:'column', justifyContent:'start'}}   fullscreen>
          
-       <Cards data={planets} /> 
+       <Cards data={planets} />
       
 
-
-        
        </Html>
 
        </Canvas>

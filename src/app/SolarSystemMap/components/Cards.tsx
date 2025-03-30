@@ -8,9 +8,9 @@ data: Body[]
 }
 
 export default function Cards({data}:CardsData){
-  const cards = useState(data);
+
   const [currentIndex, setcurrentIndex] = useState(0);
-  const [currentCard, setCurrentCard] = useState<Body>(data[0]);
+  const [currentCard, setCurrentCard] = useState<Body | null>(data[0]);
 
   
 
@@ -18,7 +18,7 @@ export default function Cards({data}:CardsData){
 
   const nextCard = () => {
 setcurrentIndex((prev) => {
-  const newIndex = prev === data.length - 1 ?  0 : prev + 1
+  const newIndex = prev % data.length - 1 ?  0 : prev + 1
   setCurrentCard(data[newIndex]);
   return newIndex
 })
@@ -54,7 +54,7 @@ setcurrentIndex((prev) => {
       width={500}
       height={500}
         className="
-       sm:object-cover md:h-full md:w-48 min-w-auto"
+       sm:object-cover md:h-full md:w-48 h-20  aspect-squaremin-w-auto"
         src={`/images/planets/${currentCard?.englishName}.jpg`}
          alt={`${currentCard?.englishName} image`}
       />
@@ -64,7 +64,7 @@ setcurrentIndex((prev) => {
     <div className="flex flex-col ">
       <h2 className="text-sm font-semibold tracking-wide text-indigo-500 uppercase   ">name: {currentCard?.englishName}</h2>
   
-      <ul className=" text-white-500 object-contain   ">
+      <ul className=" text-white-500 object-contain text-sm  h-10">
         <li> diameter: {currentCard?.meanRadius}</li>
         <li>mass: {currentCard?.mass.massValue}</li>
         <li>orbit time:{currentCard?.sideralOrbit}</li>
