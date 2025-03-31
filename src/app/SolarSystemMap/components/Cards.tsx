@@ -11,7 +11,6 @@ export default function Cards({data}:CardsData){
 
   const [currentIndex, setcurrentIndex] = useState(0);
   const [currentCard, setCurrentCard] = useState<Body | null>(data[0]);
-
   
 
   
@@ -55,8 +54,10 @@ setcurrentIndex((prev) => {
       height={500}
         className="
        sm:object-cover md:h-full md:w-48 h-20  aspect-squaremin-w-auto"
-        src={`/images/planets/${currentCard.englishName}.jpg`}
+         src={`/images/${currentCard.englishName}.jpg`}
+    
          alt={`${currentCard?.englishName} image`}
+      
       />
       : null }
     
