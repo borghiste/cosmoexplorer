@@ -55,7 +55,7 @@ setcurrentIndex((prev) => {
       height={500}
         className="
        sm:object-cover md:h-full md:w-48 h-20  aspect-squaremin-w-auto"
-        src={`/images/planets/${currentCard?.englishName}.jpg`}
+        src={`/images/planets/${currentCard.englishName}.jpg`}
          alt={`${currentCard?.englishName} image`}
       />
       : null }
