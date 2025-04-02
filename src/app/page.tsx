@@ -8,6 +8,7 @@ import { LegacyRef, Suspense, useEffect, useRef, useState } from "react";
 import { Mesh } from "three";
 import Script from "next/script";
  import './globals.css';
+ import { Text } from "@react-three/drei";
 
  //******************* COMPONENTS *******************/
 
@@ -60,11 +61,6 @@ const Scene = () => {
 
 
 
-
-
-
- 
-
   return (
     <>
       <ambientLight intensity={2} />
@@ -95,9 +91,11 @@ export default function Home() {
           <ScrollControls pages={3} damping={0.1} distance={1} style={{ fontFamily: 'Polaris',  }} >
             <Scroll >
               <Scene />
-                
+     
             </Scroll>
-            <Html position={[0, 0, -15]} style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', flexDirection: 'column', zIndex: 10  }} fullscreen occlude={'blending'} className="">
+
+           
+            <Html position={[0, 0, -15]} style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', flexDirection: 'column', zIndex: 10  }} fullscreen occlude={'blending'} >
               <HeroSection />
               <GallerySection />
               <SolarSystemSection />
