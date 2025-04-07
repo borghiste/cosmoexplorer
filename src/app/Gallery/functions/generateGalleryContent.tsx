@@ -1,21 +1,17 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import { ImageObject } from "../page";
 
-interface Object {
-  title:string,
-        url:string,
-        explanation: string,
-        media_type:string
 
-}
-interface genrrateContentProps  {
-  data: Object[], 
+interface genrateContentProps  {
+
+  data: ImageObject[] | undefined, 
   handleClick:()=>void
 
 }
 
-export default  function generateGalleryContent({data, handleClick}:genrrateContentProps){
+export default  function generateGalleryContent({data, handleClick}:genrateContentProps){
 
   // if data is image generate image
 
