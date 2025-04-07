@@ -5,16 +5,17 @@ import Image from "next/image"
 import Link from "next/link"
 import { useState, useEffect } from "react"
 import { ImageObject } from "../page"
+import { Params } from "next/dist/shared/lib/router/utils/route-matcher"
 
 export default function Modal() {
-  const params = useParams()
+  const params = useParams<Params>();
   const [image, setImage] = useState<ImageObject | null>(null)
   const [error, setError] = useState<string | null>(null)
 
   useEffect(() => {
     
     try {
-      if (typeof params.url === "string") { 
+      if (typeof params.url === 'string') { 
         const decodedImage = JSON.parse(decodeURIComponent(params.url)) as ImageObject
         setImage(decodedImage)
       } else {

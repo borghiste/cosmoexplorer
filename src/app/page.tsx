@@ -66,14 +66,17 @@ const Scene = () => {
       <ambientLight intensity={2} />
       <pointLight position={[2, 8, 8]} decay={0} intensity={9} castShadow={false} />
       <pointLight position={[-2, -8, -8]} decay={0} intensity={9} />
+      <Suspense fallback={'loading'}>
+
       <SpaceStation scale={[0.5, 0.5, 0.5]} position={ responsiveScaleFactor < 1200 ? [0, -0.5,0] : [0, -1, -2]} rotation={[0.1, 0.1, 0]} SpaceStationRef={SpaceStationRef}/>
+      </Suspense>
       
       
 
     <Satellite position={ size.width < 1200 ? [-1.5,-4,0] : [4, -3, 0] } scale={[0.005, 0.005, 0.005]} ref={SatelliteRef} />
       <SolarSystemModel scale={[0.01, 0.01, 0.005]} position={[-1, -10, -0.4]} rotation={ responsiveScaleFactor < 500 ? [0,0.9,0] : [0,0.2,0]} />
        <Astronaut position={[0, -11.5, 1]} scale={[0.05, 0.05, 0.05]} rotation={[-2, 0, 3]} ref={AstronautRef} /> 
-       <Satellite2 position={ responsiveScaleFactor < 640 ? [0, -19, 2]: [1.5, -18, 2]}  SatelliteRef={Satellite2Ref} scale={[0.004,0.004,0.004]} /> 
+       <Satellite2 position={ responsiveScaleFactor < 640 ? [0, -19, 2]: [1.5, -17, 2]}  SatelliteRef={Satellite2Ref} scale={[0.004,0.004,0.004]} /> 
     </>
   );
 };

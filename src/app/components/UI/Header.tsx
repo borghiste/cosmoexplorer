@@ -1,7 +1,6 @@
 'use client'
 import Link from "next/link";
-import Image from "next/image";
-import logo from '../../../../public/images/logo.png';
+
 import styles from '../UI//Header.module.css'
 import { useState } from "react";
 export default function(){
@@ -9,19 +8,9 @@ export default function(){
     const [toggleHamburger, settoggleHamburger ] = useState(false)
 
     return(
-        <header className="items-center flex justify-between header  ">
+        <header className="items-center flex justify-end   ">
             
 
-     <button
-        
-        onClick={()=>{settoggleHamburger(!toggleHamburger)}}
-        type="button"
-        id="hamburger"
-        className={`${styles.hamburger} ${toggleHamburger ? styles.toggle : ""} z-20`}>
-        <span className={`${styles.span}`}></span>
-        <span className={styles.span}></span>
-        <span className={styles.span}></span>
-      </button> 
 <nav className={`  md:mr-8 ${styles.navigation} ${toggleHamburger  ? styles.visible : "" }`} onClick={()=>{ toggleHamburger ? settoggleHamburger(!toggleHamburger) : null}}>
     
     <Link className="text-sm px-3" href="/">HOME</Link>
@@ -29,6 +18,16 @@ export default function(){
     <Link className="text-sm px-3" href="/SolarSystemMap">SOLAR SYSTEM</Link>
     <Link className="text-sm pox-3" href="/Quiz">QUIZ</Link>
 </nav>
+
+<button
+     onClick={()=>{settoggleHamburger(!toggleHamburger)}}
+        type="button"
+        id="hamburger"
+        className={`${styles.hamburger} ${toggleHamburger ? styles.toggle : ""} z-20 `}>
+        <span className={`${styles.span}`}></span>
+        <span className={styles.span}></span>
+        <span className={styles.span}></span>
+      </button> 
         </header>
     )
 }

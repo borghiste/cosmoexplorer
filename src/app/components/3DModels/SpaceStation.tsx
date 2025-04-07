@@ -15,10 +15,10 @@ interface SpaceStation {
 
 export default function SpaceStation({scale, position, rotation, SpaceStationRef}:SpaceStation){
 
-const {size} = useThree(); 
+const { size } = useThree(); 
 
   
-    const scaleFactor = size.width / 4000
+    const scaleFactor = size.width / (scale[1] * 10000)
     
  
    

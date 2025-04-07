@@ -1,4 +1,6 @@
-'use client'
+
+'use client';
+import React from 'react';
 
 //import libraries
 
@@ -16,9 +18,6 @@ import fetchImagesbyDate from './functions/fetchImagesbyDate';
 import generateGalleryContent from './functions/generateGalleryContent';
 
 import generateAPOD from './functions/generateAPOD';
-import { useRouter } from 'next/navigation';
-
-
 
 
 
@@ -30,107 +29,105 @@ export interface ImageObject {
   media_type:string
 } 
 export default function Gallery(){
+
+  
   //states, Refs & dates
-
+  
   const [isModalOpen,setisModalOpen ] = useState(false);
-
-
-
+  
+  
+  
   const [APOD, setAPOD]= useState<ImageObject >()
-
+  
   const [selectedPic, setselectedPic]= useState<ImageObject >();
-
- const start_date_Ref = useRef<HTMLInputElement>(null);
-
- const end_date_Ref = useRef<HTMLInputElement>(null);
-
-
-
-  const [galleryPictures, setgalleryPictures]= useState([]) //stato delle immagini fetchate
-
+  
+  const start_date_Ref = useRef<HTMLInputElement>(null);
+  
+  const end_date_Ref = useRef<HTMLInputElement>(null);
+  
+  
+  
+  const [galleryPictures, setgalleryPictures]= useState() //stato delle immagini fetchate
+  
   const todayDate = new Date().toISOString().split('T')[0]; //  today date
-
-
-
+  
+  
+  
   const aMonthAgoDate = new Date(todayDate); // today date copy
   
-  aMonthAgoDate.setMonth(aMonthAgoDate.getMonth() - 1); // today date copy minus 1 month
+  aMonthAgoDate.setMonth(aMonthAgoDate.getMonth() - 1); // today date minus 1 month
   
   const formattedAMonthAgo = aMonthAgoDate.toISOString().split('T')[0]; // formatted date
   
   
+  
 
-
-
-
-
-
-
-
-
-
-
+  
+  
+  
+  
+  
   //fetch APOD
-
+  
   useEffect(()=>{
     fetchAPOD()
-
-.then((data)=>{setAPOD(data)})},[])
-
-
-// fetch and generate last month gallery content
-
-  useEffect(()=>{fetchImagesbyDate({start_date:formattedAMonthAgo, end_date:todayDate})
-  .then((data)=>{
-     const pictures = data;
-   
-    setgalleryPictures(pictures);
-
-
-   
-   })
- },[])
-
-
-
-
-
-//handleSearchimgsClick
-
-function handleSearchimgsClick(){
-
- 
-const start_date = start_date_Ref.current?.value || ''
-const end_date = end_date_Ref.current?.value || ''
-  
-
-  
-  fetchImagesbyDate({start_date:start_date, end_date:end_date})
-  .then((data)=>{
-    const pics = data
-    setgalleryPictures(pics)
-  
     
-   
-})
-}
-
-
-
-
-
-
-
- const galleryContent = generateGalleryContent({data:galleryPictures, handleClick:()=>{setisModalOpen(!isModalOpen)}})
-
-
-
-
-
-
-
+    .then((data)=>{setAPOD(data)})},[])
+    
+    
+    // fetch and generate last month gallery content
+    
+     useEffect(()=>{fetchImagesbyDate({start_date:formattedAMonthAgo, end_date:todayDate})
+     .then((data)=>{
+       const pictures = data;
+      
+       setgalleryPictures(pictures);
+      
+      
+      
+     })
+   },[])
+  
+  
+  
+  
+  
+  //handleSearchimgsClick
+  
+  function handleSearchimgsClick(){
+    
+    
+    const start_date = start_date_Ref.current?.value || ''
+    const end_date = end_date_Ref.current?.value || ''
+    
+    
+    
+    fetchImagesbyDate({start_date:start_date, end_date:end_date})
+    .then((data)=>{
+      const pics = data
+      setgalleryPictures(pics)
+      
+      
+      
+    })
+  }
+  
+  
+  
+  
+  
+  
+  
+  const galleryContent = generateGalleryContent({data:galleryPictures, handleClick:()=>{setisModalOpen(!isModalOpen)}})
+  
+  
+  
+  
+  
+  
+  
   return(
-   <>
+    <>
  <div className='flex-col border-4   '>
   <h1 className='text-7xl text-center  '>GALLERY</h1>
   <br />
@@ -168,9 +165,12 @@ generateAPOD({APOD:APOD, onClick:()=>{setisModalOpen(!isModalOpen); setselectedP
  </div>
   </>
   )
-
+  
 }
 
+
+
+ 
 
 
 

@@ -16,7 +16,7 @@
  
 background-color: black;
   transform: scale(0);
-  transform-origin: top left;
+  transform-origin: top right;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -36,6 +36,9 @@ background-color: black;
 .hamburger {
    border:none;
     cursor: pointer;
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+    padding-right: 0.5rem;
   }
 
 
