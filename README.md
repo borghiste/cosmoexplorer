@@ -2,10 +2,10 @@
 
 ## The idea
 
-I want to build an App that allows users discover/study astronomy in an interactive and modern way. 
-The purpose of this app is to provide free and fun tool for students and enthusiasts.
+I want to build an website that allows users to discover/study astronomy in an interactive and modern way. 
+The purpose of this website is to provide free and fun tool for students and enthusiasts.
 
-the app must be fast, cool, animated and with a modern and intuitive design. I will also develop the mobile version in the future.
+
 
 the app will feature:
 
@@ -18,40 +18,37 @@ the app will feature:
 
  the app will not feature too many things in the beginning.
 
-## competitors
 
-there are some apps in the market. their UI is chaotic, the data is not updated, there's no italian language. there are some bugs.
 
-## App Main feature
+## Website main features
 
 the app will feature:
 
  -a gallery with the picture of the day captured by NASA and previous pictures with user being able to search pictures by date and view specific informations about them.
- -details about planets and objects in the solar system.
- -visual rappresentation of the solar system
+ -details about planets and objects in the solar system with visual 3D dashboard.
  - planets cards with weather information of each planet
  - Quiz page: a page dedicated to a quiz game to let user challenge their knowledge about astronomy.
- -latest news about space missions and discoveries
- -contents aviable in multiple languages
+
+
 
 
  ## Pages and Their Purposes
 
  - ### 1 Home: 
 
-
+- description of the features
 
  quick access to 3 pages:
 
- - About space: latest news, articles and missions
+ - About
+ - Gallery
+ - Planets
 
- 
 
- - 1 card  displaying the orbit level of earth around itself and around the sun and the next astronomy phenomenon.
 
  ## 2 solar system map:
 
- a 3d rappresentation of the solar system with main info when the use hover the objects with mouse. each object should have unique article that display all info about that object.
+ a 3d rappresentation of the solar system' s planets with main info when the use hover the objects with mouse. each object should have unique article that display all info about that object.
 
  ## 3 quiz
 
