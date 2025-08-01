@@ -116,9 +116,14 @@ export default function Home() {
      <p className="   text-justify mt-5 text-xl lg:text-2xl sm:text-2xl md:text-lg  md:w-[40rem] text-wrap">Cosmoexplorer is a website dedicated to all astronomy enthusiastics. This portal lets you discover and play with all  you can find in space.</p> 
 
 
-    <button className="h-10 w-30 mt-9 rounded-full text-nowrap bg-slate-500">
+
+     <button className="rounded-full bg-[var(--violet)] w-30 text-nowrap p-1 pt-1 mt-3 h-10 z-20">
+         <Link href="/Planets"
+         >Explore planets page</Link>
+       </button>
+    {/* <button className="h-10 w-30 mt-9 rounded-full text-nowrap bg-slate-500" >
       visit planets page
-    </button>
+    </button> */}
     <GallerySection/>
   </Html>
 
@@ -224,9 +229,9 @@ export default function Home() {
  
  }
      
-       <button className="rounded bg-[#011826] pt-1 h-10 w-80 z-20">
+       <button className="rounded-full bg-[--violet] pt-1 h-10 w-80 z-20">
          <Link href="/Gallery"
-         >Visit Gallery</Link>
+         >Take a look to the complete gallery</Link>
        </button>
      </div>
    </div>

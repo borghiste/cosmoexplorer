@@ -53,12 +53,13 @@ return(
 
     {currentSlide.media_type === 'image'
      ?
-      
+
       <Image  src={currentSlide.url} 
               height={500} 
               width={500} 
               alt={currentSlide.title}
               className='aspect-square  rounded-xl '/>
+               
    :
      ( <iframe width="400" height="200"  src={currentSlide.url} title="YouTube video player"  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerPolicy="strict-origin-when-cross-origin" allowFullScreen className='aspect-square rounded-lg'></iframe>
      )
