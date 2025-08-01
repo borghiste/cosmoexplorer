@@ -77,3 +77,81 @@ padding-right: 0.1rem;;
   from {opacity: .4}
   to {opacity: 1}
 }
+
+/* Slideshow container */
+
+.container{
+position: relative;
+padding-right: 0.1rem;;
+}
+/* Hide the images by default */
+.Slides{
+ 
+  width: 100%;
+
+  transition: opacity 1.5s ease-in-out;
+}
+
+
+
+
+
+/* Next & previous buttons */
+.prev, .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  margin-top: -22px;
+  padding: 1rem;
+  color: white;
+  font-weight: bold;
+  font-size: 2rem;
+  transition: 0.6s ease;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+
+/* On hover, add a black background color with a little bit see-through */
+.prev:hover, .next:hover {
+
+  background-color: #000000cc;
+}
+
+.text{
+  background-color: aliceblue;
+  top:95%;
+  
+  text-align: center;
+  
+ 
+
+ margin-top: -1.5rem;
+  position: absolute;
+  color:black;
+  
+}
+
+
+
+
+
+
+
+
+/* Fading animation */
+.fade {
+  animation-name: fade;
+  animation-duration: 1.5s;
+}
+
+@keyframes fade {
+  from {opacity: .4}
+  to {opacity: 1}
+}
