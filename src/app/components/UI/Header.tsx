@@ -15,7 +15,7 @@ export default function(){
     
     <Link className="text-sm px-3" href="/">HOME</Link>
     <Link className="text-sm px-3" href="/Gallery" >GALLERY</Link>
-    <Link className="text-sm px-3" href="/SolarSystemMap">PLANETS</Link>
+    <Link className="text-sm px-3" href="/Planets">PLANETS</Link>
     <Link href={''}></Link>
     <Link className="text-sm pox-3" href="/Quiz">QUIZ</Link>
 </nav>
