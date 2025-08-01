@@ -33,6 +33,7 @@ import Image from "next/image";
 import { useOscillation } from "./animations/useOscillation";
 import { useRotation } from "./animations/useRotation";
 import { useArc } from "./animations/useArc";
+import { useOrbitation } from "./animations/useOrbitation";
 
 
 
@@ -55,12 +56,14 @@ const Scene = () => {
 
   
 
-  useRotation({ref:SpaceStationRef, axis:'y'});
-  useOscillation({ref:SatelliteRef, axis:'x'});
-     useOscillation({ref:AstronautRef, axis:'y'});
+  // useRotation({ref:SpaceStationRef, axis:'y'});
+  useOrbitation(Satellite2Ref,'y', 'z');
+      useOscillation({ref:AstronautRef, axis:'y'});
   
   
-   useArc({ref:Satellite2Ref, x:'x', y:'y'});
+ 
+
+  
 
 
 
@@ -73,17 +76,19 @@ const Scene = () => {
 
       
 
-      <Astronaut position={[0, -2.7, 1]} scale={[0.05, 0.05, 0.05]} rotation={[-2, 0, 3]} ref={AstronautRef} /> 
+       {/* <Astronaut position={[0, -2.7, 1]} scale={[0.05, 0.05, 0.05]} rotation={[-2, 0, 3]} ref={AstronautRef} />   */}
+      
 
       
       </Suspense>
       
       
 
-    <Satellite position={ size.width < 1200 ? [-1.5,-4,0] : [4, -3, 0] } scale={[0.005, 0.005, 0.005]} ref={SatelliteRef} />
-      <SolarSystemModel scale={[0.01, 0.01, 0.005]} position={[-1, -10, -0.4]} rotation={ responsiveScaleFactor < 500 ? [0,0.9,0] : [0,0.2,0]} />
-       <Astronaut position={[0, -11.5, 1]} scale={[0.05, 0.05, 0.05]} rotation={[-2, 0, 3]} ref={AstronautRef} /> 
-       <Satellite2 position={ responsiveScaleFactor < 640 ? [0, -19, 2]: [1.5, -17, 2]}  SatelliteRef={Satellite2Ref} scale={[0.004,0.004,0.004]} /> 
+    {/* <Satellite position={ size.width < 1200 ? [-1.5,0,0] : [4, 0, 0] } scale={[0.005, 0.005, 0.005]} ref={SatelliteRef} /> */}
+      
+       {/* <Astronaut position={[0, -11.5, 1]} scale={[0.05, 0.05, 0.05]} rotation={[-2, 0, 3]} ref={AstronautRef} />  */}
+
+       <Satellite2 position={ responsiveScaleFactor < 640 ? [0, 1, 2]: [0, -1, 2.5]}  ref={Satellite2Ref} scale={[0.005,0.004,0.004]}/>
     </>
   );
 };
@@ -98,17 +103,17 @@ export default function Home() {
   <Script src="https://kit.fontawesome.com/394b7dd8e2.js" crossOrigin="anonymous" />
   
 
-  <Canvas camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 5] }} style={{position:'sticky', overflow: 'hidden'}}>
+  <Canvas camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 5] }} style={{position:'absolute', overflow: 'hidden'}}>
 
   <Scene/>
 
-  <Html position={[0, 0, -15]} style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', flexDirection: 'column', zIndex: 10  }} fullscreen occlude={'blending'} >
+  <Html position={[0, 0, -15]} style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', flexDirection: 'column', zIndex: 0  }} fullscreen occlude={'blending'} >
 
-    <h1 className=" pt-30 sm:text-4xl md:text-6xl">COSMOEXLORER</h1>
+    <h1 className="  sm:text-4xl md:text-6xl">COSMOEXLORER</h1>
 
-    <h2 className=" text-center text-3xl sm:text-3xl md:text-4xl pt-20">Explore the Wonders of the Night Sky</h2>
+    <h2 className=" text-center mt-10 text-3xl sm:text-3xl md:text-4xl ">Explore the Wonders of the Night Sky</h2>
 
-    {/* <p className="  min-w-40  text-justify pt-5 text-xl lg:text-2xl sm:text-2xl md:text-lg  md:w-[41rem]  ">Behind every star there's a story ready to be unveiled in the great picture of the universe. Cosmoexplorer is a new way to explore space and discover the cosmo's secrets.</p> */}
+     <p className="   text-justify mt-5 text-xl lg:text-2xl sm:text-2xl md:text-lg  md:w-[40rem] text-wrap">Cosmoexplorer is a website dedicated to all astronomy enthusiastics. This portal lets you discover and play with all  you can find in space.</p> 
 
 
     <button className="h-10 w-30 mt-9 rounded-full text-nowrap bg-slate-500">
@@ -159,7 +164,7 @@ export default function Home() {
 //   <div className="pt-9 w-screen flex items-center flex-col">
 //     <h1 className="text-4xl sm:text-4xl md:text-6xl    pt-30  ">COSMOEXPLORER</h1>
 //     <h2 className="  text-center text-3xl pt-5 sm:text-3xl md:text-4xl">Explore the Wonders of the Night Sky</h2>
-//     <p className="  min-w-40  text-justify pt-5 text-xl lg:text-2xl sm:text-2xl md:text-lg  md:w-[41rem] md:w-8 ">Behind every star there's a story ready to be unveiled in the great picture of the universe. Cosmoexplorer is a new way to explore space and discover the cosmo's secrets.</p>
+//     <p className="  min-w-40  text-justify pt-5 text-xl lg:text-2xl sm:text-2xl md:text-lg  md:w-[41rem]  ">Behind every star there's a story ready to be unveiled in the great picture of the universe. Cosmoexplorer is a new way to explore space and discover the cosmo's secrets.</p>
 //   </div>
 // );
 
@@ -199,7 +204,7 @@ export default function Home() {
 
    
    return(
-   <div className="flex  box-content  w-full  items-center  mt-[5rem] flex-col   ">
+   <div className="flex  box-content  w-full  items-center  mt-[2rem] flex-col overflow-hidden  ">
     
        {/* <p className=" mb-10 w-auto text-justify text-xl md:w-[25rem]">
        The gallery section contains the most wonderful and incredible photos taken of the outer space. come take a look closer to the beauties of the cosmos!
