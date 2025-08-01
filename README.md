@@ -40,7 +40,7 @@ the app will feature:
 
  quick access to 3 pages:
 
- - About
+ 
  - Gallery
  - Planets
 

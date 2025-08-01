@@ -7,6 +7,7 @@
 
 import { useState } from 'react';
 import { SetStateAction } from 'react';
+import { div } from 'three/tsl';
 
 
  export default function Quiz(){
@@ -64,54 +65,56 @@ const checkAnswer = ({answer, solution}:checkAnswerarguments)=>{
 
 
 
-    return(
-       <>
-        <div className="flex justify-center flex-col ">
-        <div className='flex flex-col '>
-        <h1 className="lg:text-7xl text-4xl">QUIZ</h1>
-            <p className='sm:mx-auto sm:w-auto text-3xl text-justify'>Find out how much do you know about astronomy by playing the Quiz!</p>
-        </div>
+
+
+//     return(
+//        <>
+//         <div className="flex justify-center flex-col ">
+//         <div className='flex flex-col '>
+//         <h1 className="lg:text-7xl text-4xl">QUIZ</h1>
+//             <p className='sm:mx-auto sm:w-auto text-3xl text-justify'>Find out how much do you know about astronomy by playing the Quiz!</p>
+//         </div>
 
        
 
         
-        <form className=" w-auto pb-64 mt-20 rounded-lg z-0 mb-80 flex flex-col    "
-                onSubmit={e=> {
-                    e.preventDefault();
+//         <form className=" w-auto pb-64 mt-20 rounded-lg z-0 mb-80 flex flex-col    "
+//                 onSubmit={e=> {
+//                     e.preventDefault();
                    
                     
-                }}>
+//                 }}>
 
-<p className="text-overflow  text-center     text-2xl">{currentQuestion.question}
-</p>
+// <p className="text-overflow  text-center     text-2xl">{currentQuestion.question}
+// </p>
 
 
 
- <Options options={currentQuestionOptions as [string, string, string, string]} 
-        setcheckedAnswer={setcheckedAnswer as ()=> void}
-        checkSolution={()=> checkAnswer(checkedAnswer as any)}
-        solution={currentQuestion.solution as string}/> 
+//  <Options options={currentQuestionOptions as [string, string, string, string]} 
+//         setcheckedAnswer={setcheckedAnswer as ()=> void}
+//         checkSolution={()=> checkAnswer(checkedAnswer as any)}
+//         solution={currentQuestion.solution as string}/> 
     
-<button type='submit'  
-        className=" hoover:cursor-pointer     text-2xl "
-        onClick={()=>{nextQuestion()}}> next &#10095;</button>
+// <button type='submit'  
+//         className=" hoover:cursor-pointer     text-2xl "
+//         onClick={()=>{nextQuestion()}}> next &#10095;</button>
 
 
 
-        <p className='  text-center'>{QuestionIndex  ? `${totalScore} correct answers/${Questions.length}` : null }</p>
+//         <p className='  text-center'>{QuestionIndex  ? `${totalScore} correct answers/${Questions.length}` : null }</p>
 
-</form>
+// </form>
                 
 
            
            
-        </div>
-       </>
+//         </div>
+//        </>
       
       
 
 
-        )
+//         )
 
     }
 
