@@ -38,5 +38,22 @@ export default function About(){
         // Icone o Illustrazioni: Ogni funzionalità principale (come gestione del tempo, report personalizzati, condivisione con il team) può avere un’icona con una breve descrizione.
         // Descrizione Breve: Sotto ogni icona, una frase che spiega come funziona o a cosa serve la feature.
         // </p>
-    )
+
+
+//planets
+// "Mercury (planet)" (https://skfb.ly/6yuRD) by SebastianSosnowski is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+// "Venus v1.1" (https://skfb.ly/LpyX) by uperesito is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+// "Earth" (https://skfb.ly/6TwGG) by Akshat is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+"Mars" (https://skfb.ly/oyCyK) by JanesBT is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+// "Jupiter" (https://skfb.ly/6wOJX) by SebastianSosnowski is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+// "Saturn" (https://skfb.ly/ptqWB) by Space is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+// "Uranus" (https://skfb.ly/6TwIN) by Akshat is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+
+// "Neptune" (https://skfb.ly/IUFS) by kongle is licensed under Creative Commons Attribution-ShareAlike (http://creativecommons.org/licenses/by-sa/4.0/).
 }
