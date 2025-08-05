@@ -57,7 +57,7 @@ const Scene = () => {
   
 
   // useRotation({ref:SpaceStationRef, axis:'y'});
-  useOrbitation(Satellite2Ref,'y', 'z');
+  useOrbitation(Satellite2Ref,'y');
       useOscillation({ref:AstronautRef, axis:'y'});
   
   
@@ -88,7 +88,7 @@ const Scene = () => {
       
        {/* <Astronaut position={[0, -11.5, 1]} scale={[0.05, 0.05, 0.05]} rotation={[-2, 0, 3]} ref={AstronautRef} />  */}
 
-       <Satellite2 position={ responsiveScaleFactor < 640 ? [0, 1, 2]: [0, -1, 2.5]}  ref={Satellite2Ref} scale={[0.005,0.004,0.004]}/>
+       <Satellite2 position={ responsiveScaleFactor < 640 ? [0, 1, 2]: [0, -1, 2.5]}  SatelliteRef={Satellite2Ref} scale={[0.005,0.004,0.004]}/>
     </>
   );
 };

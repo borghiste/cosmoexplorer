@@ -47,7 +47,7 @@ export default function About(){
 
 // "Earth" (https://skfb.ly/6TwGG) by Akshat is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 
-"Mars" (https://skfb.ly/oyCyK) by JanesBT is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+// "Mars" (https://skfb.ly/6Uynr) by AirStudios is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 
 // "Jupiter" (https://skfb.ly/6wOJX) by SebastianSosnowski is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 
@@ -55,5 +55,6 @@ export default function About(){
 
 // "Uranus" (https://skfb.ly/6TwIN) by Akshat is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
 
-// "Neptune" (https://skfb.ly/IUFS) by kongle is licensed under Creative Commons Attribution-ShareAlike (http://creativecommons.org/licenses/by-sa/4.0/).
+// "Neptune" (https://skfb.ly/o6rvs) by AllThingsSpace is licensed under Creative Commons Attribution (http://creativecommons.org/licenses/by/4.0/).
+)
 }

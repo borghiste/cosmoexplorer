@@ -1,6 +1,6 @@
 import { useFrame } from "@react-three/fiber";
 
-export  const useOrbitation = (ref, x, z) => {
+export  const useOrbitation = (ref: any, x: string) => {
 
     useFrame(({clock}) => {
         const time = clock.getElapsedTime();

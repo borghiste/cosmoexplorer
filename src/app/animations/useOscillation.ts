@@ -7,7 +7,7 @@ interface useOscillationProps {
 }
 export const useOscillation = ({ref, axis}:useOscillationProps): void => {
     useFrame(({ clock }) => {
-      const time = clock.getElapsedTime();
+      const time = clock.getElapsedTime() * 0.2;
       if (ref.current) {
         
         ref.current.position[axis] =  Math.sin(time);
