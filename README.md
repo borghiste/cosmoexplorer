@@ -43,6 +43,7 @@ the app will feature:
  
  - Gallery
  - Planets
+ -about
 
 
 

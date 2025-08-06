@@ -1,36 +1,43 @@
 'use client'
 
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { Canvas, useFrame, useLoader, useThree } from '@react-three/fiber';
 import Link from 'next/link';
 import { Environment, ScrollControls, Scroll, useGLTF, useScroll } from '@react-three/drei'
 import { easing } from 'maath'
 import { useRef, useState, useEffect } from 'react';
 import * as THREE from 'three';
-
+import { OrbitControls } from '@react-three/drei';
 import { Html } from '@react-three/drei';
 import { Text } from '@react-three/drei';
+//FUNCTIONS
+import fetchallData from './functions_&hooks/fetchallData';
 
+//COMPONENTS
 
 // 3D MODELS
 import PlanetModel from '../../app/components/3DModels/PlanetModel';
 import Astronaut from '../components/3DModels/Astronaut';
 // ANIMATIONS
 import { useOscillation } from '../animations/useOscillation';
+import { FontLoader } from 'three-stdlib';
+
 
 interface Model {
   name: string, path: 
   string, 
   scale: number, 
-  rotation?: [number, number, number]}
+  rotation?: [number, number, number],
+  description: string}
 
 
 interface ItemProps  {index: number,
                       position: [number, number, number],
                       model: Model,
                       clicked: number | null,
-                      setClicked: (inde: number | null) => void,
+                      setClicked: (index: number | null) => void,
                       i: number,
-                      xW: number
+                      xW: number,
+                      
 
 }
 type ItemsProps = {models: Model[]}
@@ -40,6 +47,8 @@ function Item({ index, position, model, clicked, setClicked, i, xW }: ItemProps)
   const ref = useRef<THREE.Group>(null)
   const scroll = useScroll()
   const [hovered, setHovered] = useState(false)
+  // const polaris = useLoader(FontLoader, '/fonts/Polaris-2/Polaris.ttf')
+ 
 
   useFrame((_, delta) => {
     if (!ref.current) return
@@ -55,32 +64,41 @@ function Item({ index, position, model, clicked, setClicked, i, xW }: ItemProps)
     ref.current.position.z = z 
     
 
-    if (hovered || isActive) {
+    if (hovered && isActive) {
       ref.current.rotation.y += 0.01
+      
        
       
     }
 
-   
+    
+    
+    
+    
   })
+  const onPointerOutAction = () => {setHovered(false)
+                                  setClicked(null)
+  }
+
 
   return (
     <>
  
-<Text position={[i * xW, 3, 0]} fontSize={0.3}>{ hovered ? model.name : ''}</Text>
+<Text position={[i * xW, 2.4, 0]} 
+fontSize={0.3}>
+  { hovered  && (model.name)}</Text>
+
+{clicked === i && (  <Text position={[i * xW + 1, 2.6, 0]}
+maxWidth={2}   overflowWrap={'normal'} fontSize={0.07}  anchorX={'right'}>{model.description}</Text>) }
     <group
       ref={ref}
       position={position}
       onClick={() => setClicked(clicked === index ? null : index)}
       onPointerOver={() => setHovered(true)}
-      onPointerOut={() => setHovered(false)}>
+      onPointerOut={() => {onPointerOutAction()}}>
       <PlanetModel path={model.path} manualScale={model.scale} rotation={model.rotation
       }/>
-      {/* <Html>
-      <Link href={'/'}>nbjj</Link>
-
-      <button className='via-green-950'>jj</button>
-      </Html> */}
+     
      
     </group>
       </>
@@ -92,35 +110,54 @@ function Item({ index, position, model, clicked, setClicked, i, xW }: ItemProps)
 
 function Items({ models}: ItemsProps) {
   const { width } = useThree((state) => state.viewport)
-  const [clicked, setClicked] = useState<number | null>(null)
+  const [clicked, setClicked] = useState<number | null>(null);
+  
   const w = 1.2
   const gap = 0.5
   const xW = w + gap;
+  const [data, setData] = useState([]);
+
+
+
+
   
 
   return (
     <ScrollControls horizontal damping={0.1} pages={(width - xW + models.length * xW) / width}>
       <Scroll>
-        {planets.map((model, i) => (
+
+        {
+        planets.map((model, i) => (
           <>
           
           <Item
             key={i}
             index={i}
+          
             i={i} 
             xW={xW}
-            position={[i * xW, 1.8, 0]}
+            position={[i * xW, 1.4, 0]}
             model={model as Model}
             clicked={clicked}
             setClicked={setClicked}
             />
             </>
          
-        ))}
+        ))
+        }
+
+      
+
+
+      
+       
+
+
       </Scroll>
     </ScrollControls>
   )
 }
+
 
 // astronaut
 const AstronautExplorer = () => {
@@ -131,31 +168,34 @@ const AstronautExplorer = () => {
 }
 
 // ----------------------
-// urls  and models scales 
+// planets models data 
 // ----------------------
 const planets = [
-   { name: 'Mercury', path: '/models/mercury.glb', scale: 1 },
-    { name: 'Venus', path: '/models/venus.glb', scale: 1 },
-   { name: 'Earth', path: '/models/earth.glb', scale: 1.1 },
+   { name: 'Mercury', path: '/models/mercury.glb', scale: 1, description: 'Mercury is the closest planet to the Sun and the smallest in the Solar System. It has a rocky, cratered surface that resembles the Moon and experiences extreme temperature changes — scorching hot during the day and freezing at night. Due to its proximity to the Sun and lack of a significant atmosphere, Mercury is a world of intense solar radiation and silence.' },
+    { name: 'Venus', path: '/models/venus.glb', scale: 1, description: 'Venus is similar in size to Earth but could not be more different in terms of conditions. Its thick atmosphere is made primarily of carbon dioxide and is capable of trapping heat so effectively that surface temperatures reach around 460°C. The planet’s surface is hidden beneath layers of dense clouds, and it rotates in the opposite direction compared to most planets, making its day longer than its year.' },
+   { name: 'Earth', path: '/models/earth.glb', scale: 1.1, description: 'Earth is the third planet from the Sun and the only known world to support life. It has a breathable atmosphere rich in oxygen, a balanced climate system, and abundant liquid water. Earth\'s diverse environments — from oceans to forests to deserts — make it a dynamic and ever-changing planet. It also has one natural satellite: the Moon.' },
   { name: 'Mars', path: '/models/mars.glb', scale: 1.1 },
-  {name: 'Jupiter', path:'/models/jupiter.glb', scale: 1.8},
-  {name: 'Saturn', path: '/models/saturn.glb', scale: 2},
-  {name: 'Uranus', path: '/models/uranus.glb', scale: 1.5, rotation: [0,-0.5, 4.8, 1]},
-  {name: 'Neptune', path: '/models/neptune.glb', scale: 1}
+  {name: 'Jupiter', path:'/models/jupiter.glb', scale: 1.8, description: 'Jupiter is the largest planet in the Solar System and a massive gas giant primarily composed of hydrogen and helium. It is famous for its swirling clouds and the Great Red Spot, a gigantic storm that has raged for centuries. Jupiter has a powerful magnetic field and over 90 moons, including Ganymede, the largest moon in the Solar System.'},
+  {name: 'Saturn', path: '/models/saturn.glb', scale: 2, description: 'Saturn is best known for its spectacular ring system, made of ice and rock particles. Like Jupiter, it is a gas giant, though it is much less dense — in fact, it could theoretically float in water. Saturn has a vast number of moons, with Titan being the most well-known for its thick atmosphere and potential for prebiotic chemistry.'},
+  {name: 'Uranus', path: '/models/uranus.glb', scale: 1.5, rotation: [0,-0.5, 4.8, 1], description: 'Uranus is an ice giant with a pale blue-green color caused by methane in its atmosphere. It is unique among the planets because it rotates on its side, likely due to a massive collision in its past. Its unusual tilt results in extreme seasonal changes. Uranus is also surrounded by faint rings and has a cold, distant atmosphere.'},
+  {name: 'Neptune', path: '/models/neptune.glb', scale: 1, description: 'Neptune is the farthest planet from the Sun and is known for its deep blue color and strong winds — the fastest in the Solar System. Like Uranus, it is an ice giant, and its atmosphere is made up of hydrogen, helium, and methane. One of its most notable features is the Great Dark Spot, a massive storm similar to Jupiter’s.'}
 ]
 
 
 export default function Planets() {
 
 
+ 
+
+
 
   
   return (
+  
     <div style={{ height: '190vh', width: '100%', overflowY: 'hidden' }}>
-      {/* <Html position={[0, 0, -15]} style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', flexDirection: 'column', zIndex: 0, position:'relative'}} fullscreen occlude={'blending'} >
-          <h1 className='text-7xl'>Planets</h1>
-        </Html> */}
+
         <h2 className='text-8xl mx-40'>Planets</h2>
+        <p className='w-max-96 text-center'>The Solar System is composed of eight main planets that orbit around the Sun, our central star. These planets are categorized into two groups: the four inner rocky planets (Mercury, Venus, Earth, and Mars) and the four outer gas or ice giants (Jupiter, Saturn, Uranus, and Neptune). Each planet has its own unique characteristics, atmosphere, and environment.</p>
       <Canvas camera={{ position: [0, 0, 10], fov: 35 }}>
       
           
@@ -165,8 +205,9 @@ export default function Planets() {
         <directionalLight position={[10, 10, 5]} intensity={1} />
         <Environment preset="sunset" />
         
-        <Items models={planets as Model[]} />
-        {/* <AstronautExplorer/> */}
+        <Items models={planets as Model[]}/>
+         <AstronautExplorer/> 
+         {/* <OrbitControls/> */}
       
        
 
@@ -176,209 +217,3 @@ export default function Planets() {
 }
 
 
-// 'use client';
-
-
-// import React from "react";
-// import { Canvas } from "@react-three/fiber";
-// import { OrbitControls, ScrollControls } from "@react-three/drei";
-// import { createRef, MutableRefObject, RefObject, useEffect, useRef, useState } from "react";
-// import { Text, Html } from "@react-three/drei";
-// import { BufferGeometry, Raycaster } from "three";
-
-
-
-// //******************** COMPONENTS  *****************************/
-// import SunComponent from "../components/3DModels/Sun";
-// import Planet from "./components/Planet";
-
-// import Cards from './components/Cards';
-
-
-// //********** HOOKS******* */
-
-// import calculateBodySize from "./functions_&hooks/calculateBodySize";
-// import { Sundata } from "./functions_&hooks/calculateBodySize";
-// import { Mesh } from "three";
-
-// // MODELS
-// import Astronaut from "../components/3DModels/Astronaut";
-// import Mercury from "../components/3DModels/planets/Mercury";
-// import Venus from "../components/3DModels/planets/Venus";
-// import Earth from '../components/3DModels/planets/Earth'
-// import Mars from "../components/3DModels/planets/Mars";
-// import Jupiter from "../components/3DModels/planets/Jupiter";
-// import Saturn from "../components/3DModels/planets/Saturn";
-// import Uranus from "../components/3DModels/planets/Uranus";
-// import Neptune from "../components/3DModels/planets/Neptune";
-// //**** FUNCTIONS */
-
-// import fetchallData from "./functions_&hooks/fetchallData";
-// import SliderShow from "../components/UI/SlidesShow";
-// import mock from '../../mock/planetData.json';
-// import { Body } from "./functions_&hooks/calculateBodySize";
-// import { NormalBufferAttributes } from "three";
-// import { useOscillation } from "../animations/useOscillation";
-
-
-
-
-
-
-
-// export default function Planets() {
-
-//     const astronautRef = useRef(null);
-//     // useOscillation({ref:astronautRef,axis: 'y'});
-
-
-
-//     return(
-//         <div style={{ height: '100vh', width:'100vw'}} className="md:shrink-0  flex w-full  ">
-
-//             <Canvas camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 5] }} style={{position:'absolute', overflow: 'hidden'}}>
-//            <OrbitControls/>
-
-//         <ambientLight intensity={1} />
-//         <directionalLight position={[2, 2, 2]} intensity={9} />
-
-//              <Astronaut position={[0, -3.2, 1]} scale={[0.05, 0.05, 0.05]} rotation={[-2, 0, 3]} ref={astronautRef} />   
-
-      
-
-         {/* <Mercury scale={[0.1, 0.1, 0.1]} position={[0,0,0]}/> 
-         <Venus scale={[0.1, 0.1, 0.1]} position={[0,0,0]}/> */}
-        
-//         </Canvas>
-//         </div>
-//     )
-// }
-
-//    const [data, setData] = useState<Body[]>([]);
-   
-
-//    const planets = data.filter((body)=>body.isPlanet)
-
-//    useEffect(()=>{
-
-//      fetchallData()
-//     .then(res => setData(res))
-//    },[])
-
-
- 
-
-// // ******************** SUNDATA **********************
-
-
-//    const  sundata =  data?.find((body) => body.englishName.toLowerCase() === 'sun');
-
-   
-//    const Sun =  () => {
-
- 
-
-
-//  const scale:[number, number, number] = sundata  ? calculateBodySize(sundata) : [1,1,1]
-
-
-
-
-//      return(
-//        <>
-//        <SunComponent position={[0,0,10]} scale={scale}    />
-//       <Text position={[0,19,0]} fontSize={5}
-//              rotation={[0,0.3,0]}
-           
-           
-            
-        
-//              font="/fonts/Polaris-2/Polaris.ttf">{sundata?.englishName} </Text>
-
-
-//        </>
-//      )
-
-//    }
-
-
-// //********************** PLANETS  ***********************************/
-//    const Planets = () => {
-//      const PlanetRefs = useRef<RefObject<any>[]>([]);
- 
-  
-//      const planetColors = {
-//       mercury: 'grey',
-//       venus: 'yellow',
-//       earth: 'skyblue',
-//       mars: 'orange',
-//       jupiter: 'brown',
-//       saturn: 'beige',
-//       uranus: 'aquamarine',
-//       neptune: 'blue',
-//     } 
-    
-//     return  data.filter((body) => body.isPlanet).map((planet, i) => {
-            
-//         if (!PlanetRefs.current[i]) {
-//          PlanetRefs.current[i] = createRef();
-//        }
-   
-
-//        const scale = calculateBodySize(planet);
-//       const color =  planetColors[planet.englishName.toLowerCase() as keyof typeof planetColors]
-   
-//       return (
-//          <Planet
-//            scale={scale}
-//            ref={PlanetRefs.current[i]}
-//            key={i}
-//            body={planet as Body}
-//            name={planet.englishName}
-//            sundata={sundata as Sundata}
-          
-//            color={color}
-           
-//          />
-         
-//        );
-//      });
-//    };
-
-
-//    return(
-
-    
-//       <div style={{ width: '100vw', height: '90vh' }}>
-//     <Canvas camera={{ fov: 100, near: 0.1, far: 1000, position: [20, 10, 80] } }>
-//          {/* Illuminazione */}
-//          <ambientLight intensity={0.5} />
-//          <directionalLight position={[10, 10, 10]} intensity={1.5} castShadow />
-//          {/* <pointLight position={[2, 8, 8]} intensity={2} /> */}
-//          <pointLight position={[-2, -8, -8]} intensity={2} />
-
-//          {/* Controls */}
-//          {/* <OrbitControls maxPolarAngle={Math.PI / 2} minPolarAngle={0} maxDistance={50} /> */}
-
-//          {/* Sun */}
-     
-//   <Sun/>    
-
-//          {/* <Orbit rotation={[-5,0,0]} orbitPoints={orbitPoints}/> */}
-
-
-//          {/* Planets */}
-//           <Planets/>
-
-
-//        <Html position={[0,-10,0]} style={{display:'flex',flexDirection:'column', justifyContent:'start'}}   fullscreen>
-         
-//        <Cards data={planets} />
-      
-
-//        </Html>
-
-//        </Canvas>
-//      </div>
-//   )
- 

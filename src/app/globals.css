@@ -84,6 +84,7 @@ body {
   --background: #ffffff;
   --foreground: #171717;
   --violet: #8083FF;
+  --blue: #0D324D;
 }
 
 @media (prefers-color-scheme: dark) {

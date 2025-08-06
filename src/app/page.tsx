@@ -18,14 +18,14 @@ import Sun from "./components/3DModels/Sun";
 import SpaceStation from "./components/3DModels/SpaceStation";
 
 import Satellite from "./components/3DModels/Satellite";
-import SolarSystemModel from "./components/3DModels/SolarsystemModel";
-import Satellite2 from './components/3DModels/Satellite2';
-import Astronaut from "./components/3DModels/Astronaut";
+
+import Orbitator from './components/3DModels/Orbitator';
+
 import SlidesShow from "./components/UI/SlidesShow";
 import Link from "next/link";
 
 import fetchImagesbyDate from "./Gallery/functions/fetchImagesbyDate";
-import Image from "next/image";
+
 
 
 // *******************  CUSTOM HOOKS *******************/
@@ -42,23 +42,21 @@ import { useOrbitation } from "./animations/useOrbitation";
 //******************* SCENE COMPONENT *******************
 const Scene = () => {
   
-  const SatelliteRef = useRef(null);
-   const AstronautRef = useRef(null);
-  const SpaceStationRef = useRef(null);
-  const Satellite2Ref = useRef<Mesh | null>(null);
+  const SatelliteRef = useRef<Mesh | null>(null);
+
+  
+  const orbitatorRef = useRef<Mesh | null>(null);
  
 
   //responsive scale
   const {size} = useThree();
-   const responsiveScaleFactor = size.width
-
-
+   const responsiveScaleFactor = size.width;
+   useOrbitation(orbitatorRef ,'y')
 
   
 
-  // useRotation({ref:SpaceStationRef, axis:'y'});
-  useOrbitation(Satellite2Ref,'y');
-      useOscillation({ref:AstronautRef, axis:'y'});
+
+      
   
   
  
@@ -76,19 +74,15 @@ const Scene = () => {
 
       
 
-       {/* <Astronaut position={[0, -2.7, 1]} scale={[0.05, 0.05, 0.05]} rotation={[-2, 0, 3]} ref={AstronautRef} />   */}
-      
 
       
       </Suspense>
       
       
 
-    {/* <Satellite position={ size.width < 1200 ? [-1.5,0,0] : [4, 0, 0] } scale={[0.005, 0.005, 0.005]} ref={SatelliteRef} /> */}
-      
-       {/* <Astronaut position={[0, -11.5, 1]} scale={[0.05, 0.05, 0.05]} rotation={[-2, 0, 3]} ref={AstronautRef} />  */}
 
-       <Satellite2 position={ responsiveScaleFactor < 640 ? [0, 1, 2]: [0, -1, 2.5]}  SatelliteRef={Satellite2Ref} scale={[0.005,0.004,0.004]}/>
+
+       <Orbitator position={ responsiveScaleFactor < 640 ? [0, 1, 2]: [0, -1, 2.5]}  ref={orbitatorRef} scale={[0.005,0.004,0.004]}/>
     </>
   );
 };
@@ -229,7 +223,7 @@ export default function Home() {
  
  }
      
-       <button className="rounded-full bg-[--violet] pt-1 mt-4 h-10 w-80 z-20">
+       <button className="rounded-full bg-[--violet] pt-1 mt-4 h-10 w-80 z-0">
          <Link href="/Gallery"
          >Take a look to the complete gallery</Link>
        </button>
