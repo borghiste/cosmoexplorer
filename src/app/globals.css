@@ -121,3 +121,19 @@ body {
 } 
 
 
+/* QUIZ PAGE */
+
+ .cover {
+  background-image:   linear-gradient(rgb(0 0 255 / 0.5), rgb(255 255 0 / 0.5)),
+  url("/images/quiz.jpg");
+  background-size: 100%, 100%, contain ;
+  background-repeat: no-repeat;
+  
+} 
+
+.questionswindow {
+  background:  linear-gradient(rgb(0 0 255 / 0.5), rgb(255 255 0 / 0.5));
+ height: 100%;
+ width: 100%;
+
+}

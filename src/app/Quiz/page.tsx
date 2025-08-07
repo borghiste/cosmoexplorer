@@ -1,66 +1,137 @@
- 'use client';
- import data from './components/questions.json';
+'use client';
+import Link from "next/link";
 
- // COMPONENTS
+import { useEffect, useState } from "react";
 
- import Options from './components/Options';
+import quizData from '../data/questions.json';
 
-import { useState } from 'react';
-import { SetStateAction } from 'react';
-import { div } from 'three/tsl';
-
-
- export default function Quiz(){
-    
-// const chooseALevel = ['base','medium','advanced'].map(string =>(<li className="rounded border-2" onClick={(e)=>{console.log(e)}}>{string}</li>))
- 
-const [Questions, setQuestions] = useState(data)
-const [currentQuestion, setCurrentQuestion] = useState(data[0]);
-const [QuestionIndex, SetQuestionIndex] = useState(0)
-
-const [currentQuestionOptions, setCurrentQuestionOptions] = useState(data[0].options);
-const [checkedAnswer, setcheckedAnswer] = useState<SetStateAction<string | number>>();
-let [totalScore, setTotalScore] = useState(0);
+// COMPONENTS
+import QuestionsWindow from "./components/Questions";
 
 
+export default function Quiz() {
 
-const nextQuestion = ()=>{SetQuestionIndex((prev)=>( prev === Questions.length -1 ? prev : prev + 1 ));
-setCurrentQuestion(Questions[QuestionIndex])
-setCurrentQuestionOptions(data[QuestionIndex].options)
-    
-    
-}
-
-
+    const levels = ['basic','medium','advanced'];
+    const [choseLevel, setLevelChose] = useState<string>('');
+    const [Data, setData] = useState([])
 
     
-
-
-//  const options = currentQuestionOptions?.map((option)=>(
-//      <li className="bg-[#80d2f2] rounded-full flex 
-//                      items-center my-2  text-[#351826] w-96 right-4 relative" >
-//  <input type="radio" id={option as any} 
-//          name={option as any} 
-//          onChange={(e)=>{setcheckedAnswer(e.target.value)}} 
-//          value={option}
-//          className=' size-4' 
-//          key={option}
-//  onClick={()=>{checkAnswer(option)}}/>{option}</li>
-//  ))
-
-interface checkAnswerarguments {
-answer: string,
-solution: string
-}
-
-const checkAnswer = ({answer, solution}:checkAnswerarguments)=>{
-    if(answer === solution){
-        console.log(true)
-       totalScore ++;
-       setTotalScore(totalScore);
-    }
   
+
+  
+
+
+
+    
+
+    return(
+        <>
+
+        <div style={{ height: '100vh', width: '100%', display:'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', position: 'static' }} className="overflow-auto">
+
+            <h1 className="text-8xl">quiz</h1>
+
+        {/* WINDOW */}
+                <div className=" w-1/2 h-1/2 flex flex-col sm:flex-row">
+
+        
+
+                 <div className="  cover w-full h-full min-w-full flex flex-col justify-center items-center">
+                    <span className=" 
+                ">
+
+                <Link href={'/'} className="w-4">&larr; homepage</Link>
+                    </span>
+
+                <div>
+
+            
+                  
+                    <fieldset>
+                        <legend className="text-xl text-black">chose a level:</legend>
+
+
+                {levels.map((level) => (
+                    <>
+                    <div>
+
+                    <input onClick={(e)=> {setLevelChose(level)}} className="" type="radio" name="level" value={level}/>
+                <label>{level}</label>
+                    </div>
+                    </>
+            ))}
+            </fieldset>
+               
+                </div>
+               
+                                
+                </div>
+                <div>
+                    <QuestionsWindow data={Data}/>
+                </div>
+
+               
+
+                </div>
+
+            </div>
+        
+        </>
+    )
 }
+
+//  'use client';
+//  import data from './components/questions.json';
+
+//  // COMPONENTS
+
+//  import Options from './components/Options';
+
+// import { useState } from 'react';
+// import { SetStateAction } from 'react';
+// import { div } from 'three/tsl';
+
+
+//  export default function Quiz(){
+    
+// // const chooseALevel = ['base','medium','advanced'].map(string =>(<li className="rounded border-2" onClick={(e)=>{console.log(e)}}>{string}</li>))
+ 
+
+
+
+
+// }
+
+
+
+    
+
+
+// //  const options = currentQuestionOptions?.map((option)=>(
+// //      <li className="bg-[#80d2f2] rounded-full flex 
+// //                      items-center my-2  text-[#351826] w-96 right-4 relative" >
+// //  <input type="radio" id={option as any} 
+// //          name={option as any} 
+// //          onChange={(e)=>{setcheckedAnswer(e.target.value)}} 
+// //          value={option}
+// //          className=' size-4' 
+// //          key={option}
+// //  onClick={()=>{checkAnswer(option)}}/>{option}</li>
+// //  ))
+
+// interface checkAnswerarguments {
+// answer: string,
+// solution: string
+// }
+
+// const checkAnswer = ({answer, solution}:checkAnswerarguments)=>{
+//     if(answer === solution){
+//         console.log(true)
+//        totalScore ++;
+//        setTotalScore(totalScore);
+//     }
+  
+// }
   
 
 
@@ -116,7 +187,7 @@ const checkAnswer = ({answer, solution}:checkAnswerarguments)=>{
 
 //         )
 
-    }
+    
 
 
 

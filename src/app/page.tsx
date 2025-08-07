@@ -205,9 +205,7 @@ export default function Home() {
    return(
    <div className="flex  box-content  w-full  items-center  mt-[2rem] flex-col overflow-hidden  ">
     
-       {/* <p className=" mb-10 w-auto text-justify text-xl md:w-[25rem]">
-       The gallery section contains the most wonderful and incredible photos taken of the outer space. come take a look closer to the beauties of the cosmos!
-       </p> */}
+     
     
      <div className="h-50 w-50 justify-center items-center flex flex-col">
      
