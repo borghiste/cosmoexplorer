@@ -133,9 +133,12 @@ body {
 } 
 
 .questionswindow {
-  background:  linear-gradient(rgb(0 0 255 / 0.5), #ffff0080);
+  background-image:   linear-gradient(rgb(0 0 255 / 0.5), rgb(255 255 0 / 0.5)),
+  url("/images/earth.jpg");
  height: 100%;
  width: 100%;
+ background-size: 100%, 100%, contain;
+ background-repeat: no-repeat;
 
 }
 

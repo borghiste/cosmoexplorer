@@ -7,21 +7,21 @@ import quizData from '../data/questions.json';
 
 // COMPONENTS
 import QuestionsWindow from "./components/QuestionsWindow";
-import  FiieldSetandRadioGroup from './components/FieldSet_&_RadioGroup';
+
 
 
 export default function Quiz() {
 
     const levels = ['basic','medium','advanced'];
     const [choseLevel, setLevelChose] = useState<string>('');
-    const [Quiz, setQuiz] = useState([])
+    const [Quiz, setQuiz] = useState({})
     const [startGame, setStartGame] = useState(false)
  
 useEffect(()=>{
 
     Object.entries(quizData).forEach((obj)=> {
         if(obj[0] === choseLevel){
-            console.log('obj',obj)
+       
             setQuiz(obj[1])
          
    
@@ -33,6 +33,10 @@ useEffect(()=>{
     
     })
 },[choseLevel])
+
+
+
+
     
     
          
@@ -61,8 +65,7 @@ useEffect(()=>{
         
 
                  <div className="  cover w-full h-full min-w-full flex flex-col justify-center items-center">
-                    <span className="relative right-28 bottom-20 text-xl
-                ">
+                    <span className="relative right-28 bottom-20 text-xl ">
 
                 <Link href={'/'} className="w-4 text-[#ededed]">&larr; homepage</Link>
                     </span>
@@ -76,7 +79,7 @@ useEffect(()=>{
 
             
                   
-                    <fieldset id="field-levels">
+                    <fieldset >
                         <legend className="text-xl text-black">chose a level:</legend>
 
 
@@ -100,7 +103,7 @@ useEffect(()=>{
                                 
                 </div>
                 <div>
-                    <QuestionsWindow data={Quiz} startGame={startGame}/>
+                    { startGame ?<QuestionsWindow data={Quiz} startGame={startGame}/> : null}
                 </div>
 
                
