@@ -6,16 +6,40 @@ import { useEffect, useState } from "react";
 import quizData from '../data/questions.json';
 
 // COMPONENTS
-import QuestionsWindow from "./components/Questions";
+import QuestionsWindow from "./components/QuestionsWindow";
+import  FiieldSetandRadioGroup from './components/FieldSet_&_RadioGroup';
 
 
 export default function Quiz() {
 
     const levels = ['basic','medium','advanced'];
     const [choseLevel, setLevelChose] = useState<string>('');
-    const [Data, setData] = useState([])
+    const [Quiz, setQuiz] = useState([])
+    const [startGame, setStartGame] = useState(false)
+ 
+useEffect(()=>{
+
+    Object.entries(quizData).forEach((obj)=> {
+        if(obj[0] === choseLevel){
+            console.log('obj',obj)
+            setQuiz(obj[1])
+         
+   
 
     
+    
+    
+    }
+    
+    })
+},[choseLevel])
+    
+    
+         
+
+
+
+
   
 
   
@@ -32,42 +56,51 @@ export default function Quiz() {
             <h1 className="text-8xl">quiz</h1>
 
         {/* WINDOW */}
-                <div className=" w-1/2 h-1/2 flex flex-col sm:flex-row">
+                <div className=" w-1/2 h-1/2 flex flex-col lg:flex-row">
 
         
 
                  <div className="  cover w-full h-full min-w-full flex flex-col justify-center items-center">
-                    <span className=" 
+                    <span className="relative right-28 bottom-20 text-xl
                 ">
 
-                <Link href={'/'} className="w-4">&larr; homepage</Link>
+                <Link href={'/'} className="w-4 text-[#ededed]">&larr; homepage</Link>
                     </span>
 
-                <div>
+                    {/* <FiieldSetandRadioGroup 
+                    legend={'chose a level of difficulty'}
+                    nameRadio={'level'} options={levels} onChange={setLevelChose}
+                                        onClick={()=>{setStartGame(true)}} clickState={startGame}/> */}
+
+                 <div className="flex justify-between  items-center flex-col">
 
             
                   
-                    <fieldset>
+                    <fieldset id="field-levels">
                         <legend className="text-xl text-black">chose a level:</legend>
 
 
                 {levels.map((level) => (
                     <>
-                    <div>
+                    <div className="rounded-full w-[11rem] border-2 border-[var(--blue)] m-2 bg-gray-400">
 
-                    <input onClick={(e)=> {setLevelChose(level)}} className="" type="radio" name="level" value={level}/>
-                <label>{level}</label>
+                    <input onChange={(e)=> {setLevelChose(level)}} type="radio" name="level" value={level}/>
+                <label className="text-md">{level}</label>
                     </div>
                     </>
             ))}
             </fieldset>
+
+            <button 
+            onClick={()=>{setStartGame(true)}}
+            className="justify-end bg-[var(--blue)] rounded-full w-[5rem]">start</button>
                
-                </div>
+                </div> 
                
                                 
                 </div>
                 <div>
-                    <QuestionsWindow data={Data}/>
+                    <QuestionsWindow data={Quiz} startGame={startGame}/>
                 </div>
 
                

@@ -15,7 +15,7 @@ import Sun from "./components/3DModels/Sun";
 
  //******************* COMPONENTS *******************/
 
-import SpaceStation from "./components/3DModels/SpaceStation";
+
 
 import Satellite from "./components/3DModels/Satellite";
 

@@ -10,7 +10,7 @@ import { OrbitControls } from '@react-three/drei';
 import { Html } from '@react-three/drei';
 import { Text } from '@react-three/drei';
 //FUNCTIONS
-import fetchallData from './functions_&hooks/fetchallData';
+
 
 //COMPONENTS
 

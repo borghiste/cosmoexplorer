@@ -85,6 +85,7 @@ body {
   --foreground: #171717;
   --violet: #8083FF;
   --blue: #0D324D;
+  --dark-violet: #2d3142;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -132,8 +133,17 @@ body {
 } 
 
 .questionswindow {
-  background:  linear-gradient(rgb(0 0 255 / 0.5), rgb(255 255 0 / 0.5));
+  background:  linear-gradient(rgb(0 0 255 / 0.5), #ffff0080);
  height: 100%;
  width: 100%;
 
 }
+
+
+label{
+  color: #0D324D;
+  border: 1px, solid black;
+  width: 200rem;
+}
+  
+  
