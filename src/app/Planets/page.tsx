@@ -9,6 +9,7 @@ import * as THREE from 'three';
 import { OrbitControls } from '@react-three/drei';
 import { Html } from '@react-three/drei';
 import { Text } from '@react-three/drei';
+import { Suspense } from 'react';
 //FUNCTIONS
 
 
@@ -19,7 +20,7 @@ import PlanetModel from '../../app/components/3DModels/PlanetModel';
 import Astronaut from '../components/3DModels/Astronaut';
 // ANIMATIONS
 import { useOscillation } from '../animations/useOscillation';
-import { FontLoader } from 'three-stdlib';
+
 
 
 interface Model {
@@ -47,7 +48,7 @@ function Item({ index, position, model, clicked, setClicked, i, xW }: ItemProps)
   const ref = useRef<THREE.Group>(null)
   const scroll = useScroll()
   const [hovered, setHovered] = useState(false)
-  // const polaris = useLoader(FontLoader, '/fonts/Polaris-2/Polaris.ttf')
+ 
  
 
   useFrame((_, delta) => {
@@ -88,16 +89,20 @@ function Item({ index, position, model, clicked, setClicked, i, xW }: ItemProps)
 fontSize={0.3}>
   { hovered  && (model.name)}</Text>
 
-{clicked === i && (  <Text position={[i * xW + 1, 2.6, 0]}
-maxWidth={2}   overflowWrap={'normal'} fontSize={0.07}  anchorX={'right'}>{model.description}</Text>) }
+{clicked === i && (  <Text position={[i * xW + 1, 2.8, 0]}
+maxWidth={4}   overflowWrap={'normal'} fontSize={0.09}  anchorX={'right'}>{model.description}</Text>) }
     <group
       ref={ref}
       position={position}
       onClick={() => setClicked(clicked === index ? null : index)}
       onPointerOver={() => setHovered(true)}
       onPointerOut={() => {onPointerOutAction()}}>
+
+      <Suspense fallback={null}>
+
       <PlanetModel path={model.path} manualScale={model.scale} rotation={model.rotation
       }/>
+      </Suspense>
      
      
     </group>
@@ -177,7 +182,7 @@ const planets = [
   { name: 'Mars', path: '/models/mars.glb', scale: 1.1 },
   {name: 'Jupiter', path:'/models/jupiter.glb', scale: 1.8, description: 'Jupiter is the largest planet in the Solar System and a massive gas giant primarily composed of hydrogen and helium. It is famous for its swirling clouds and the Great Red Spot, a gigantic storm that has raged for centuries. Jupiter has a powerful magnetic field and over 90 moons, including Ganymede, the largest moon in the Solar System.'},
   {name: 'Saturn', path: '/models/saturn.glb', scale: 2, description: 'Saturn is best known for its spectacular ring system, made of ice and rock particles. Like Jupiter, it is a gas giant, though it is much less dense — in fact, it could theoretically float in water. Saturn has a vast number of moons, with Titan being the most well-known for its thick atmosphere and potential for prebiotic chemistry.'},
-  {name: 'Uranus', path: '/models/uranus.glb', scale: 1.5, rotation: [0,-0.5, 4.8, 1], description: 'Uranus is an ice giant with a pale blue-green color caused by methane in its atmosphere. It is unique among the planets because it rotates on its side, likely due to a massive collision in its past. Its unusual tilt results in extreme seasonal changes. Uranus is also surrounded by faint rings and has a cold, distant atmosphere.'},
+  {name: 'Uranus', path: '/models/uranus.glb', scale: 1.5, rotation: [0.1,1, 1.4], description: 'Uranus is an ice giant with a pale blue-green color caused by methane in its atmosphere. It is unique among the planets because it rotates on its side, likely due to a massive collision in its past. Its unusual tilt results in extreme seasonal changes. Uranus is also surrounded by faint rings and has a cold, distant atmosphere.'},
   {name: 'Neptune', path: '/models/neptune.glb', scale: 1, description: 'Neptune is the farthest planet from the Sun and is known for its deep blue color and strong winds — the fastest in the Solar System. Like Uranus, it is an ice giant, and its atmosphere is made up of hydrogen, helium, and methane. One of its most notable features is the Great Dark Spot, a massive storm similar to Jupiter’s.'}
 ]
 
@@ -192,7 +197,7 @@ export default function Planets() {
   
   return (
   
-    <div style={{ height: '190vh', width: '100%', overflowY: 'hidden' }}>
+    <div style={{ height: '100vh', width: '100%', overflowY: 'hidden',position:'absolute' }}>
 
         <h2 className='text-8xl mx-40'>Planets</h2>
         <p className='w-max-96 text-center'>The Solar System is composed of eight main planets that orbit around the Sun, our central star. These planets are categorized into two groups: the four inner rocky planets (Mercury, Venus, Earth, and Mars) and the four outer gas or ice giants (Jupiter, Saturn, Uranus, and Neptune). Each planet has its own unique characteristics, atmosphere, and environment.</p>

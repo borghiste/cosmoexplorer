@@ -9,7 +9,8 @@ interface planetModelProps  {path: string,
 
 
 export default function PlanetModel({ path, manualScale = 0.1, rotation }:planetModelProps ) {
-  const { scene } = useGLTF(path)
+  useGLTF.preload(path)
+  const { scene } = useGLTF(path, true, true)
   const ref = useRef<THREE.Object3D>(null)
 
   useEffect(() => {
