@@ -1,13 +1,25 @@
 'use client';
 // hooks
 import { useEffect, useState, useRef } from 'react';
+import { Canvas } from '@react-three/fiber';
  
 // import functions
  import fetchAPOD from './functions/fetchAPOD';
  import fetchImagesbyDate from './functions/fetchImagesbyDate';
  import generateGalleryContent from './functions/generateGalleryContent';
- import generateAPOD from './functions/generateAPOD';
+import { useOscillation } from '../animations/useOscillation';
 
+ import generateAPOD from './functions/generateAPOD';
+import Satellite from '../components/3DModels/Satellite';
+import { AmbientLight } from 'three';
+
+
+  export interface ImageObject {
+   url: string
+   title: string
+   explanation: string,
+   media_type:string
+ } 
 
 export default function Gallery(){
   const [APOD,setAPOD ] = useState()
@@ -33,50 +45,92 @@ export default function Gallery(){
    const start_date_Ref = useRef<HTMLInputElement>(null);
   
    const end_date_Ref = useRef<HTMLInputElement>(null);
-  
-  
-  
+   
+   
+   
+   
    const [galleryPictures, setgalleryPictures]= useState() //stato delle immagini fetchate
-  
+   
    const todayDate = new Date().toISOString().split('T')[0]; //  today date
-  
-  
-  
+   
+   
+   
+   
    const aMonthAgoDate = new Date(todayDate); // today date copy
-  
+   
    aMonthAgoDate.setMonth(aMonthAgoDate.getMonth() - 1); // today date minus 1 month
-  
+   
    const formattedAMonthAgo = aMonthAgoDate.toISOString().split('T')[0]; // formatted date
+   
   
-     function handleSearchimgsClick(){
-    
-    
-     const start_date = start_date_Ref.current?.value || ''
-     const end_date = end_date_Ref.current?.value || ''
-    
-    
-    
-     fetchImagesbyDate({start_date:start_date, end_date:end_date})
-     .then((data)=>{
-       const pics = data
-       setgalleryPictures(pics)
-      
-      
-      
-     })
+
+   const AstroSatellite = () => {
+        const SatelliteRef = useRef(null);
+    useOscillation({ref:SatelliteRef,axis:'x'});
+    useOscillation({ref:SatelliteRef,axis:'y'});
+
+
+    return(
+      <Satellite scale={[0.004,0.004,0.004]} position={[-0.5,1,1]}  ref={SatelliteRef}/>
+    )
    }
+
+  //  function handleSearchimgsClick(){
+
+
+    
+    
+  //    const start_date = start_date_Ref.current?.value || ''
+  //    const end_date = end_date_Ref.current?.value || ''
+    
+    
+    
+  //    fetchImagesbyDate({start_date:start_date, end_date:end_date})
+  //    .then((data)=>{
+  //      const pics = data
+  //      setgalleryPictures(pics)
+      
+      
+      
+  //    })
+  //  }
+
+      useEffect(()=>{fetchImagesbyDate({start_date:formattedAMonthAgo, end_date:todayDate})
+      .then((data)=>{
+        const pictures = data;
+     
+        setgalleryPictures(pictures);
+      
+      
+      
+      
+      })
+    },[])
+      
+
+
       const galleryContent = generateGalleryContent({data:galleryPictures, handleClick:()=>{setisModalOpen(!isModalOpen)}})
 
     
   return(
-    <>
-    <div className=''>
+    <div style={{height: '100vh', overflow: 'auto'}}>
+      
+  <Canvas camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 5] }} style={{position:'absolute', overflow: 'hidden', zIndex:10}}>
+  <ambientLight intensity={2} />
+      <pointLight position={[2, 8, 8]} decay={0} intensity={9} castShadow={false} />
+      <pointLight position={[-2, -8, -8]} decay={0} intensity={9}/>
+                
+        
+      <AstroSatellite/>
+      </Canvas>
+      <h1 className='text-8xl'>Gallery</h1>
+   
      {pictureOfTheDay}
      
    
+    
      {galleryContent}
     </div>
-    </>
   )
 }
 

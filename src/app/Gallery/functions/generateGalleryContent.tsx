@@ -21,14 +21,19 @@ export default  function generateGalleryContent({data, handleClick}:genrateConte
 
   
 <Link href={`/Gallery/${encodeURIComponent(JSON.stringify(object))}`}  key={object.url}>
+<div className="">
+
+<h3 className="relative lg:text-lg text-md bottom-10 left-5 ">{object.title}</h3>
+
   <Image src={object.url}
        alt={object.title}
        key={object.url}
-       height={500}
-       width={500}
+       height={300}
+       width={900}
        
-       className="hover:cursor-pointer hover:brightness-95  aspect-square h-40 lg:w-40 object-cover  "
+       className="hover:cursor-pointer hover:brightness-95  h-auto  w-full object-cover  "
        />
+       </div>
        </Link>
        
     
@@ -48,9 +53,10 @@ const generatedContent = [...(generatedImages || []), ...(generatedVideos || [])
 return(
   <>
 
-  <div className=" flex-row flex-wrap flex justify-center  ">
+  <div className=" flex-wrap h-screen  flex flex-row justify-center ">
     {
     generatedContent.reverse() }
+    
    
   </div>
     </>

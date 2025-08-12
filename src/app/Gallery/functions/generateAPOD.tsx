@@ -37,12 +37,13 @@ export default function generateAPOD({APOD, onClick}:generateAPODProps){
 
    return(
     <>
-    <><div className="relative">
-      <p className="lg:text-lg text-md">Astronomy picture of the day:</p>
-      <p className="absolute ">{APOD?.title}</p>
+    <><div className="sticky">
+    
+      <h2 className="text-2xl ">Astronomy picture of the day:</h2>
+      <h3 className="absolute text-lg md:text-xl xl:text-3xl">{APOD?.title}</h3>
       
       {Content}
-      <p className=" text-[11px] md:text-md text-justify ">{APOD?.explanation}</p>
+      <p className=" text-[11px] md:text-md text-justify md:text-xl ">{APOD?.explanation}</p>
       </div></>
     </>
    )
