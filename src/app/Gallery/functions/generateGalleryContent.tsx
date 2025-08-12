@@ -4,7 +4,7 @@ import Image from "next/image";
 import { ImageObject } from "../page";
 
 
-interface genrateContentProps  {
+interface genrateContentProps {
 
   data: ImageObject[] | undefined, 
   handleClick:()=>void
@@ -48,7 +48,7 @@ const generatedContent = [...(generatedImages || []), ...(generatedVideos || [])
 return(
   <>
 
-  <div className="   border-2 flex-row flex-wrap sm:flex-row flex  justify-center lg:flex-row  ">
+  <div className=" flex-row flex-wrap flex justify-center  ">
     {
     generatedContent.reverse() }
    

@@ -5,12 +5,13 @@
 .container{
 position: relative;
 padding-right: 0.1rem;;
+
 }
 /* Hide the images by default */
 .Slides{
  
   width: 100%;
-
+ 
   transition: opacity 1.5s ease-in-out;
 }
 

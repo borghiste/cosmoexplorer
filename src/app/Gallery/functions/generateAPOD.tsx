@@ -15,12 +15,15 @@ export default function generateAPOD({APOD, onClick}:generateAPODProps){
     //check media type
 
  const Content = APOD?.media_type=='image' ? 
+ <Link href={`/Gallery/${encodeURIComponent(JSON.stringify(APOD))}`}  key={APOD.url}>
     <Image src={APOD.url} 
         alt={APOD.title}
-        className=" "
+        className="md:w-full"
         onClick={onClick}
-        width={500}
-        height={500}/> : 
+        width={900}
+        height={300}/> 
+        </Link>
+        : 
         
         <iframe width="400" 
                             height="200" 
@@ -32,29 +35,15 @@ export default function generateAPOD({APOD, onClick}:generateAPODProps){
                             allowFullScreen></iframe>
  
 
-        return(
-          <>
-            <div className={ 'hover:cursor-pointer hover:brightness-95 row-span-3 flex  flex-col'}>
-            <h2 className='text-4xl w-full    '>{APOD?.media_type == 'video' ? 'VIDEO' : 'PHOTO'} OF THE DAY</h2> 
-           
-            
-          <div className="  flex flex-col ">
-
-
-            <h3 className="text-3xl">{APOD?.title}</h3> 
-           
-<Link href={`/Gallery/${encodeURIComponent(JSON.stringify(APOD))}`}>
-            {Content}
-</Link>
-
-            
-               <p className="text-left text-justify max-w-fit ">{APOD?.explanation}</p> 
-            
-            
-          </div>
-            </div>
-            <br />
-          </>
-           
-        )
+   return(
+    <>
+    <><div className="relative">
+      <p className="lg:text-lg text-md">Astronomy picture of the day:</p>
+      <p className="absolute ">{APOD?.title}</p>
+      
+      {Content}
+      <p className=" text-[11px] md:text-md text-justify ">{APOD?.explanation}</p>
+      </div></>
+    </>
+   )
     }

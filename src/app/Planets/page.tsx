@@ -89,8 +89,8 @@ function Item({ index, position, model, clicked, setClicked, i, xW }: ItemProps)
 fontSize={0.3}>
   { hovered  && (model.name)}</Text>
 
-{clicked === i && (  <Text position={[i * xW + 1, 2.8, 0]}
-maxWidth={4}   overflowWrap={'normal'} fontSize={0.09}  anchorX={'right'}>{model.description}</Text>) }
+{clicked === i && (  <Text position={[i * xW, 2.8, 0]}
+maxWidth={3}    overflowWrap={'normal'} fontSize={0.09}  anchorX={'center'} textAlign='center' >{model.description}</Text>) }
     <group
       ref={ref}
       position={position}
@@ -197,7 +197,7 @@ export default function Planets() {
   
   return (
   
-    <div style={{ height: '100vh', width: '100%', overflowY: 'hidden',position:'absolute' }}>
+    <div style={{ height: '100vh', width: '100%', overflowY: 'hidden',position:'relative' }}>
 
         <h2 className='text-8xl mx-40'>Planets</h2>
         <p className='w-max-96 text-center'>The Solar System is composed of eight main planets that orbit around the Sun, our central star. These planets are categorized into two groups: the four inner rocky planets (Mercury, Venus, Earth, and Mars) and the four outer gas or ice giants (Jupiter, Saturn, Uranus, and Neptune). Each planet has its own unique characteristics, atmosphere, and environment.</p>
