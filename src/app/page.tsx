@@ -92,7 +92,7 @@ const Scene = () => {
 export default function Home() {
  return(
   <>
-   <div style={{ height: '100vh', width:'100vw', position: 'absolute'}} className="md:shrink-0  flex w-full  ">
+   <div style={{ height: '100vh', width:'100vw', position:'relative', overflow:'auto'}} className="xs:shrink-0  flex w-full  ">
 
   <Script src="https://kit.fontawesome.com/394b7dd8e2.js" crossOrigin="anonymous" />
   
