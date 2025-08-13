@@ -97,7 +97,7 @@ export default function Home() {
   <Script src="https://kit.fontawesome.com/394b7dd8e2.js" crossOrigin="anonymous" />
   
 
-  <Canvas camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 5] }} style={{position:'absolute', overflow: 'hidden', zIndex:0}}>
+  <Canvas camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 5] }} style={{position:'absolute', overflow: 'auto', zIndex:0}}>
 
   <Scene/>
 
