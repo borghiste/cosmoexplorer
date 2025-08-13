@@ -65,9 +65,9 @@ useEffect(()=>{
         
 
                  <div className="  cover w-full h-full min-w-full flex flex-col justify-center items-center">
-                    <span className="relative right-28 bottom-20 text-xl ">
+                    <span className="sticky right-28 bottom-20 text-xl ">
 
-                <Link href={'/'} className="w-4 text-[#ededed]">&larr; homepage</Link>
+                <Link href={'/'} className="w-4 text-[#ededed] f">&larr; homepage</Link>
                     </span>
 
                     {/* <FiieldSetandRadioGroup 

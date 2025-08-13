@@ -1,7 +1,7 @@
 {
     "basic":[
     {"question": "what's the nearest planet to the sun?",
-    "options":["mercury", "pluto", " the moon","jupiter"],
+    "options":["mercury", "pluto", "the moon","jupiter"],
     "solution": "mercury"},
 
     {"question": "what's the biggest planet in the Solar System?",
@@ -22,6 +22,7 @@
     "solution": "the moon"}
 
 ],
+
 "medium": [
     {"question":  "Which planet has the most satellites?",
     "options": ["saturn", "earth", "sun", "neptune"],
@@ -41,6 +42,49 @@
 
 
     
+],
+
+"advanced": [
+    {"question":"Which of the following best describes the main observational evidence for the existence of dark matter in galaxies?",
+    "options":[
+"Variations in stellar metallicity across the galaxy",
+"The flattening of galactic rotation curves at large radii",
+"The periodic dimming of distant quasars",
+"The abundance of deuterium in the interstellar medium"],
+"solution": "The flattening of galactic rotation curves at large radii"},
+{"question":"The Chandrasekhar limit refers to:",
+"options":[
+"The maximum angular momentum a rotating black hole can have",
+"The maximum mass of a stable neutron star",
+"The maximum mass of a white dwarf supported by electron degeneracy pressure",
+"The maximum luminosity a star can have before radiation pressure blows away its outer layers"],
+"solution": "The maximum mass of a white dwarf supported by electron degeneracy pressure"},
+{"question":" Which spectral line is most often used to measure the radial velocity of distant galaxies due to cosmological redshift?",
+"options":[
+"Hydrogen-alpha (Hα)",
+"Sodium D lines",
+"Magnesium triplet",
+"Lyman-alpha (Lyα)"],
+"solution": "Hydrogen-alpha (Hα)"},
+{
+    "question":"In a standard ΛCDM cosmological model, approximately what percentage of the universe’s total energy density is in the form of dark energy?",
+    "options":[
+"5%",
+"27%",
+"68%",
+"90%"],
+"solution": "68%"
+
+},
+{
+    "question":"What is the main reason that Type Ia supernovae are considered “standard candles” in cosmology?",
+    "options":[
+    "They all have the same progenitor mass (near the Chandrasekhar limit)",
+    "They occur only in elliptical galaxies with uniform stellar populations",
+    "Their peak luminosities do not depend on metallicity",
+    "Their spectra show strong hydrogen lines that can be calibrated"],
+    "solution": "They all have the same progenitor mass (near the Chandrasekhar limit)" 
+}
 ]
 
 

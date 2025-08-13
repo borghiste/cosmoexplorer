@@ -13,7 +13,7 @@ export default function Footer(){
             
             
 </div>
-             <Link href="/About" className="text-sm mr-8 ">About</Link> 
+             <Link href="/AboutPage" className="text-sm mr-8 ">About</Link> 
            
      
 

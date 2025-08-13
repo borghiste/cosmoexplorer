@@ -91,17 +91,17 @@ const Scene = () => {
 
 export default function Home() {
  return(
-  <>
-   <div style={{ height: '100vh', width:'100vw', position:'relative', overflow:'auto'}} className="xs:shrink-0  flex w-full  ">
+  
+   <div style={{ height: '100vh', width:'100%'}} className="xs:shrink-0  flex w-full   ">
 
   <Script src="https://kit.fontawesome.com/394b7dd8e2.js" crossOrigin="anonymous" />
   
 
-  <Canvas camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 5] }} style={{position:'absolute', overflow: 'auto', zIndex:0}}>
+  <Canvas camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 5] }} style={{ overflow: 'auto', zIndex:0, height:'auto'}}>
 
   <Scene/>
 
-  <Html position={[0, 0, -15]} style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', flexDirection: 'column', zIndex: 0  }} fullscreen occlude={'blending'} >
+  <Html position={[0, 0, -15]} style={{ display: 'flex', justifyContent: 'start', alignItems: 'center', flexDirection: 'column', zIndex: 0, height:'auto', overflow:'auto', position:'relative'}} fullscreen occlude={'blending'} >
 
     <h1 className="  sm:text-4xl md:text-6xl">COSMOEXLORER</h1>
 
@@ -115,9 +115,7 @@ export default function Home() {
          <Link href="/Planets"
          >Explore planets page</Link>
        </button>
-    {/* <button className="h-10 w-30 mt-9 rounded-full text-nowrap bg-slate-500" >
-      visit planets page
-    </button> */}
+   
     <GallerySection/>
   </Html>
 
@@ -125,7 +123,7 @@ export default function Home() {
     </Canvas>
   
   </div>
-  </>
+  
  )
 
 }
@@ -166,7 +164,7 @@ export default function Home() {
 
    
    return(
-   <div className="flex  box-content  w-full  items-center  mt-[2rem] flex-col overflow-hidden  ">
+   <div className="flex  box-content  w-full  items-center  mt-[8rem] flex-col overflow-hidden  ">
     
      
     
@@ -186,7 +184,7 @@ export default function Home() {
      
        <button className="rounded-full bg-[--violet] pt-1 mt-4 h-10 w-80 z-0">
          <Link href="/Gallery"
-         >Take a look to the complete gallery</Link>
+         >Take a look at the complete gallery</Link>
        </button>
      </div>
    </div>

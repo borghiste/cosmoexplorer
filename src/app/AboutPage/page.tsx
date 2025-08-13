@@ -20,23 +20,19 @@ export default function AboutPage() {
 
         <section className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
           <article className="col-span-1 md:col-span-2 bg-gradient-to-b from-slate-800/40 to-transparent rounded-2xl p-6">
-            <h2 className="text-2xl font-semibold mb-3">Our Mission</h2>
+            <h2 className="text-2xl font-semibold mb-3"> Mission</h2>
             <p className="text-slate-300 leading-relaxed">
-              CosmoExplorer was created to give readers a space where they can navigate ideas and books like constellations. We want to make discovering new authors and topics more visual, social, and playful — turning the search for reading into a little journey.
+              CosmoExplorer was created to give readers a space where enthusiasts can navigate, play and learn new things about astronomy
             </p>
 
-            <ul className="mt-4 space-y-2 text-slate-300">
-              <li>• Visualize connections between books, authors, and themes.</li>
-              <li>• Offer tools to create and share reading maps.</li>
-              <li>• Encourage discovery through recommendations based on real interests.</li>
-            </ul>
+        
           </article>
 
           <aside className="p-6 rounded-2xl bg-slate-800/30">
             <h3 className="text-xl font-medium mb-2">Core Values</h3>
             <div className="text-slate-300 space-y-2 text-sm">
               <p><strong>Discovery:</strong> bringing the unexpected to light.</p>
-              <p><strong>Community:</strong> tools designed for sharing and discussion.</p>
+            
               <p><strong>Accessibility:</strong> simple interfaces, rich content.</p>
             </div>
           </aside>
@@ -44,48 +40,41 @@ export default function AboutPage() {
 
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-6">What You Can Do on CosmoExplorer</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {[
-              { title: 'Interactive Maps', desc: 'Create maps that show how books and topics connect to each other.' },
-              { title: 'Recommendations', desc: 'Get personalized suggestions based on your reading map.' },
-              { title: 'Community & Sharing', desc: 'Comment, follow other explorers, and discover shared reading paths.' }
-            ].map((card) => (
-              <div key={card.title} className="rounded-xl p-5 bg-slate-800/40">
-                <h4 className="font-semibold mb-2">{card.title}</h4>
-                <p className="text-slate-300 text-sm">{card.desc}</p>
-              </div>
-            ))}
-          </div>
+          <ul className="mt-4 space-y-2 text-slate-300">
+              <li>• Visualize a gallery of images and videos from NASA.</li>
+              <li>• Check infos about the planets in the solar syste</li>
+              <li>• play a funny trivia game.</li>
+            </ul>
         </section>
 
         <section className="mb-12">
-          <h2 className="text-2xl font-semibold mb-4">Team & Collaborations</h2>
+          <h2 className="text-2xl font-semibold mb-4">Team</h2>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="rounded-xl p-5 bg-slate-800/30">
-              <p className="font-medium">Stefano — Founder & Frontend</p>
+              <p className="font-medium">Stefano — Founder, Frontend web developer</p>
               <p className="text-slate-300 text-sm mt-1">UI design and architecture.</p>
             </div>
-            <div className="rounded-xl p-5 bg-slate-800/30">
+            {/* <div className="rounded-xl p-5 bg-slate-800/30">
               <p className="font-medium">Backend Team</p>
               <p className="text-slate-300 text-sm mt-1">API, data persistence, and recommendation system.</p>
             </div>
             <div className="rounded-xl p-5 bg-slate-800/30">
               <p className="font-medium">Mentors & Community</p>
-              <p className="text-slate-300 text-sm mt-1">Collaborations with curators and experienced readers.</p>
+              <p className="text-slate-300 text-sm mt-1">Collaborations with curators and experienced readers.</p> */}
             </div>
-          </div>
+          
         </section>
 
         <section className="rounded-2xl p-8 bg-gradient-to-r from-slate-900/60 to-slate-800/30 border border-slate-700">
           <div className="flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
             <div>
               <h3 className="text-xl font-semibold">Join the Mission</h3>
-              <p className="text-slate-300 text-sm mt-1">If you're interested in testing, contributing, or collaborating, we’d love to hear from you — let’s build the map together.</p>
+              <p className="text-slate-300 text-sm mt-1">If you're interested in testing, contributing, or collaborating, I’d love to hear from you — let’s build something together.</p>
             </div>
 
             <div className="flex gap-3">
-              <a href="/signup" className="inline-flex items-center px-4 py-2 rounded-2xl bg-sky-600 text-black font-semibold shadow-lg">Sign Up</a>
-              <a href="/contact" className="inline-flex items-center px-4 py-2 rounded-2xl border border-slate-700 text-slate-200">Contact Us</a>
+            
+              <a href="mailto: sborghi92@gmail.com" className="inline-flex items-center px-4 py-2 rounded-2xl border border-slate-700 text-slate-200">Contact me</a>
             </div>
           </div>
         </section>
