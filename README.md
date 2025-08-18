@@ -1,69 +1,47 @@
-# cosmoexplorer
+# CosmoExplorer
 
-## The idea
+**CosmoExplorer** is a 3D space exploration website.
+## Table of Contents
+- [Features](#features)  
 
-I want to build an website that allows users to discover/study astronomy in an interactive and modern way. 
-The purpose of this website is to provide free and fun tool for students and enthusiasts.
+- [Tech Stack](#tech-stack)  
+- [Installation](#installation)  
+- [Usage](#usage)  
+- [Contributing](#contributing)  
+- [License](#license)  
 
-
-
-the app will feature:
-
- -a gallery with the picture of the day captured by NASA and previous pictures with user being able to search pictures by date and view specific informations.
- -details about planets and objects in the solar system.
- -visual rappresentation of the solar system
- - planets cards with weather information of each planet
- - a Quiz page
- -latest news
-
- the app will not feature too many things in the beginning.
+## Features
+- **Image Gallery:** a collection of images from NASA.  
+- **Planets section:** Search and explore a visual 3D rappresentation of the main planets from the Solar System .  
+- **Quiz game:** Choose a level of difficulty and play by answering some trivia.  
 
 
 
-## Website main features
+## Tech Stack
+- **Frontend:** Next.js, React, React Three Fiber, Drei  
+  
 
-the app will feature:
+## Installation
 
- -a gallery with the picture of the day captured by NASA and previous pictures with user being able to search pictures by date and view specific informations about them.
- -details about planets and objects in the solar system with visual 3D dashboard.
- - planets cards with weather information of each planet
- - Quiz page: a page dedicated to a quiz game to let user challenge their knowledge about astronomy.
+### 1. Clone the repository
+1. Clone the repository:  
 
+```bash
+git clone https://github.com/yourusername/cosmoexplorer.git
+````
 
+### 2. Navigate to the project directory
 
+```bash
+cd cosmoexplorer
+````
+### 3. Install dependecies
+```bash
+npm install
+````
+### 4. start the development server
 
- ## Pages and Their Purposes
-
- - ### 1 Home: 
-
-- description of the features
-
- quick access to 3 pages:
-
- 
- - Gallery
- - Planets
- -about
-
-
-
- ## 2 solar system map:
-
- a 3d rappresentation of the solar system' s planets with main info when the use hover the objects with mouse. each object should have unique article that display all info about that object.
-
- ## 3 quiz
-
- Quiz page. a section dedicated to a quiz game to let user challenge their knowledge about astronomy.the quiz will providde three difficulty level: base, middle, advanced
- 
-
-##  4 gallery
-a page that display the astronomy picture of the day with description. this section will let user search for more images by date. each image should display a relative modal window once is clicked.
-
-
-## Technologies
-
-- Next js
-- react
-- typescript
-
-
+```bash
+npm run dev
+```
+### 5. Open http://localhost:3000 in your browser.
