@@ -3,22 +3,21 @@
 **CosmoExplorer** is a 3D space exploration website.
 ## Table of Contents
 - [Features](#features)  
-
 - [Tech Stack](#tech-stack)  
 - [Installation](#installation)  
 - [Usage](#usage)  
-- [Contributing](#contributing)  
+  
 - [License](#license)  
 
 ## Features
 - **Image Gallery:** a collection of images from NASA.  
-- **Planets section:** Search and explore a visual 3D rappresentation of the main planets from the Solar System .  
+- **Planets section:** Search and explore a visual 3D rappresentation of the main planets from the Solar System.  
 - **Quiz game:** Choose a level of difficulty and play by answering some trivia.  
 
 
 
 ## Tech Stack
-- **Frontend:** Next.js, React, React Three Fiber, Drei  
+- **Frontend:** Next.js, React, React Three Fiber, Drei . 
   
 
 ## Installation
@@ -44,4 +43,7 @@ npm install
 ```bash
 npm run dev
 ```
-### 5. Open http://localhost:3000 in your browser.
+
+## Usage
+ - Open http://localhost:3000 in your browser.
+ - Start exploring the pages,
