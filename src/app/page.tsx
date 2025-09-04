@@ -7,7 +7,7 @@ import { ScrollControls, Scroll, Html } from "@react-three/drei";
 import { LegacyRef, Suspense, useEffect, useRef, useState } from "react";
 import { Mesh } from "three";
 import Script from "next/script";
- import './globals.css';
+ import './global.css';
  import { Text } from "@react-three/drei";
 
 // 3D COMPONENTS

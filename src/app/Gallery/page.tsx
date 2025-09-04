@@ -80,20 +80,7 @@ export default function Gallery(){
 
     
     
-  //    const start_date = start_date_Ref.current?.value || ''
-  //    const end_date = end_date_Ref.current?.value || ''
-    
-    
-    
-  //    fetchImagesbyDate({start_date:start_date, end_date:end_date})
-  //    .then((data)=>{
-  //      const pics = data
-  //      setgalleryPictures(pics)
-      
-      
-      
-  //    })
-  //  }
+
 
       useEffect(()=>{fetchImagesbyDate({start_date:formattedAMonthAgo, end_date:todayDate})
       .then((data)=>{
@@ -113,7 +100,7 @@ export default function Gallery(){
 
     
   return(
-    <div style={{height: '100vh', overflow: 'auto'}}>
+    <div style={{height: '100%', overflow: 'auto'}}>
       
   <Canvas camera={{ fov: 75, near: 0.1, far: 1000, position: [0, 0, 5] }} style={{position:'absolute', overflow: 'hidden', zIndex:10}}>
   <ambientLight intensity={2} />
@@ -124,6 +111,7 @@ export default function Gallery(){
       <AstroSatellite/>
       </Canvas>
       <h1 className='text-8xl'>Gallery</h1>
+      <h2 className='text-6xl'>Click on a image to full view</h2>
    
      {pictureOfTheDay}
      

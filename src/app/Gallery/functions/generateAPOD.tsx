@@ -37,14 +37,15 @@ export default function generateAPOD({APOD, onClick}:generateAPODProps){
 
    return(
     <>
-    <><div className="sticky">
+    <><div className="sticky mb-20 py-1">
     
-      <h2 className="text-2xl ">Astronomy picture of the day:</h2>
+      <h2 className="text-4xl ">Astronomy picture of the day:</h2>
       <h3 className="absolute text-lg md:text-xl xl:text-3xl">{APOD?.title}</h3>
       
       {Content}
       <p className=" text-[11px] md:text-md text-justify md:text-xl ">{APOD?.explanation}</p>
-      </div></>
+      </div>
+      </>
     </>
    )
     }

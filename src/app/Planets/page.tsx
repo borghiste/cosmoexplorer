@@ -179,7 +179,7 @@ const planets = [
    { name: 'Mercury', path: '/models/mercury.glb', scale: 1, description: 'Mercury is the closest planet to the Sun and the smallest in the Solar System. It has a rocky, cratered surface that resembles the Moon and experiences extreme temperature changes — scorching hot during the day and freezing at night. Due to its proximity to the Sun and lack of a significant atmosphere, Mercury is a world of intense solar radiation and silence.' },
     { name: 'Venus', path: '/models/venus.glb', scale: 1, description: 'Venus is similar in size to Earth but could not be more different in terms of conditions. Its thick atmosphere is made primarily of carbon dioxide and is capable of trapping heat so effectively that surface temperatures reach around 460°C. The planet’s surface is hidden beneath layers of dense clouds, and it rotates in the opposite direction compared to most planets, making its day longer than its year.' },
    { name: 'Earth', path: '/models/earth.glb', scale: 1.1, description: 'Earth is the third planet from the Sun and the only known world to support life. It has a breathable atmosphere rich in oxygen, a balanced climate system, and abundant liquid water. Earth\'s diverse environments — from oceans to forests to deserts — make it a dynamic and ever-changing planet. It also has one natural satellite: the Moon.' },
-  { name: 'Mars', path: '/models/mars.glb', scale: 1.1 },
+  { name: 'Mars', path: '/models/mars.glb', description: 'Mars is the fourth planet from the Sun in our solar system and is often called the Red Planet because of its reddish appearance, caused by iron oxide (rust) on its surface. It is about half the size of Earth, with a thin atmosphere mostly made of carbon dioxide, which makes it unable to support human life without assistance.', scale: 1.1 },
   {name: 'Jupiter', path:'/models/jupiter.glb', scale: 1.8, description: 'Jupiter is the largest planet in the Solar System and a massive gas giant primarily composed of hydrogen and helium. It is famous for its swirling clouds and the Great Red Spot, a gigantic storm that has raged for centuries. Jupiter has a powerful magnetic field and over 90 moons, including Ganymede, the largest moon in the Solar System.'},
   {name: 'Saturn', path: '/models/saturn.glb', scale: 2, description: 'Saturn is best known for its spectacular ring system, made of ice and rock particles. Like Jupiter, it is a gas giant, though it is much less dense — in fact, it could theoretically float in water. Saturn has a vast number of moons, with Titan being the most well-known for its thick atmosphere and potential for prebiotic chemistry.'},
   {name: 'Uranus', path: '/models/uranus.glb', scale: 1.5, rotation: [0.1,1, 1.4], description: 'Uranus is an ice giant with a pale blue-green color caused by methane in its atmosphere. It is unique among the planets because it rotates on its side, likely due to a massive collision in its past. Its unusual tilt results in extreme seasonal changes. Uranus is also surrounded by faint rings and has a cold, distant atmosphere.'},
@@ -190,14 +190,11 @@ const planets = [
 export default function Planets() {
 
 
- 
-
-
 
   
   return (
   
-    <div style={{ height: '100vh', width: '100%', overflowY: 'hidden',position:'relative' }}>
+    <div style={{ height: '100vh', width: '100vw', overflowY: 'auto',position:'relative' }}>
 
         <h2 className='text-8xl mx-40'>Planets</h2>
         <p className='w-max-96 text-center'>The Solar System is composed of eight main planets that orbit around the Sun, our central star. These planets are categorized into two groups: the four inner rocky planets (Mercury, Venus, Earth, and Mars) and the four outer gas or ice giants (Jupiter, Saturn, Uranus, and Neptune). Each planet has its own unique characteristics, atmosphere, and environment.</p>
