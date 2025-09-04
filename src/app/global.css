@@ -23,7 +23,7 @@
 }
 
 body {
-  overflow-y: scroll;         /* serve per il comportamento */
+  overflow-y: scroll;         
   scrollbar-width: none;
   
        /* Firefox */

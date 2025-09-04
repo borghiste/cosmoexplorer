@@ -194,10 +194,12 @@ export default function Planets() {
   
   return (
   
-    <div style={{ height: '100vh', width: '100vw', overflowY: 'auto',position:'relative' }}>
+    <div style={{ height: '100vh', width: '100%', overflowY: 'auto', overflow:'hidden', position:'relative' }}>
 
-        <h2 className='text-8xl mx-40'>Planets</h2>
+        <h2 className='lg:text-6xl text-5xl mx-40'>Planets</h2>
         <p className='w-max-96 text-center'>The Solar System is composed of eight main planets that orbit around the Sun, our central star. These planets are categorized into two groups: the four inner rocky planets (Mercury, Venus, Earth, and Mars) and the four outer gas or ice giants (Jupiter, Saturn, Uranus, and Neptune). Each planet has its own unique characteristics, atmosphere, and environment.</p>
+
+        <p className='bg-[var(--violet)] rounded-r-2 max-w-[9rem] text-sm text-center text-black m-auto self-center'>Click on a planet to see its description</p>
       <Canvas camera={{ position: [0, 0, 10], fov: 35 }}>
       
           
