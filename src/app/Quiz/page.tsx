@@ -64,18 +64,15 @@ useEffect(()=>{
 
         
 
-                 <div className="  cover w-full h-full min-w-full flex flex-col justify-center items-center">
+                 <div className="  cover w-full h-max min-w-full flex flex-col justify-center items-center">
                     <span className="sticky right-28 bottom-20 text-xl ">
 
-                <Link href={'/'} className="w-4 text-[#ededed] f">&larr; homepage</Link>
+                <Link href={'/'} className="w-4 text-[#ededed] ">&larr; homepage</Link>
                     </span>
 
-                    {/* <FiieldSetandRadioGroup 
-                    legend={'chose a level of difficulty'}
-                    nameRadio={'level'} options={levels} onChange={setLevelChose}
-                                        onClick={()=>{setStartGame(true)}} clickState={startGame}/> */}
 
-                 <div className="flex justify-between  items-center flex-col">
+
+                 <div className="flex justify-between items-center flex-col ">
 
             
                   
@@ -85,9 +82,9 @@ useEffect(()=>{
 
                 {levels.map((level) => (
                     <>
-                    <div className="rounded-full w-[11rem] border-2 border-[var(--blue)] m-2 bg-gray-400">
+                    <div className="rounded-full w-auto border-2 border-[var(--blue)] m-2 bg-gray-400">
 
-                    <input onChange={(e)=> {setLevelChose(level)}} type="radio" name="level" value={level}/>
+                    <input className="min-w-3 min-h-3" onChange={(e)=> {setLevelChose(level)}} type="radio" name="level" value={level}/>
                 <label className="text-md">{level}</label>
                     </div>
                     </>
@@ -96,7 +93,7 @@ useEffect(()=>{
 
             <button 
             onClick={()=>{setStartGame(true)}}
-            className="justify-end bg-[var(--blue)] rounded-full w-[5rem]">start</button>
+            className="justify-end bg-[var(--blue)] rounded-full min-w-[5rem] w-auto shrink-0">start</button>
                
                 </div> 
                
