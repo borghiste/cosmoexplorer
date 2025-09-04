@@ -23,7 +23,7 @@ export default  function generateGalleryContent({data, handleClick}:genrateConte
 <Link href={`/Gallery/${encodeURIComponent(JSON.stringify(object))}`}  key={object.url}>
 <div className="">
 
-<h3 className="relative lg:text-lg text-md bottom-10 left-5 ">{object.title}</h3>
+<h3 className="relative lg:text-lg text-md px-6 py-1 left-5 ">{object.title}</h3>
 
   <Image src={object.url}
        alt={object.title}
